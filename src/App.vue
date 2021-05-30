@@ -1,28 +1,51 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
-  </div>
+  <v-app>
+
+    <v-main>
+      <!-- Use unique on router-view to force vue to create a new component instance -->
+      <router-view :key="$route.fullPath"></router-view>
+      <!-- <router-view ></router-view> -->
+
+
+    </v-main>
+    
+    <AppNavbar/>
+  </v-app>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import AppNavbar from './components/AppNavbar.vue';
 
 export default {
-  name: 'app',
+  name: 'App',
   components: {
-    HelloWorld
-  }
-}
+    AppNavbar,
+  },
+
+  data() {
+    return {
+
+    }
+  },
+};
 </script>
 
+
 <style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+  .line-behind {
+      padding: 0 10px;
+      box-shadow: inset 0 -10px 0 0 #B2DFDB;
+  }
+
+/* WEG 2 */
+  /* :root {
+    --background-color: red;
+    --text-color: black;
+  } */
+
+  /* [data-theme="darkTheme"] {
+    --background-color: black;
+    --text-color: white;
+  } */
+
 </style>
