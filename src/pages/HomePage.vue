@@ -1,7 +1,6 @@
 <template>
 
   <v-container>
-    <p>This is the Home page!</p>
     <v-row>
       <v-col cols="12" class="mx-auto">
         <article-front-page :category="'general'"></article-front-page>

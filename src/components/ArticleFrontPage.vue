@@ -8,7 +8,7 @@
           <header>
             <v-row>
               <v-col
-                cols="8" class=" mx-auto mb-5">
+                cols="12" class=" mx-auto mb-5">
                 <div class="article-meta-row article-category mb-5"><span class="line-behind">{{ articleFrontPage[0].category }}</span></div>
                   <v-img :src="articleFrontPage[0].urlToImage" class="article-image"></v-img>
               </v-col>
@@ -18,7 +18,7 @@
           <article>
             <v-row>
               <v-col
-                cols="8" class="mx-auto article-meta">
+                cols="12" class="mx-auto article-meta">
                 <div class="article-meta-row article-title mb-3"><h1><span>{{ articleFrontPage[0].prettyTitle[1] }}</span></h1></div>
                 <!-- <div class="article-meta-row article-description mb-3"><h4><span class="font-weight-regular">{{ articleDetail.description }}</span></h4></div> -->
             
@@ -28,12 +28,15 @@
 
             <v-row>
               <v-col
-                cols="8" class="mx-auto article-main">
+                cols="12" class="mx-auto article-main">
                 <p>
-                  {{ articleFrontPage[0].content }} &mdash;
-                  <a :href="articleFrontPage[0].url" target="_blank" class="text-decoration-none black--text line-behind article-link">
-                    <span >weiterlesen</span>
-                  </a>
+                  {{ articleFrontPage[0].description }} &mdash; <br>
+                  <!-- <a :href="articleFrontPage[0].url" target="_blank" class="text-decoration-none black--text line-behind article-link"> -->
+                  <router-link
+                    :to="`/${category}`"
+                    class="text-decoration-none black--text line-behind article-link">
+                    <span >mehr aus dieser Kategorie</span>
+                  </router-link>
                 </p>
               </v-col>
             </v-row>
@@ -47,9 +50,11 @@
 
 <script>
 import axios from 'axios';
+import articleMixin from '../mixins/articleMixin';
 
 export default {
   name: 'ArticleFrontPage',
+  mixins: [ articleMixin ],
   data() {
     return {
       loaded: false,
@@ -89,7 +94,7 @@ export default {
     },
     getArticleFrontPage() {
 
-      axios.get(`https://newsapi.org/v2/top-headlines?country=de&category=${this.category}&from=${this.todayToAPIString}&to=${this.todayToAPIString}&pageSize=1&apiKey=${process.env.VUE_APP_NEWS_API_KEY}`)
+      axios.get(`https://newsapi.org/v2/top-headlines?country=de&category=${this.category}&from=${this.todayToAPIString}&to=${this.todayToAPIString}&pageSize=10&apiKey=${process.env.VUE_APP_NEWS_API_KEY}`)
       .then(res => {
 
         const data = res.data.articles;
@@ -104,35 +109,11 @@ export default {
           // Filtern nach Source names und check, dass keiner der values von content, description, title, url und urlToImage leer sind
           if (this.sources.includes(article['source']['name']) && (article['content']&&article['description']&&article['title']&&article['url']&&article['urlToImage'] != null)) {
 
-            // Ersten Teil des Titels (vor " - ") als Titel anzeigen (mit articel.prettyTitle[1]), zweiten Teile (Name der Source) mit articel.prettyTitle[2]
-            article['prettyTitle'] = article['title'].match(/(.*)\s-\s(.*)/)
-            // eslint-disable-next-line
-            // console.log(article['prettyTitle']);
+            article['prettyTitle'] = this.makePrettyTitle(article['title']);
 
-            // Create slug from article.prettyTitle[1]
-            // Remove any whitespace at beginning or end
-            let slug = article['prettyTitle'][1].replace(/^\s+|\s+$/g, '');
+            article['slug'] = this.makeSlug(article['prettyTitle'][1]);
 
-            // Convert to lower case
-            slug = slug.toLowerCase();
-
-            // remove accents, swap ñ for n, etc
-            let from = ['ä', 'ö', 'ü', 'ß'];
-            let to   = ['ae', 'oe', 'ue', 'ss'];
-
-            for (let key in from) {
-              slug = slug.replace(new RegExp(from[key], 'g'), to[key]);
-            }
-
-            article['slug'] = slug.replace(/[^a-z0-9 -]/g, '') // remove invalid chars
-              .replace(/\s+/g, '-') // collapse whitespace and replace by -
-              .replace(/-+/g, '-'); // collapse dashes
-
-            // eslint-disable-next-line
-            console.log(article['content']);
-
-            // Datumformat der Response ersetzen durch eigenes DE
-            article['publishedAt'] = article['publishedAt'].replace(/T.*/,'').split('-').reverse().join('.');
+            article['publishedAt'] = this.makePrettyDate(article['publishedAt']);
 
             article['category'] = this.category;
 
@@ -147,7 +128,7 @@ export default {
         }
 
         // eslint-disable-next-line
-        console.log(this.articleFrontPage);
+        // console.log(this.articleFrontPage);
 
         this.loaded = true;
 

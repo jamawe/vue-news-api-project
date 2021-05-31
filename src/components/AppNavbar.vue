@@ -114,6 +114,9 @@
         categories: [
           'business','entertainment','general','health','science','sports','technology'
         ],
+        // {
+        //     'business': 'business','entertainment': 'unterhaltung','general': 'allgemein','health': 'gesundheit','science': 'wissenschaft','sports': 'sport','technology': 'technologie'
+        //     }
       }
     },
     // WEG 1

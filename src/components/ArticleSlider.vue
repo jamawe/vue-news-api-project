@@ -85,10 +85,13 @@
 // import { bus } from '../main';
 import axios from 'axios';
 import VueTinySlider from 'vue-tiny-slider';
+import articleMixin from '../mixins/articleMixin';
 
 export default {
+  mixins: [ articleMixin ],
   data() {
     return {
+      panda: '',
       loaded: false,
       todayToAPIString: '',
       options: {
@@ -102,7 +105,6 @@ export default {
         controlsContainer: '#customize-controls',
         prevButton: '#prev',
         nextButton: '#next',
-        // controlsText: ['<span class="teal--text font-weight-bold mr-2 text-h2 d-flex justify-end" style="">&lsaquo;</span>', '<span class="teal--text font-weight-bold text-h2 d-flex justify-end">&rsaquo;</span>']
       },
       articles: [],
       sources: [
@@ -143,9 +145,6 @@ export default {
     },
     getArticles() {
 
-      // eslint-disable-next-line
-      // console.log(this.category);
-
       axios.get(`https://newsapi.org/v2/top-headlines?country=de&category=${this.category}&from=${this.todayToAPIString}&to=${this.todayToAPIString}&pageSize=50&apiKey=${process.env.VUE_APP_NEWS_API_KEY}`)
       .then(res => {
 
@@ -157,35 +156,11 @@ export default {
           // Filtern nach Source names und check, dass keiner der values von content, description, title, url und urlToImage leer sind
           if (this.sources.includes(article['source']['name']) && (article['content']&&article['description']&&article['title']&&article['url']&&article['urlToImage'] != null)) {
 
-            // Ersten Teil des Titels (vor " - ") als Titel anzeigen (mit articel.prettyTitle[1]), zweiten Teile (Name der Source) mit articel.prettyTitle[2]
-            article['prettyTitle'] = article['title'].match(/(.*)\s-\s(.*)/)
-            // eslint-disable-next-line
-            // console.log(article['prettyTitle']);
+            article['prettyTitle'] = this.makePrettyTitle(article['title']);
 
-            // Create slug from article.prettyTitle[1]
-            // Remove any whitespace at beginning or end
-            let slug = article['prettyTitle'][1].replace(/^\s+|\s+$/g, '');
-
-            // Convert to lower case
-            slug = slug.toLowerCase();
-
-            // remove accents, swap ñ for n, etc
-            let from = ['ä', 'ö', 'ü', 'ß'];
-            let to   = ['ae', 'oe', 'ue', 'ss'];
-
-            for (let key in from) {
-              slug = slug.replace(new RegExp(from[key], 'g'), to[key]);
-            }
-
-            article['slug'] = slug.replace(/[^a-z0-9 -]/g, '') // remove invalid chars
-              .replace(/\s+/g, '-') // collapse whitespace and replace by -
-              .replace(/-+/g, '-'); // collapse dashes
-
-            // eslint-disable-next-line
-            console.log(article['content']);
-
-            // Datumformat der Response ersetzen durch eigenes DE
-            article['publishedAt'] = article['publishedAt'].replace(/T.*/,'').split('-').reverse().join('.');
+            article['slug'] = this.makeSlug(article['prettyTitle'][1]);
+            
+            article['publishedAt'] = this.makePrettyDate(article['publishedAt']);
 
             article['category'] = this.category;
 
@@ -200,7 +175,7 @@ export default {
         }
 
         // eslint-disable-next-line
-        console.log(this.articles);
+        // console.log(this.articles);
 
         this.loaded = true;
 
