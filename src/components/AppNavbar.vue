@@ -88,6 +88,13 @@
               >
                 <span class="drawer-link line-behind">{{ category }}</span>
               </router-link>
+              <!-- <router-link
+                :to="{ name: 'CategoryPage', params: {
+                  engCategory: key, category: value } }"
+                class="black--text text-capitalize text-decoration-none"
+              >
+                <span class="drawer-link line-behind">{{ key }} - {{ value }}</span>
+              </router-link> -->
             </v-list-item-title>
           </v-list-item>
 
@@ -115,52 +122,25 @@
           'business','entertainment','general','health','science','sports','technology'
         ],
         // {
-        //     'business': 'business','entertainment': 'unterhaltung','general': 'allgemein','health': 'gesundheit','science': 'wissenschaft','sports': 'sport','technology': 'technologie'
-        //     }
+        //   0: {'business': 'business'}, 1: {'entertainment': 'unterhaltung'}, 2: {'general': 'allgemein'}, 3: {'health': 'gesundheit'}, 4: {'science': 'wissenschaft'}, 5: {'sports': 'sport'}, 6:{'technology': 'technologie'}
+        // }
+
+
+
+            // {
+            // 'business': 'business','unterhaltung': 'entertainment','allgemein': 'general','gesundheit': 'health','wissenschaft': 'science','sport': 'sports','technologie': 'technology'
+            // }
+        
       }
     },
-    // WEG 1
-    // mounted() {
-    //   const theme = localStorage.getItem('theme');
-    //   if (theme) {
-    //     if (theme == "true") {
-    //       this.$vuetify.theme.dark = true;
-    //     } else {
-    //       this.$vuetify.theme.dark = false;
-    //     }
-    //   }
-    // },
-    // methods: {
-    //   toggleTheme() {
-    //     this.$vuetify.theme.dark = !this.$vuetify.theme.dark;
-    //     localStorage.setItem('theme', this.$vuetify.theme.dark.toString());
-    //   }
-    // }
-
-    // WEG 2
-    // mounted() {
-    //   let localTheme = localStorage.getItem('theme'); // Get stored theme value
-    //   document.documentElement.setAttribute('data-theme', localTheme); // Update data-theme attribute
-    // },
-    // methods: {
-    //   toggleTheme() {
-    //     // eslint-disable-next-line
-    //     console.log(this.theme);
-    //     this.theme = this.theme == 'darkTheme' ? '' : 'darkTheme'; // Toggle theme value
-    //     document.documentElement.setAttribute('data-theme', this.theme); // Set data-theme attribute to current theme
-    //     localStorage.setItem('theme', this.theme); // Store theme value in local storage
-    //     // eslint-disable-next-line
-    //     console.log(localStorage);
-    //   }
-    // }
+    mounted() {
+      // eslint-disable-next-line
+      console.log(Object.keys(this.categories));
+    }
   }
 </script>
 
 <style scoped>
-  /* .nav-container {
-    z-index: 100;
-  } */
-
   .home-link, .drawer-link {
     font-family: 'Courier New', Courier, monospace;
   }

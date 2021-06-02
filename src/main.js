@@ -3,6 +3,7 @@ import App from './App.vue'
 import VueRouter from 'vue-router';
 import { routes } from './routes';
 import vuetify from './plugins/vuetify';
+// import categoryMixin from './mixins/categoryMixin';
 // import VueSplide from '@splidejs/vue-splide';
 // import VueTinySlider from 'vue-tiny-slider';
 
@@ -10,6 +11,7 @@ import vuetify from './plugins/vuetify';
 
 Vue.use( VueRouter );
 // Vue.use( VueTinySlider );
+// Vue.mixin( categoryMixin );
 
 // Vue.component("tiny-slider", VueTinySlider);
 
