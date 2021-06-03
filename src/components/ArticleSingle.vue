@@ -1,10 +1,6 @@
 <template>
   <v-container class="article-single">
 
-    <!-- hello
-
-    {{ articleSingle }} -->
-
        <v-row>
         <v-col
           cols="12" class="mx-auto">
@@ -75,26 +71,10 @@ export default {
   props: {
     articleSingle: Object,
   },
-  // props: [ 'articleSingle' ],
-  created() {
-    typeof('TYPE OF -------------', this.articleSingle);
-  }
 }
 </script>
 
 <style scoped>
-
-  .img-container {
-    position: relative;
-  }
-
-  .img-back {
-    filter: blur(4px);
-    filter: opacity(50%);
-    /* z-index: 0; */
-    -webkit-filter: blur(4px);
-    /* transform: scale(1.5);  */
-  }
 
   .article-image {
     box-shadow: 10px 10px #26A69A;
