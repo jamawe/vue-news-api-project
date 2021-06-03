@@ -31,33 +31,13 @@ export default {
     return {
       loaded: false,
       articles: [],
-      todayToAPIString: '',
       category: this.$route.params.category,
     }
   },
   created() {
-    this.getDate();
     this.getArticles();
   },
   methods: {
-    getDate() {
-      // Get today's date and format it toNewsAPIs convention (yyyy-mm-dd)
-      const today = new Date();
-
-      let year = '' + today.getFullYear();
-      let month = '' + (today.getMonth() + 1);
-      let day = '' + today.getDate();
-
-      if (month.length < 2) {
-        month = '0' + month;
-      }
-
-      if (day.length < 2) {
-        day = '0' + day;
-      }
-
-      this.todayToAPIString = [year, month, day].join('-');
-    },
     getArticles() {
 
       axios.get(`https://newsapi.org/v2/top-headlines?country=de&category=${this.category}&from=${this.todayToAPIString}&to=${this.todayToAPIString}&pageSize=50&apiKey=${process.env.VUE_APP_NEWS_API_KEY}`)
@@ -100,6 +80,26 @@ export default {
       // eslint-disable-next-line
       .catch(error => console.log(error));
     },
+  },
+  computed: {
+    todayToAPIString() {
+      // Get today's date and format it toNewsAPIs convention (yyyy-mm-dd)
+        const today = new Date();
+
+        let year = '' + today.getFullYear();
+        let month = '' + (today.getMonth() + 1);
+        let day = '' + today.getDate();
+
+        if (month.length < 2) {
+          month = '0' + month;
+        }
+
+        if (day.length < 2) {
+          day = '0' + day;
+        }
+
+        return [year, month, day].join('-');
+    }
   }
 }
 </script>
