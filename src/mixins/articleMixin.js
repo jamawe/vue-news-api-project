@@ -40,6 +40,14 @@ export default {
       let prettyDate = publishedAt.replace(/T.*/,'').split('-').reverse().join('.');
 
       return prettyDate;
+    },
+    makePrettyContent(content) {
+      // / : start/ end of the regex
+      // * : 0 or more occurrences of the preceding item
+
+      let prettyContent = content.replace(/ *\[[^\]]*]/, '');
+
+      return prettyContent;
     }
   }
 };

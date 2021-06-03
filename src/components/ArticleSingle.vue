@@ -1,7 +1,11 @@
 <template>
   <v-container class="article-single">
 
-      <v-row>
+    <!-- hello
+
+    {{ articleSingle }} -->
+
+       <v-row>
         <v-col
           cols="12" class="mx-auto">
 
@@ -21,14 +25,13 @@
             </v-row>
           </header>
 
-          <article>
+         <article>
             <v-row>
               <v-col
               cols="10" class="mx-auto article-meta">
 
                 <div class="article-meta-row article-title mb-3"><h1><span>{{ articleSingle.prettyTitle[1] }}</span></h1></div>
 
-                <!-- <div class="article-meta-row article-description mb-3"><h4><span class="font-weight-regular">{{ articleSingle.description }}</span></h4></div> -->
                 
                 <div class="article-meta-row article-meta">
                   <h4>
@@ -62,7 +65,7 @@
           </article>
 
         </v-col>
-      </v-row>
+      </v-row> 
   </v-container>
 </template>
 
@@ -72,6 +75,10 @@ export default {
   props: {
     articleSingle: Object,
   },
+  // props: [ 'articleSingle' ],
+  created() {
+    typeof('TYPE OF -------------', this.articleSingle);
+  }
 }
 </script>
 

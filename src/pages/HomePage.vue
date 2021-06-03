@@ -3,7 +3,11 @@
   <v-container>
     <v-row>
       <v-col cols="12" class="mx-auto">
-        <article-single :articleSingle="this.articleFrontPage"></article-single>
+        <article-single
+          :articleSingle="article"
+          v-for="(article, i) in articleFrontPage"
+          :key="i"
+        ></article-single>
       </v-col>
     </v-row>
   </v-container>
@@ -16,21 +20,17 @@ import axios from 'axios';
 import articleMixin from '../mixins/articleMixin';
 
 export default {
-  name: 'ArticleFrontPage',
+  name: 'HomePage',
   components: {
     'article-single': ArticleSingle,
   },
   mixins: [ articleMixin ],
   data() {
     return {
-      // loaded: false,
+      loaded: false,
       todayToAPIString: '',
       articleFrontPage: [],
       category: 'general',
-      // sources: [
-      //   'Spiegel Online', 'BUNTE.de', 'watson', 'tagesschau.de', 'Derwesten.de', 'N-tv.de', 'STERN.de', 'Faz.net', 'Bild', 'Www.rnd.de', 'Süddeutsche Zeitung', 'Rollingstone.de', 'Die Zeit', 'Handelsblatt', 'wallstreet-online', 'DIE WELT', 'T3n', 'merkur.de', 'Abendblatt.de', 'Wirtschafts Woche', 'Berliner Zeitung', 'Www.ndr.de', 'Www.hna.de', 'B.Z. Berlin', 'Thueringer-allgemeine.de', 'Augsburger Allgemeine', 'Www.swr.de', 'Www.waz.de', 'Berliner Morgenpost', 'heise online', 'Der Tagesspiegel', 'RP ONLINE', 'Stuttgarter Zeitung', 'Aerzteblatt.de', 'Focus', 'Spektrum.de', 'SPORT1', 'deichstube.de', 'Transfermarkt', 'Formel1.de', 'Eurosport.de', 'sportschau.de', 'DW (English)', '11freunde.de', 'PC-WELT', 'netzwelt', 'CHIP Online Deutschland', 'COMPUTER BILD', 'DER AKTIONÄR', 'Finanzen.net',
-      // ],
-      // model: 0,
     }
   },
   // props: {
@@ -67,7 +67,7 @@ export default {
         const data = res.data.articles;
 
         // eslint-disable-next-line
-        console.log("data:", data, data[0].urlToImage);
+        // console.log("data:", data, data[0].urlToImage);
 
 
         for (let key in data) {
@@ -82,6 +82,8 @@ export default {
 
             article['publishedAt'] = this.makePrettyDate(article['publishedAt']);
 
+            article['content'] = this.makePrettyContent(article['content']);
+
             article['category'] = this.category;
 
             if (this.articleFrontPage.length < 1) {
@@ -95,7 +97,7 @@ export default {
         }
 
         // eslint-disable-next-line
-        // console.log(this.articleFrontPage);
+        console.log(this.articleFrontPage);
 
         this.loaded = true;
 

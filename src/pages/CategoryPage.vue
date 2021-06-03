@@ -77,6 +77,8 @@ export default {
             
             article['publishedAt'] = this.makePrettyDate(article['publishedAt']);
 
+            article['content'] = this.makePrettyContent(article['content']);
+
             article['category'] = this.category;
 
             if (this.articles.length < 10) {

@@ -135,7 +135,7 @@
     },
     mounted() {
       // eslint-disable-next-line
-      console.log(Object.keys(this.categories));
+      // console.log(Object.keys(this.categories));
     }
   }
 </script>

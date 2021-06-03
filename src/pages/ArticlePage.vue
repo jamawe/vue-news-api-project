@@ -29,19 +29,19 @@ export default {
   created() {
     // eslint-disable-next-line
     // console.log(this.articleDetail['description']);
-    this.prettyContent();
+    // this.makePrettyContent(this.articleDetail['content']);
   },
   methods: {
-    prettyContent() {
+    // prettyContent() {
 
-      // / : start/ end of the regex
-      // * : 0 or more occurrences of the preceding item
+    //   // / : start/ end of the regex
+    //   // * : 0 or more occurrences of the preceding item
 
-      this.articleDetail['content'] = this.articleDetail['content'].replace(/ *\[[^\]]*]/, '');
+    //   this.articleDetail['content'] = this.articleDetail['content'].replace(/ *\[[^\]]*]/, '');
 
-      // eslint-disable-next-line
-      // console.log(this.articleDetail['content']);
-    },
+    //   // eslint-disable-next-line
+    //   // console.log(this.articleDetail['content']);
+    // },
   }
 }
 </script>
