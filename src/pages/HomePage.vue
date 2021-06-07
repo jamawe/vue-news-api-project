@@ -2,33 +2,46 @@
 
   <v-container>
     <v-row>
-      <v-col cols="12" class="mx-auto">
-        <article-single
-          :articleSingle="article"
-          v-for="(article, i) in articleFrontPage"
-          :key="i"
-        ></article-single>
+      <v-col cols="10" class="mx-auto">
+        <div><router-link class="text-decoration-none line-behind black--text home-page-title" :to="`/${this.category}`">
+          latest news
+        </router-link></div>
       </v-col>
     </v-row>
+
+    <v-row v-if="articlesFrontPage.length">
+      <!-- <v-col cols="12" class="mx-auto"> -->
+        <article-box
+          v-for="(article, i) in articlesFrontPage"
+          :key="i"
+          :article="article"
+          :articlesForGrid="articlesFrontPage"
+        ></article-box>
+      <!-- </v-col> -->
+    </v-row>
+
+
   </v-container>
 
 </template>
 
 <script>
-import ArticleSingle from '../components/ArticleSingle.vue';
+// import ArticleSingle from '../components/ArticleSingle.vue';
+import ArticleBox from '../components/ArticleBox.vue';
 import axios from 'axios';
 import articleMixin from '../mixins/articleMixin';
 
 export default {
   name: 'HomePage',
   components: {
-    'article-single': ArticleSingle,
+    // 'article-single': ArticleSingle,
+    'article-box': ArticleBox,
   },
   mixins: [ articleMixin ],
   data() {
     return {
       loaded: false,
-      articleFrontPage: [],
+      articlesFrontPage: [],
       category: 'general',
     }
   },
@@ -38,7 +51,7 @@ export default {
   methods: {
     getArticleFrontPage() {
 
-      axios.get(`https://newsapi.org/v2/top-headlines?country=de&category=${this.category}&from=${this.todayToAPIString}&to=${this.todayToAPIString}&pageSize=10&apiKey=${process.env.VUE_APP_NEWS_API_KEY}`)
+      axios.get(`https://newsapi.org/v2/top-headlines?country=de&category=${this.category}&from=${this.todayToAPIString}&to=${this.todayToAPIString}&pageSize=15&apiKey=${process.env.VUE_APP_NEWS_API_KEY}`)
       .then(res => {
 
         const data = res.data.articles;
@@ -46,6 +59,7 @@ export default {
         // eslint-disable-next-line
         // console.log("data:", data, data[0].urlToImage);
 
+        let count = 0;
 
         for (let key in data) {
           const article = data[key];
@@ -63,8 +77,22 @@ export default {
 
             article['category'] = this.category;
 
-            if (this.articleFrontPage.length < 1) {
-              this.articleFrontPage.push(article);
+            if (count < 1) {
+              article['flex'] = 10;
+              article['imgWidth'] = 'auto';
+              article['imgHeight'] = 'auto';
+              article['cardWidth'] = 'auto';
+              count++;
+            } else {
+              article['flex'] = 6;
+                article['imgWidth'] = 250;
+                article['imgHeight'] = 250;
+                article['cardWidth'] = 250;
+              count++;
+            }
+
+            if (this.articlesFrontPage.length < 5) {
+              this.articlesFrontPage.push(article);
             } else {
               break;
             }
@@ -101,7 +129,46 @@ export default {
         }
 
         return [year, month, day].join('-');
-    }
+    },
+    // filteredArray() {
+      // let currentSlug = this.articlesFrontPage[0].slug;
+
+       
+
+      // let count = 0;
+      
+      // for (let key in newArray) {
+      //   const article = newArray[key];
+
+      //   if (count < 1) {
+      //     article['flex'] = 8;
+      //     article['imgWidth'] = 'auto';
+      //     article['imgHeight'] = 'auto';
+      //     article['cardWidth'] = 'auto';
+      //     count++;
+      //   } else {
+      //     article['flex'] = 5;
+      //       article['imgWidth'] = 200;
+      //       article['imgHeight'] = 200;
+      //       article['cardWidth'] = 200;
+      //     count++;
+      //   }
+
+      //   // count < 1 ? article['flex'] = 8 : article['flex'] = 5;
+
+      //   count++;
+
+      // }
+
+      // return this.articlesForGrid.shift();
+
+    // }
   }
 }
 </script>
+
+<style scoped>
+  .home-page-title {
+    font-family: 'Courier New', Courier, monospace;
+  }
+</style>

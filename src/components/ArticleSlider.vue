@@ -11,7 +11,7 @@
               class="px-1 slider-item"
             >
 
-              <router-link :to="{ name: 'ArticlePage', params: { articleDetail: article, slug: article.slug } }" class="text-decoration-none">
+              <router-link :to="{ name: 'ArticlePage', params: { articleDetail: article, slug: article.slug, articlesForGrid: articles } }" class="text-decoration-none">
                 <v-card
                   tile
                   elevation="0"

@@ -13,6 +13,7 @@
                 <div class="article-meta-row article-category mb-5">
                   <router-link :to="`/${articleSingle.category}`" class="black--text text-decoration-none"><span class="line-behind">{{ articleSingle.category }}</span>
                   </router-link>
+                  <hr class="mt-2">
                 </div>
 
                 <v-img :src="articleSingle.urlToImage" class="article-image"></v-img>

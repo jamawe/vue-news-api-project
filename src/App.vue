@@ -37,6 +37,11 @@ export default {
       box-shadow: inset 0 -10px 0 0 #B2DFDB;
   }
 
+  html {
+    width: 100%;
+    height: 100vh;
+  }
+
 /* WEG 2 */
   /* :root {
     --background-color: red;
