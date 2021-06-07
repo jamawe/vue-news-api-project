@@ -1,35 +1,4 @@
 <template>
-  <!-- <v-card class="overflow-hidden">
-    <v-app-bar
-      absolute
-      bottom
-      color="white"
-      elevate-on-scroll
-      scroll-target="#scrolling-techniques-7"
-    >
-      <v-app-bar-nav-icon></v-app-bar-nav-icon>
-
-      <v-toolbar-title>Title</v-toolbar-title>
-
-      <v-spacer></v-spacer>
-
-      <v-btn icon>
-        <v-icon>mdi-magnify</v-icon>
-      </v-btn>
-
-      <v-btn icon>
-        <v-icon>mdi-moon-waxing-crescent</v-icon>
-      </v-btn>
-    </v-app-bar>
-    <v-sheet
-      id="scrolling-techniques-7"
-      class="overflow-y-auto"
-      max-height="600"
-    >
-      <v-container style="height: 1500px;">
-      </v-container>
-    </v-sheet>
-  </v-card> -->
 
   <div class="nav-container">
     <v-app-bar
@@ -39,10 +8,12 @@
     color="white"
     flat
     elevate-on-scroll
-    scroll-target="#scrolling-techniques-7"
     >
     
-    <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
+    <v-app-bar-nav-icon
+      @click.stop="drawer = !drawer">
+    </v-app-bar-nav-icon>
+
     <v-toolbar-title>
       <router-link to="/" class="black--text text-decoration-none">
         <span class="home-link line-behind">home</span>
@@ -62,52 +33,53 @@
     
     </v-app-bar>
 
-    <v-sheet
-      id="scrolling-techniques-7"
-      max-height="600"
-    >
-      <v-container style="height: 1500px;">
-      </v-container>
-    </v-sheet>
-
-    <v-navigation-drawer
-      app
-      temporary
+    <v-dialog
       v-model="drawer"
+      width="500"
+    >
+
+      <v-card
+        tile
       >
-      
-      <v-list>
-        <v-list-item-group>
-          <!-- Todo: So kann man verlinken: <v-list-item router to="/category"> -->
+        <v-card-title class="d-flex justify-center text-h6 mb-0"><span class="drawer-title">Wofür interessierst du dich?</span>
+        </v-card-title>
 
-          <v-list-item v-for="(category, i) in categories" :key="i">
-            <v-list-item-title>
-              <router-link
-                :to="`/${category}`"
-                class="black--text text-capitalize text-decoration-none"
-              >
-                <span class="drawer-link line-behind">{{ category }}</span>
-              </router-link>
-              <!-- <router-link
-                :to="{ name: 'CategoryPage', params: {
-                  engCategory: key, category: value } }"
-                class="black--text text-capitalize text-decoration-none"
-              >
-                <span class="drawer-link line-behind">{{ key }} - {{ value }}</span>
-              </router-link> -->
-            </v-list-item-title>
-          </v-list-item>
 
-        </v-list-item-group>
+        <v-card-text>
+          <v-list class="text-center">
+            <v-list-item-group>
 
-      </v-list>
+              <v-list-item v-for="(category, i) in categories" :key="i">
+                <v-list-item-title>
+                  <router-link
+                    :to="`/${category}`"
+                    class="black--text text-decoration-none"
+                  >
+                    <span class="drawer-link line-behind">{{ category }}</span>
+                  </router-link>
+                </v-list-item-title>
+              </v-list-item>
 
-      <!-- Todo: Button which closes nav drawer? -->
-      <!-- <div>
-        <button flat @click.stop="drawer = !drawer">close</button>
-      </div> -->
+            </v-list-item-group>
 
-    </v-navigation-drawer>
+          </v-list>
+        </v-card-text>
+
+        <v-card-actions>
+          <v-spacer></v-spacer>
+          <v-btn
+            icon
+            color="#BDBDBD"
+            class="mb-2"
+            @click="drawer = false"
+          >
+            <v-icon>mdi-close</v-icon>
+          </v-btn>
+          <v-spacer></v-spacer>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
+
   </div>
   
 </template>
@@ -141,6 +113,13 @@
 </script>
 
 <style scoped>
+  .drawer-title {
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    /* font-family: 'Courier New', Courier, monospace; */
+    word-break: keep-all;
+    text-align: center;
+  }
+
   .home-link, .drawer-link {
     font-family: 'Courier New', Courier, monospace;
   }
