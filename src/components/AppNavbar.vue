@@ -49,11 +49,12 @@
           <v-list class="text-center">
             <v-list-item-group>
 
-              <v-list-item v-for="(category, i) in categories" :key="i">
+              <v-list-item v-for="(category, i) in categories" :key="i" @click="drawer=false">
                 <v-list-item-title>
                   <router-link
                     :to="`/${category}`"
                     class="black--text text-decoration-none"
+                    
                   >
                     <span class="drawer-link line-behind">{{ category }}</span>
                   </router-link>
@@ -71,7 +72,7 @@
             icon
             color="#BDBDBD"
             class="mb-2"
-            @click="drawer = false"
+            @click="drawer=false"
           >
             <v-icon>mdi-close</v-icon>
           </v-btn>
