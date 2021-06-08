@@ -1,11 +1,12 @@
 <template>
 
   <v-col :cols="article.flex" class="mx-auto mb-0">
-    <!-- <v-lazy 
-      v-model="post.isActive" 
+    <v-lazy 
+      v-model="isActive" 
       :options="{ threshold: .5 }"
-      class="fill-height"
-      > -->
+      min-height="200"
+      transition="fade-transition"
+      >
     <router-link :to="{ name: 'ArticlePage', params: { articleDetail: article, category: article.category, slug: article.slug, articlesForGrid: articlesForGrid } }" class="text-decoration-none">
       <v-card
         tile
@@ -31,7 +32,7 @@
         </v-card-title>
       </v-card>
     </router-link>
-    <!-- </v-lazy> -->
+    </v-lazy>
   </v-col>
   
 </template>
@@ -39,6 +40,11 @@
 <script>
 export default {
   name: 'ArticleBox',
+  data() {
+    return {
+      isActive: false,
+    }
+  },
   props: {
     article: Object,
     articlesForGrid: Array,

@@ -29,3 +29,4 @@ export const routes = [
     component: SearchResultsPage 
   }, // Todo: Wie sieht Route von Suchergebnissen bei anderen Seiten aus?
 ]
+
