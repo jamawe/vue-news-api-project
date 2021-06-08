@@ -22,7 +22,7 @@
                 
                 >
                   <v-img
-                    class="white--text align-end tns-lazy-img"
+                    class="white--text align-end"
                     height="200px"
                     :src="article.urlToImage"
                   >

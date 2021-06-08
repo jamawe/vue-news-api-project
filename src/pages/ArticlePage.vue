@@ -2,6 +2,18 @@
   <v-container>
 
     <v-row>
+      <v-col cols="10" class="mx-auto">
+        
+        <div class="article-meta-row article-page-category mb-1">
+          <router-link :to="`/${articleDetail.category}`" class="black--text text-decoration-none"><span class="line-behind">{{ articleDetail.category }}</span>
+          </router-link>
+          <!-- <hr class="mt-2"> -->
+        </div>
+
+      </v-col>
+    </v-row>
+
+    <v-row>
       <v-col
         cols="12" class="mx-auto">
 
@@ -12,7 +24,6 @@
       </v-col>
     </v-row>
 
-    <!-- {{ filteredArray }} class="d-flex justify-space-around" -->
     <v-row>
       <v-col cols="10" class="mx-auto">
         <div ><h2 class="heading-more mb-2">Mehr aus dieser Kategorie</h2>
@@ -21,9 +32,6 @@
     </v-row>
 
     <v-row v-if="filteredArray.length" class="" >
-      <!-- <v-col
-        cols="12"
-        > -->
         
         <article-box
           v-for="(article, i) in filteredArray"
@@ -31,7 +39,6 @@
           :article="article"
           :articlesForGrid="articlesForGrid"
         ></article-box>
-      <!-- </v-col> -->
     </v-row>
 
   </v-container>
@@ -97,6 +104,9 @@ export default {
 </script>
 
 <style scoped>
+  .article-page-category {
+    font-family: 'Courier New', Courier, monospace;
+  }
   .heading-more {
     font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
   }
