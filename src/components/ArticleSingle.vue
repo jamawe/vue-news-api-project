@@ -62,10 +62,13 @@
 
 <script>
 export default {
+
   name: 'ArticleSingle',
+
   props: {
     articleSingle: Object,
   },
+  
 }
 </script>
 

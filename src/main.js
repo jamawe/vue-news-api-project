@@ -7,12 +7,14 @@ import vuetify from './plugins/vuetify';
 Vue.use( VueRouter );
 
 const router = new VueRouter({
+
   routes,
   mode: 'history',
   // eslint-disable-next-line
   scrollBehavior (to, from, savedPosition) {
     return { x: 0, y: 0 };
   }
+  
 });
 
 Vue.config.productionTip = false

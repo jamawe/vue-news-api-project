@@ -39,25 +39,30 @@
 
 <script>
 export default {
+
   name: 'ArticleBox',
+
   data() {
     return {
       isActive: false,
     }
   },
+
   props: {
     article: Object,
     articlesForGrid: Array,
   },
+
   mounted() {
     // eslint-disable-next-line
     console.log('Mit FLEX?', this.article);
-  }
+  },
+
 }
 </script>
 
 <style scoped>
-  /* TODO: box-shadow on hover? */
+
   .article-box-image {
     box-shadow: 7.5px 7.5px #26A69A;
   }
@@ -70,8 +75,7 @@ export default {
     display: -webkit-box;
     -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;  
-    /* text-overflow: ellipsis;
-    white-space: nowrap; */
     overflow: hidden;
   }
+
 </style>

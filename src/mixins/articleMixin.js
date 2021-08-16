@@ -1,4 +1,5 @@
 export default {
+
   data() {
     return {
       sources: [
@@ -6,13 +7,16 @@ export default {
       ],
     }
   },
+
   methods: {
+
     makePrettyTitle(title) {
       // Ersten Teil des Titels (vor " - ") als Titel anzeigen (mit articel.prettyTitle[1]), zweiten Teile (Name der Source) mit articel.prettyTitle[2]
       let prettyTitle = title.match(/(.*)\s-\s(.*)/)
 
       return prettyTitle;
     },
+
     makeSlug(prettyTitle) {
       // Create slug from article.prettyTitle[1]
       // Remove any whitespace at beginning or end
@@ -35,12 +39,14 @@ export default {
   
       return slug
     },
+
     makePrettyDate(publishedAt) {
       // Datumformat der Response ersetzen durch eigenes DE
       let prettyDate = publishedAt.replace(/T.*/,'').split('-').reverse().join('.');
 
       return prettyDate;
     },
+
     makePrettyContent(content) {
       // / : start/ end of the regex
       // * : 0 or more occurrences of the preceding item
@@ -48,6 +54,7 @@ export default {
       let prettyContent = content.replace(/ *\[[^\]]*]/, '');
 
       return prettyContent;
-    }
+    },
+    
   }
 };

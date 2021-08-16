@@ -22,11 +22,15 @@ import axios from 'axios';
 import articleMixin from '../mixins/articleMixin';
 
 export default {
+
   name: 'CategoryPage',
+
   components: {
     'article-slider': ArticleSlider,
   },
+
   mixins: [ articleMixin ],
+
   data() {
     return {
       loaded: false,
@@ -34,9 +38,11 @@ export default {
       category: this.$route.params.category,
     }
   },
+
   created() {
     this.getArticles();
   },
+
   methods: {
     getArticles() {
 
@@ -81,6 +87,7 @@ export default {
       .catch(error => console.log(error));
     },
   },
+
   computed: {
     todayToAPIString() {
       // Get today's date and format it toNewsAPIs convention (yyyy-mm-dd)
@@ -99,13 +106,17 @@ export default {
         }
 
         return [year, month, day].join('-');
-    }
-  }
+    },
+
+  },
+
 }
 </script>
 
 <style scoped>
+
  .article-category {
     font-family: 'Courier New', Courier, monospace;
   }
+  
 </style>

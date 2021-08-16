@@ -66,6 +66,7 @@
 import VueTinySlider from 'vue-tiny-slider';
 
 export default {
+
   data() {
     return {
       articles: this.articlesForSlider,
@@ -84,16 +85,20 @@ export default {
       model: 0,
     }
   },
+
   props: [
     'articlesForSlider'
   ],
+
   components: {
     'tiny-slider': VueTinySlider,
   },
+
 }
 </script>
 
 <style scoped>
+
   .slider-container {
     position: relative;
   }
@@ -142,4 +147,5 @@ export default {
     bottom: .5rem;
     font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
   }
+  
 </style>

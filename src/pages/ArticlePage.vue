@@ -7,7 +7,6 @@
         <div class="article-meta-row article-page-category mb-1">
           <router-link :to="`/${articleDetail.category}`" class="black--text text-decoration-none"><span class="line-behind">{{ articleDetail.category }}</span>
           </router-link>
-          <!-- <hr class="mt-2"> -->
         </div>
 
       </v-col>
@@ -49,20 +48,20 @@ import ArticleSingle from '../components/ArticleSingle.vue';
 import ArticleBox from '../components/ArticleBox.vue';
 
 export default {
+
   name: 'ArticlePage',
+
   components: {
     'article-single': ArticleSingle,
     'article-box': ArticleBox,
   },
+
   props: {
     articleDetail: Object,
     slug: String,
     articlesForGrid: Array,
   },
-  mounted() {
-    // eslint-disable-next-line
-    console.log('SLUG!!! ', this.filteredArray)
-  },
+
   computed: {
     filteredArray() {
       let currentSlug = this.$route.params.slug;
@@ -90,24 +89,23 @@ export default {
           count++;
         }
 
-        // count < 1 ? article['flex'] = 8 : article['flex'] = 5;
-
-        // count++;
-
       }
 
       return newArray;
 
-    }
-  }
+    },
+  },
+
 }
 </script>
 
 <style scoped>
+
   .article-page-category {
     font-family: 'Courier New', Courier, monospace;
   }
   .heading-more {
     font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
   }
+  
 </style>

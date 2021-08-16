@@ -10,41 +10,39 @@
     </v-row>
 
     <v-row v-if="articlesFrontPage.length">
-      <!-- <v-col cols="12" class="mx-auto"> -->
-        <!-- <article-box
-          v-for="(article, i) in articlesFrontPage"
-          :key="i"
-          :article="article"
-          :articlesForGrid="articlesFrontPage"
-        ></article-box> -->
+      <v-spacer></v-spacer>
       <ArticleSingle
         v-for="(article, i) in articlesFrontPage"
         :key="i"
         :articleSingle="article"
       />
-      
-
-      <!-- </v-col> -->
+      <v-spacer></v-spacer>
     </v-row>
 
-
+    <!-- <v-row>
+      <ArticleSearch />
+    </v-row> -->
   </v-container>
 
 </template>
 
 <script>
 import ArticleSingle from '../components/ArticleSingle.vue';
-// import ArticleBox from '../components/ArticleBox.vue';
+// import ArticleSearch from '../components/ArticleSearch.vue';
 import axios from 'axios';
 import articleMixin from '../mixins/articleMixin';
 
 export default {
+
   name: 'HomePage',
+
   components: {
     ArticleSingle,
-    // 'article-box': ArticleBox,
+    // ArticleSearch,
   },
+
   mixins: [ articleMixin ],
+
   data() {
     return {
       loaded: false,
@@ -52,9 +50,11 @@ export default {
       category: 'general',
     }
   },
+
   created() {
     this.getArticleFrontPage();
   },
+
   methods: {
     getArticleFrontPage() {
 
@@ -72,8 +72,11 @@ export default {
         for (let key in data) {
           const article = data[key];
             
-          // Filtern nach Source names und check, dass keiner der values von content, description, title, url und urlToImage leer sind
-          if (this.sources.includes(article['source']['name']) && (article['content']&&article['description']&&article['title']&&article['url']&&article['urlToImage'] != null)) {
+          // Filtern nach Source names und check, dass keiner der values von content, 
+          // description, title, url und urlToImage leer sind
+          if (this.sources.includes(article['source']['name'])&& 
+          (article['content']&&article['description']&&article['title']&&
+          article['url']&&article['urlToImage'] != null)) {
 
             article['prettyTitle'] = this.makePrettyTitle(article['title']);
 
@@ -120,6 +123,7 @@ export default {
       .catch(error => console.log(error));
     },
   },
+
   computed: {
     todayToAPIString() {
       // Get today's date and format it toNewsAPIs convention (yyyy-mm-dd)
@@ -139,12 +143,16 @@ export default {
 
         return [year, month, day].join('-');
     },
-  }
+
+  },
+
 }
 </script>
 
 <style scoped>
+
   .home-page-title {
     font-family: 'Courier New', Courier, monospace;
   }
+  
 </style>

@@ -87,6 +87,7 @@
 
 <script>
   export default {
+
     data() {
       return {
         drawer: false,
@@ -94,29 +95,16 @@
         categories: [
           'business','entertainment','general','health','science','sports','technology'
         ],
-        // {
-        //   0: {'business': 'business'}, 1: {'entertainment': 'unterhaltung'}, 2: {'general': 'allgemein'}, 3: {'health': 'gesundheit'}, 4: {'science': 'wissenschaft'}, 5: {'sports': 'sport'}, 6:{'technology': 'technologie'}
-        // }
-
-
-
-            // {
-            // 'business': 'business','unterhaltung': 'entertainment','allgemein': 'general','gesundheit': 'health','wissenschaft': 'science','sport': 'sports','technologie': 'technology'
-            // }
-        
       }
     },
-    mounted() {
-      // eslint-disable-next-line
-      // console.log(Object.keys(this.categories));
-    }
+
   }
 </script>
 
 <style scoped>
+
   .drawer-title {
     font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-    /* font-family: 'Courier New', Courier, monospace; */
     word-break: keep-all;
     text-align: center;
   }
@@ -124,4 +112,5 @@
   .home-link, .drawer-link {
     font-family: 'Courier New', Courier, monospace;
   }
+  
 </style>
