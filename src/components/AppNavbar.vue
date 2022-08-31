@@ -27,9 +27,9 @@
     </v-btn> -->
 
     <!-- <v-btn icon @click="toggleTheme" aria-label="Toggle themes"> -->
-    <v-btn icon>
+    <!-- <v-btn icon>
       <v-icon>mdi-moon-waxing-crescent</v-icon>
-    </v-btn>
+    </v-btn> -->
     
     </v-app-bar>
 

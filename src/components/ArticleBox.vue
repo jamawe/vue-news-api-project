@@ -54,8 +54,8 @@ export default {
   },
 
   mounted() {
-    // eslint-disable-next-line
-    console.log('Mit FLEX?', this.article);
+    // // eslint-disable-next-line
+    // console.log('Mit FLEX?', this.article);
   },
 
 }

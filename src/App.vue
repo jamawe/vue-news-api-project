@@ -27,15 +27,17 @@ export default {
 
 
 <style>
-
-  .line-behind {
-      padding: 0 10px;
-      box-shadow: inset 0 -10px 0 0 #B2DFDB;
-  }
-
   html {
     width: 100%;
     height: 100vh;
   }
 
+  .line-behind {
+    padding: 0 10px;
+    box-shadow: inset 0 -10px 0 0 #B2DFDB;
+  }
+
+  main {
+    max-width: 70ch;
+  }
 </style>

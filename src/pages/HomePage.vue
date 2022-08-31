@@ -113,8 +113,8 @@ export default {
             
         }
 
-        // eslint-disable-next-line
-        console.log(this.articleFrontPage);
+        // // eslint-disable-next-line
+        // console.log(this.articleFrontPage);
 
         this.loaded = true;
 

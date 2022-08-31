@@ -77,8 +77,8 @@ export default {
             
         }
 
-        // eslint-disable-next-line
-        console.log(this.articles);
+        // // eslint-disable-next-line
+        // console.log(this.articles);
 
         this.loaded = true;
 
