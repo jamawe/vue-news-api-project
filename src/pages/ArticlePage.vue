@@ -1,6 +1,5 @@
 <template>
-  <v-container>
-
+  <v-container v-if="articleDetail !== undefined">
     <v-row>
       <v-col cols="10" class="mx-auto">
         
@@ -39,13 +38,17 @@
           :articlesForGrid="articlesForGrid"
         ></article-box>
     </v-row>
-
   </v-container>
+
+  <article-not-found
+    v-else
+    :category="category"></article-not-found>
 </template>
 
 <script>
 import ArticleSingle from '../components/ArticleSingle.vue';
 import ArticleBox from '../components/ArticleBox.vue';
+import ArticleNotFound from '../components/ArticleNotFound.vue';
 
 export default {
 
@@ -54,12 +57,19 @@ export default {
   components: {
     'article-single': ArticleSingle,
     'article-box': ArticleBox,
+    'article-not-found': ArticleNotFound,
   },
 
   props: {
     articleDetail: Object,
     slug: String,
     articlesForGrid: Array,
+  },
+
+  data() {
+    return {
+      category: this.$route.params.category,
+    }
   },
 
   computed: {
