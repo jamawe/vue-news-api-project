@@ -37,6 +37,14 @@ export default {
     box-shadow: inset 0 -10px 0 0 #B2DFDB;
   }
 
+  .height-whole {
+    height: 100%;
+  }
+
+  .keep-all {
+    word-break: keep-all;
+  }
+
   main {
     max-width: 70ch;
   }

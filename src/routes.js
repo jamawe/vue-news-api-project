@@ -7,6 +7,7 @@ export const routes = [
 
   {
     path: '/',
+    name: 'HomePage',
     component: HomePage 
   },
 
