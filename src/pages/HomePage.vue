@@ -3,9 +3,9 @@
   <v-container>
     <v-row>
       <v-col cols="10" class="mx-auto">
-        <div><router-link class="monospace line-behind text-decoration-none" :to="`/${this.category}`">
-          aktuell
-        </router-link></div>
+        <div class="monospace">
+          <span class="line-behind">aktuell</span>
+        </div>
       </v-col>
     </v-row>
 
