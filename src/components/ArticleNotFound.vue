@@ -1,21 +1,34 @@
 <template>
     <v-container class="d-flex justify-center align-center height-whole">
-        <v-card class="pa-2" max-width="50%" min-width="300" elevation="0" outlined>
-            <v-card-title class="keep-all">
-                Ups! Der Artikel konnte nicht geladen werden.
+        <v-card class="ch70 pa-2" max-width="50%" min-width="300" elevation="0" color="transparent">
+            <v-card-title class="title-xl monospace keep-all mb-10">
+                Ups!
             </v-card-title>
-            <v-card-text>
-                <div>Bitte geh zur Kategorie oder Startseite zurück.</div>
+            <v-card-text class="body-1">
+                <div class="sans">
+                    Der Artikel konnte nicht geladen werden. Bitte geh zur Kategorie oder Startseite zurück.
+                </div>
             </v-card-text>
             <v-card-actions>
-            <v-btn
-                :to="{ name: 'CategoryPage', params: { category: category } }"
-                elevation="0">{{ categoryName }}</v-btn>
-            <v-btn
-                text
-                plain
-                :to="{ name: 'HomePage' }"
-                >Startseite</v-btn>
+                <v-btn
+                    :to="{ name: 'CategoryPage', params: { category: category } }"
+                    text
+                    plain
+                    x-large>
+                    <span class="monospace line-behind text-lowercase">
+                        {{ categoryName }}
+                    </span>
+                </v-btn>
+                <v-btn
+                    :to="{ name: 'HomePage' }"
+                    text
+                    plain
+                    x-large
+                    >
+                    <span class="monospace line-behind text-lowercase">
+                        Startseite
+                    </span>
+                </v-btn>
             </v-card-actions>
         </v-card>
     </v-container>
