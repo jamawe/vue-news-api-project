@@ -40,7 +40,7 @@
       <v-card
         tile
       >
-        <v-card-title class="d-flex justify-center text-h6 mb-0"><span class="drawer-title">Wofür interessierst du dich?</span>
+        <v-card-title class="d-flex justify-center text-h6 mb-0"><span class="drawer-title sans">Wofür interessierst du dich?</span>
         </v-card-title>
 
 
@@ -113,7 +113,6 @@
 
 <style scoped>
   .drawer-title {
-    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     word-break: keep-all;
     text-align: center;
   }  

@@ -24,7 +24,7 @@
 
     <v-row>
       <v-col cols="10" class="mx-auto">
-        <div ><h2 class="heading-more mb-2">Mehr aus dieser Kategorie</h2>
+        <div ><h2 class="sans mb-2">Mehr aus dieser Kategorie</h2>
         <hr></div>
       </v-col>
     </v-row>
@@ -108,10 +108,3 @@ export default {
 
 }
 </script>
-
-<style scoped>
-  .heading-more {
-    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-  }
-  
-</style>

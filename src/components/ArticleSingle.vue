@@ -21,7 +21,7 @@
               <v-col
               cols="10" class="monospace mx-auto">
 
-                <div class="article-meta-row article-title mb-3"><h1><span>{{ articleSingle.prettyTitle[1] }}</span></h1></div>
+                <div class="article-meta-row sans mb-3"><h1><span>{{ articleSingle.prettyTitle[1] }}</span></h1></div>
 
                 
                 <div class="article-meta-row article-meta">
@@ -76,10 +76,6 @@ export default {
 
   .article-image {
     box-shadow: 10px 10px #26A69A;
-  }
-
-  .article-title {
-    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
   }
 
 </style>

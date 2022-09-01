@@ -63,6 +63,10 @@ export default {
     font-family: 'Courier New', Courier, monospace;
   }
 
+  .sans {
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  }
+
   main {
     max-width: 70ch;
   }

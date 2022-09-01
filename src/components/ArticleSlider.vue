@@ -31,7 +31,7 @@
                   <!-- TODO: Titel und Text allgemein so stylen, dass Textumbrücher statisch oder besser sind? -->
                   
                   <v-card-title class="font-weight-bold">
-                    <h4 class="article-title">
+                    <h4 class="article-title sans">
                       <span class="line-behind">{{ article.prettyTitle[1] }}</span>
                     </h4>
                   </v-card-title>
@@ -120,7 +120,6 @@ export default {
     word-break: normal;
     line-height: 1.6666rem;
     word-spacing: 0em;
-    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     text-align-last: left;
   }
 
