@@ -12,7 +12,11 @@ const router = new VueRouter({
   mode: 'history',
   // eslint-disable-next-line
   scrollBehavior (to, from, savedPosition) {
-    return { x: 0, y: 0 };
+    if (savedPosition) {
+      return savedPosition
+    } else {
+      return { x: 0, y: 0 }
+    }
   }
   
 });
