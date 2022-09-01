@@ -44,7 +44,7 @@
                   <a
                     :href="articleSingle.url"
                     target="_blank"
-                    class="text-decoration-none black--text font-weight-bold line-behind article-link"
+                    class="text-decoration-none font-weight-bold line-behind article-link"
                   >
                     Zur Quelle
                   </a>

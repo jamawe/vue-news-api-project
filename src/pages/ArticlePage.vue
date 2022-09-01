@@ -4,7 +4,7 @@
       <v-col cols="10" class="mx-auto">
         
         <div class="article-meta-row article-page-category mb-1">
-          <router-link :to="`/${articleDetail.category}`" class="black--text text-decoration-none"><span class="line-behind">{{ articleDetail.category }}</span>
+          <router-link :to="`/${articleDetail.category}`" class="text-decoration-none"><span class="line-behind">{{ articleDetail.category }}</span>
           </router-link>
         </div>
 

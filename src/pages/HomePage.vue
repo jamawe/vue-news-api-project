@@ -3,7 +3,7 @@
   <v-container>
     <v-row>
       <v-col cols="10" class="mx-auto">
-        <div><router-link class="text-decoration-none line-behind black--text home-page-title" :to="`/${this.category}`">
+        <div><router-link class="text-decoration-none line-behind home-page-title" :to="`/${this.category}`">
           latest news
         </router-link></div>
       </v-col>

@@ -5,7 +5,6 @@
     app
     dense
     bottom
-    color="white"
     flat
     elevate-on-scroll
     >
@@ -15,7 +14,7 @@
     </v-app-bar-nav-icon>
 
     <v-toolbar-title>
-      <router-link to="/" class="black--text text-decoration-none">
+      <router-link to="/" class="text-decoration-none">
         <span class="home-link line-behind">home</span>
       </router-link>
     </v-toolbar-title>
@@ -27,9 +26,10 @@
     </v-btn> -->
 
     <!-- <v-btn icon @click="toggleTheme" aria-label="Toggle themes"> -->
-    <!-- <v-btn icon>
-      <v-icon>mdi-moon-waxing-crescent</v-icon>
-    </v-btn> -->
+    <v-btn icon @click="$vuetify.theme.dark = !$vuetify.theme.dark">
+      <v-icon v-if="!$vuetify.theme.dark">mdi-moon-waxing-crescent</v-icon>
+      <v-icon v-else>mdi-white-balance-sunny</v-icon>
+    </v-btn>
     
     </v-app-bar>
 
@@ -53,7 +53,7 @@
                 <v-list-item-title>
                   <router-link
                     :to="`/${category}`"
-                    class="black--text text-decoration-none"
+                    class="text-decoration-none"
                     
                   >
                     <span class="drawer-link line-behind">{{ category }}</span>

@@ -13,7 +13,7 @@
         elevation="0"
         :max-width="article.cardWidth"
         height="auto"
-        color="white"
+        color="transparent"
         class="mx-auto"
         >
         <v-img

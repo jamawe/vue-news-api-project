@@ -18,7 +18,7 @@
                   class="mx-auto"
                   max-width="300"
                   height="500"
-                  color="#F5F5F5"
+                  color="card"
                 
                 >
                   <v-img
@@ -36,7 +36,7 @@
                     </h4>
                   </v-card-title>
 
-                  <v-card-subtitle class="mt-1 pb-1 article-meta black--text font-weight-bold">
+                  <v-card-subtitle class="mt-1 pb-1 article-meta font-weight-bold">
                     {{ article.publishedAt }} - {{ article.prettyTitle[2] }}
                   </v-card-subtitle>
 
