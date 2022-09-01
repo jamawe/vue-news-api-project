@@ -1,7 +1,7 @@
 <template>
   <v-app>
 
-    <v-main>
+    <v-main class="pt-2">
       <!-- Use unique on router-view to force vue to create a new component instance -->
       <router-view :key="$route.fullPath"></router-view>
 
