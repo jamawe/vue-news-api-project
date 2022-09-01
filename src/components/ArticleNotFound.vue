@@ -10,7 +10,7 @@
             <v-card-actions>
             <v-btn
                 :to="{ name: 'CategoryPage', params: { category: category } }"
-                elevation="0">{{ category }}</v-btn>
+                elevation="0">{{ categoryName }}</v-btn>
             <v-btn
                 text
                 plain
@@ -27,6 +27,28 @@
 
         props: {
             category: String
+        },
+
+        data() {
+            return {
+                categories: [
+                    { name: 'Wirtschaft', slug: 'business' },
+                    { name: 'Unterhaltung', slug: 'entertainment' },
+                    { name: 'Allgemeines', slug: 'general' },
+                    { name: 'Gesundheit', slug: 'health' },
+                    { name: 'Wissenschaft', slug: 'science' },
+                    { name: 'Sport', slug: 'sports' },
+                    { name: 'Technik', slug: 'technology' },
+                ],
+            }
+        },
+
+        computed: {
+            categoryName() {
+                const slug = this.$route.params.category;
+                const [category] = this.categories.filter(object => object.slug === slug);
+                return category.name;
+            }
         }
     }
 </script>
