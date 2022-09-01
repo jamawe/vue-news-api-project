@@ -15,9 +15,14 @@
     </v-app-bar-nav-icon>
 
     <v-toolbar-title>
-      <router-link to="/" class="text-decoration-none" :title="titleHome">
-        <span class="monospace line-behind">aktuell</span>
-      </router-link>
+      <v-btn
+        :to="{ name: 'HomePage' }"
+        :title="titleHome"
+        plain
+        text
+        x-large>
+        <span class="monospace line-behind text-lowercase">aktuell</span>
+      </v-btn>
     </v-toolbar-title>
 
     <v-spacer></v-spacer>
