@@ -45,6 +45,18 @@ export default {
     word-break: keep-all;
   }
 
+  .ch70 {
+    max-width: 70ch;
+  }
+
+  .title-xl {
+    font-size: 4rem;
+  }
+
+  .monospace {
+    font-family: 'Courier New', Courier, monospace;
+  }
+
   main {
     max-width: 70ch;
   }
