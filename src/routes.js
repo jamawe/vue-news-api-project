@@ -30,7 +30,7 @@ export const routes = [
   // },
 
   {
-    path: ':catchAll(.*)',
+    path: '/:catchAll(.*)',
     name: 'NotFoundPage',
     component: NotFoundPage,
   }
