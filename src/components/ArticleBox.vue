@@ -7,13 +7,13 @@
       min-height="200"
       transition="fade-transition"
       >
-    <router-link :to="{ name: 'ArticlePage', params: { articleDetail: article, category: article.category, slug: article.slug, articlesForGrid: articlesForGrid } }" class="text-decoration-none">
+    <router-link :to="{ name: 'ArticlePage', params: { articleDetail: article, category: article.category, slug: article.slug, articlesForGrid: articlesForGrid } }" class="text-decoration-none" :title="titleArticle">
       <v-card
         tile
         elevation="0"
         :max-width="article.cardWidth"
         height="auto"
-        color="white"
+        color="transparent"
         class="mx-auto"
         >
         <v-img
@@ -28,7 +28,7 @@
         <v-card-title
             class="font-weight-light px-0"
           >
-          <h6 class="article-box-title"><span >{{ article.prettyTitle[1] }}</span></h6>
+          <h6 class="article-box-title monospace"><span >{{ article.prettyTitle[1] }}</span></h6>
         </v-card-title>
       </v-card>
     </router-link>
@@ -45,17 +45,13 @@ export default {
   data() {
     return {
       isActive: false,
+      titleArticle: 'Artikel öffnen',
     }
   },
 
   props: {
     article: Object,
     articlesForGrid: Array,
-  },
-
-  mounted() {
-    // // eslint-disable-next-line
-    // console.log('Mit FLEX?', this.article);
   },
 
 }
@@ -69,7 +65,6 @@ export default {
 
   .article-box-title {
     font-size: 1rem;
-    font-family: 'Courier New', Courier, monospace;
     line-height: 1.3rem;
     word-break: keep-all;
     display: -webkit-box;

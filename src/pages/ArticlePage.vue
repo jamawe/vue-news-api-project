@@ -3,8 +3,8 @@
     <v-row>
       <v-col cols="10" class="mx-auto">
         
-        <div class="article-meta-row article-page-category mb-1">
-          <router-link :to="`/${articleDetail.category}`" class="black--text text-decoration-none"><span class="line-behind">{{ articleDetail.category }}</span>
+        <div class="monospace article-meta-row mb-1">
+          <router-link :to="{ name: 'CategoryPage', params: { category: category } }" class="text-decoration-none text-lowercase" :title="`${categoryName} öffnen`"><span class="line-behind">{{ categoryName }}</span>
           </router-link>
         </div>
 
@@ -24,12 +24,12 @@
 
     <v-row>
       <v-col cols="10" class="mx-auto">
-        <div ><h2 class="heading-more mb-2">Mehr aus dieser Kategorie</h2>
+        <div ><h2 class="sans mb-2">Mehr aus dieser Kategorie</h2>
         <hr></div>
       </v-col>
     </v-row>
 
-    <v-row v-if="filteredArray.length" class="" >
+    <v-row v-if="filteredArray.length">
         
         <article-box
           v-for="(article, i) in filteredArray"
@@ -49,6 +49,7 @@
 import ArticleSingle from '../components/ArticleSingle.vue';
 import ArticleBox from '../components/ArticleBox.vue';
 import ArticleNotFound from '../components/ArticleNotFound.vue';
+import categoryMixin from '../mixins/categoryMixin';
 
 export default {
 
@@ -60,6 +61,8 @@ export default {
     'article-not-found': ArticleNotFound,
   },
 
+  mixins: [ categoryMixin ],
+
   props: {
     articleDetail: Object,
     slug: String,
@@ -69,6 +72,7 @@ export default {
   data() {
     return {
       category: this.$route.params.category,
+      title: 'Zur Kategorie',
     }
   },
 
@@ -104,18 +108,13 @@ export default {
       return newArray;
 
     },
+
+    categoryName() {
+        const slug = this.category;
+        const [category] = this.categories.filter(object => object.slug === slug);
+        return category.name;
+    },
   },
 
 }
 </script>
-
-<style scoped>
-
-  .article-page-category {
-    font-family: 'Courier New', Courier, monospace;
-  }
-  .heading-more {
-    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-  }
-  
-</style>

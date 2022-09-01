@@ -1,7 +1,7 @@
 <template>
   <v-app>
 
-    <v-main>
+    <v-main class="pt-2">
       <!-- Use unique on router-view to force vue to create a new component instance -->
       <router-view :key="$route.fullPath"></router-view>
 
@@ -21,6 +21,11 @@ export default {
   components: {
     AppNavbar,
   },
+
+  created() {
+    const isDark = JSON.parse(localStorage.getItem('nap-dark'));
+    this.$vuetify.theme.dark = isDark;
+  },
   
 };
 </script>
@@ -34,7 +39,8 @@ export default {
 
   .line-behind {
     padding: 0 10px;
-    box-shadow: inset 0 -10px 0 0 #B2DFDB;
+    box-shadow: inset 0 -10px 0 0 var(--v-backdrop-base);
+    /* box-shadow: inset 0 -10px 0 0 #B2DFDB; */
   }
 
   .height-whole {
@@ -43,6 +49,26 @@ export default {
 
   .keep-all {
     word-break: keep-all;
+  }
+
+  .ch70 {
+    max-width: 70ch;
+  }
+
+  .title-xl {
+    font-size: 4rem;
+  }
+
+  .monospace {
+    font-family: 'Courier New', Courier, monospace;
+  }
+
+  .sans {
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  }
+
+  .pointer {
+    cursor: pointer;
   }
 
   main {

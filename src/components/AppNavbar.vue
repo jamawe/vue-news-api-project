@@ -5,19 +5,24 @@
     app
     dense
     bottom
-    color="white"
     flat
     elevate-on-scroll
     >
     
     <v-app-bar-nav-icon
-      @click.stop="drawer = !drawer">
+      @click.stop="drawer = !drawer"
+      :title="titleMenuOpen">
     </v-app-bar-nav-icon>
 
     <v-toolbar-title>
-      <router-link to="/" class="black--text text-decoration-none">
-        <span class="home-link line-behind">home</span>
-      </router-link>
+      <v-btn
+        :to="{ name: 'HomePage' }"
+        :title="titleHome"
+        plain
+        text
+        x-large>
+        <span class="monospace line-behind text-lowercase">aktuell</span>
+      </v-btn>
     </v-toolbar-title>
 
     <v-spacer></v-spacer>
@@ -26,10 +31,10 @@
       <v-icon>mdi-magnify</v-icon>
     </v-btn> -->
 
-    <!-- <v-btn icon @click="toggleTheme" aria-label="Toggle themes"> -->
-    <!-- <v-btn icon>
-      <v-icon>mdi-moon-waxing-crescent</v-icon>
-    </v-btn> -->
+    <v-btn icon @click="toggleTheme">
+      <v-icon v-if="!$vuetify.theme.dark" color="#3F51B5" :title="titleDarkTheme">mdi-moon-waxing-crescent</v-icon>
+      <v-icon v-else color="#FFB300" :title="titleLightTheme">mdi-white-balance-sunny</v-icon>
+    </v-btn>
     
     </v-app-bar>
 
@@ -41,7 +46,7 @@
       <v-card
         tile
       >
-        <v-card-title class="d-flex justify-center text-h6 mb-0"><span class="drawer-title">Wofür interessierst du dich?</span>
+        <v-card-title class="d-flex justify-center text-h6 mb-0"><span class="drawer-title sans">Wofür interessierst du dich?</span>
         </v-card-title>
 
 
@@ -49,15 +54,9 @@
           <v-list class="text-center">
             <v-list-item-group>
 
-              <v-list-item v-for="(category, i) in categories" :key="i" @click="drawer=false">
+              <v-list-item v-for="(category, i) in categories" :key="i" @click="drawer=false" :to="{ name: 'CategoryPage', params: { category: category.slug } }" class="text-decoration-none" :title="`${category.name} öffnen`">
                 <v-list-item-title>
-                  <router-link
-                    :to="`/${category}`"
-                    class="black--text text-decoration-none"
-                    
-                  >
-                    <span class="drawer-link line-behind">{{ category }}</span>
-                  </router-link>
+                  <span class="monospace line-behind">{{ category.name }}</span>
                 </v-list-item-title>
               </v-list-item>
 
@@ -73,11 +72,21 @@
             color="#BDBDBD"
             class="mb-2"
             @click="drawer=false"
+            :title="titleMenuClose"
           >
             <v-icon>mdi-close</v-icon>
           </v-btn>
           <v-spacer></v-spacer>
         </v-card-actions>
+
+        <v-card-text class="d-flex justify-end">
+          <v-btn
+            href="https://github.com/jamawe/vue-news-api-project"
+            :title="titleGithub"
+            icon>
+            <v-icon>mdi-github</v-icon>
+          </v-btn>
+        </v-card-text>
       </v-card>
     </v-dialog>
 
@@ -86,31 +95,36 @@
 </template>
 
 <script>
+  import categoryMixin from '../mixins/categoryMixin.js';
+
   export default {
+
+    mixins: [ categoryMixin ],
 
     data() {
       return {
         drawer: false,
-        theme: '',
-        categories: [
-          'business','entertainment','general','health','science','sports','technology'
-        ],
+        titleMenuOpen: 'Navigation öffnen',
+        titleMenuClose: 'Navigation schließen',
+        titleHome: 'Zur Startseite',
+        titleDarkTheme: 'Dunklen Modus wählen',
+        titleLightTheme: 'Hellen Modus wählen',
+        titleGithub: 'Projekt auf GitHub öffnen',
       }
     },
 
+    methods: {
+      toggleTheme() {
+        this.$vuetify.theme.dark = !this.$vuetify.theme.dark;
+        localStorage.setItem('nap-dark', this.$vuetify.theme.dark);
+      }
+    }
   }
 </script>
 
 <style scoped>
-
   .drawer-title {
-    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     word-break: keep-all;
     text-align: center;
-  }
-
-  .home-link, .drawer-link {
-    font-family: 'Courier New', Courier, monospace;
-  }
-  
+  }  
 </style>

@@ -19,17 +19,15 @@
          <article>
             <v-row>
               <v-col
-              cols="10" class="mx-auto article-meta">
+              cols="10" class="monospace mx-auto">
 
-                <div class="article-meta-row article-title mb-3"><h1><span>{{ articleSingle.prettyTitle[1] }}</span></h1></div>
+                <div class="sans mb-3"><h1><span>{{ articleSingle.prettyTitle[1] }}</span></h1></div>
 
                 
-                <div class="article-meta-row article-meta">
-                  <h4>
-                    <span class="line-behind">
-                      {{ articleSingle.publishedAt }} &mdash; {{ articleSingle.prettyTitle[2] }}
-                    </span>
-                  </h4>
+                <div class="text-subtitle-2">
+                  <span class="sans">
+                    {{ articleSingle.publishedAt }} &mdash; {{ articleSingle.prettyTitle[2] }}
+                  </span>
                 </div>
 
               </v-col>
@@ -37,18 +35,22 @@
 
             <v-row>
               <v-col
-                cols="10" class="mx-auto article-main">
+                cols="10" class="mx-auto">
 
-                <p>
-                  {{ articleSingle.content }} &mdash; <br>
-                  <a
-                    :href="articleSingle.url"
-                    target="_blank"
-                    class="text-decoration-none black--text font-weight-bold line-behind article-link"
-                  >
-                    Zur Quelle
-                  </a>
+                <p class="monospace">
+                  {{ articleSingle.content }} &mdash;
                 </p>
+
+                <v-btn
+                  :href="articleSingle.url"
+                  target="_blank"
+                  :title="title"
+                  text
+                  plain
+                >
+                  <span class="line-behind sans mr-1">Auf {{ articleSingle.prettyTitle[2] }} lesen</span>
+                  <v-icon small>mdi-open-in-new</v-icon>
+                </v-btn>
 
               </v-col>
             </v-row>
@@ -68,6 +70,12 @@ export default {
   props: {
     articleSingle: Object,
   },
+
+  data() {
+    return {
+      title: 'Ganzen Artikel lesen',
+    }
+  }
   
 }
 </script>
@@ -76,14 +84,6 @@ export default {
 
   .article-image {
     box-shadow: 10px 10px #26A69A;
-  }
-
-  .article-category, .article-description, .article-meta, .article-main {
-    font-family: 'Courier New', Courier, monospace;
-  }
-
-  .article-title {
-    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
   }
 
 </style>

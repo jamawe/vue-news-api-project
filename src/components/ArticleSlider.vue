@@ -11,14 +11,14 @@
               class="px-1 slider-item"
             >
 
-              <router-link :to="{ name: 'ArticlePage', params: { articleDetail: article, slug: article.slug, articlesForGrid: articles } }" class="text-decoration-none">
+              <router-link :to="{ name: 'ArticlePage', params: { articleDetail: article, slug: article.slug, articlesForGrid: articles } }" class="text-decoration-none" :title="titleArticle">
                 <v-card
                   tile
                   elevation="0"
                   class="mx-auto"
                   max-width="300"
                   height="500"
-                  color="#F5F5F5"
+                  color="card"
                 
                 >
                   <v-img
@@ -31,17 +31,17 @@
                   <!-- TODO: Titel und Text allgemein so stylen, dass Textumbrücher statisch oder besser sind? -->
                   
                   <v-card-title class="font-weight-bold">
-                    <h4 class="article-title">
+                    <h4 class="article-title sans">
                       <span class="line-behind">{{ article.prettyTitle[1] }}</span>
                     </h4>
                   </v-card-title>
 
-                  <v-card-subtitle class="mt-1 pb-1 article-meta black--text font-weight-bold">
+                  <v-card-subtitle class="monospace mt-1 pb-1 font-weight-bold">
                     {{ article.publishedAt }} - {{ article.prettyTitle[2] }}
                   </v-card-subtitle>
 
                   <v-card-text class="text--primary">
-                    <div class="article-description ">
+                    <div class="article-description monospace">
                       {{ article.description }}
                     </div>
                   </v-card-text>
@@ -52,8 +52,8 @@
           </tiny-slider>
           
           <ul id="customize-controls" class="d-flex justify-end">
-            <li id="prev" tabindex="-1" data-controls="prev" class="teal--text font-weight-bold mr-2 text-h2">&lsaquo;</li>
-            <li id="next" tabindex="-1" data-controls="next" class="teal--text font-weight-bold mr-2 text-h2">&rsaquo;</li>
+            <li id="prev" tabindex="-1" data-controls="prev" class="teal--text font-weight-bold mr-2 text-h2 pointer" :title="titlePrev">&lsaquo;</li>
+            <li id="next" tabindex="-1" data-controls="next" class="teal--text font-weight-bold mr-2 text-h2 pointer" :title="titleNext">&rsaquo;</li>
           </ul>
 
       </v-col>
@@ -83,6 +83,9 @@ export default {
         nextButton: '#next',
       },
       model: 0,
+      titleArticle: 'Artikel öffnen',
+      titlePrev: 'Zurück',
+      titleNext: 'Weiter',
     }
   },
 
@@ -120,12 +123,7 @@ export default {
     word-break: normal;
     line-height: 1.6666rem;
     word-spacing: 0em;
-    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     text-align-last: left;
-  }
-
-  .article-meta, .article-description, .article-category {
-    font-family: 'Courier New', Courier, monospace;
   }
 
   /* Truncate description multi-line */
