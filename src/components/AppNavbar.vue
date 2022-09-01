@@ -25,7 +25,6 @@
       <v-icon>mdi-magnify</v-icon>
     </v-btn> -->
 
-    <!-- <v-btn icon @click="toggleTheme" aria-label="Toggle themes"> -->
     <v-btn icon @click="$vuetify.theme.dark = !$vuetify.theme.dark">
       <v-icon v-if="!$vuetify.theme.dark">mdi-moon-waxing-crescent</v-icon>
       <v-icon v-else>mdi-white-balance-sunny</v-icon>
@@ -52,11 +51,11 @@
               <v-list-item v-for="(category, i) in categories" :key="i" @click="drawer=false">
                 <v-list-item-title>
                   <router-link
-                    :to="`/${category}`"
+                    :to="`/${category.slug}`"
                     class="text-decoration-none"
                     
                   >
-                    <span class="monospace line-behind">{{ category }}</span>
+                    <span class="monospace line-behind">{{ category.name }}</span>
                   </router-link>
                 </v-list-item-title>
               </v-list-item>
@@ -91,9 +90,14 @@
     data() {
       return {
         drawer: false,
-        theme: '',
         categories: [
-          'business','entertainment','general','health','science','sports','technology'
+          { name: 'Wirtschaft', slug: 'business' },
+          { name: 'Unterhaltung', slug: 'entertainment' },
+          { name: 'Allgemeines', slug: 'general' },
+          { name: 'Gesundheit', slug: 'health' },
+          { name: 'Wissenschaft', slug: 'science' },
+          { name: 'Sport', slug: 'sports' },
+          { name: 'Technik', slug: 'technology' },
         ],
       }
     },
