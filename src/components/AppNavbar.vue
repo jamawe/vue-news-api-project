@@ -26,8 +26,8 @@
     </v-btn> -->
 
     <v-btn icon @click="toggleTheme">
-      <v-icon v-if="!$vuetify.theme.dark">mdi-moon-waxing-crescent</v-icon>
-      <v-icon v-else>mdi-white-balance-sunny</v-icon>
+      <v-icon v-if="!$vuetify.theme.dark" color="#3F51B5">mdi-moon-waxing-crescent</v-icon>
+      <v-icon v-else color="#FFB300">mdi-white-balance-sunny</v-icon>
     </v-btn>
     
     </v-app-bar>
