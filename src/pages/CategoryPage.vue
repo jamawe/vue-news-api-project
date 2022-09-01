@@ -3,7 +3,7 @@
     <v-row>
       <v-col cols="12" class="mx-auto">
 
-        <div class="d-flex justify-center text-h5">
+        <div class="monospace d-flex justify-center">
           <span class="line-behind">{{ category }}</span>
         </div>
 
