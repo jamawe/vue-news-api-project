@@ -4,7 +4,7 @@
       <v-col cols="12" class="mx-auto">
 
         <div class="monospace d-flex justify-center">
-          <span class="line-behind">{{ categoryName }}</span>
+          <span class="line-behind text-lowercase">{{ categoryName }}</span>
         </div>
 
         <article-slider
