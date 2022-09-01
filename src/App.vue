@@ -21,6 +21,11 @@ export default {
   components: {
     AppNavbar,
   },
+
+  created() {
+    const isDark = JSON.parse(localStorage.getItem('nap-dark'));
+    this.$vuetify.theme.dark = isDark;
+  },
   
 };
 </script>

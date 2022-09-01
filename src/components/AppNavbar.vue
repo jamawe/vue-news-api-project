@@ -25,7 +25,7 @@
       <v-icon>mdi-magnify</v-icon>
     </v-btn> -->
 
-    <v-btn icon @click="$vuetify.theme.dark = !$vuetify.theme.dark">
+    <v-btn icon @click="toggleTheme">
       <v-icon v-if="!$vuetify.theme.dark">mdi-moon-waxing-crescent</v-icon>
       <v-icon v-else>mdi-white-balance-sunny</v-icon>
     </v-btn>
@@ -101,6 +101,13 @@
         ],
       }
     },
+
+    methods: {
+      toggleTheme() {
+        this.$vuetify.theme.dark = !this.$vuetify.theme.dark;
+        localStorage.setItem('nap-dark', this.$vuetify.theme.dark);
+      }
+    }
   }
 </script>
 
