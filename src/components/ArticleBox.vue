@@ -7,7 +7,7 @@
       min-height="200"
       transition="fade-transition"
       >
-    <router-link :to="{ name: 'ArticlePage', params: { articleDetail: article, category: article.category, slug: article.slug, articlesForGrid: articlesForGrid } }" class="text-decoration-none">
+    <router-link :to="{ name: 'ArticlePage', params: { articleDetail: article, category: article.category, slug: article.slug, articlesForGrid: articlesForGrid } }" class="text-decoration-none" :title="titleArticle">
       <v-card
         tile
         elevation="0"
@@ -45,17 +45,13 @@ export default {
   data() {
     return {
       isActive: false,
+      titleArticle: 'Artikel öffnen',
     }
   },
 
   props: {
     article: Object,
     articlesForGrid: Array,
-  },
-
-  mounted() {
-    // // eslint-disable-next-line
-    // console.log('Mit FLEX?', this.article);
   },
 
 }

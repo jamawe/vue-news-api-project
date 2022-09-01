@@ -11,7 +11,7 @@
               class="px-1 slider-item"
             >
 
-              <router-link :to="{ name: 'ArticlePage', params: { articleDetail: article, slug: article.slug, articlesForGrid: articles } }" class="text-decoration-none">
+              <router-link :to="{ name: 'ArticlePage', params: { articleDetail: article, slug: article.slug, articlesForGrid: articles } }" class="text-decoration-none" :title="titleArticle">
                 <v-card
                   tile
                   elevation="0"
@@ -52,8 +52,8 @@
           </tiny-slider>
           
           <ul id="customize-controls" class="d-flex justify-end">
-            <li id="prev" tabindex="-1" data-controls="prev" class="teal--text font-weight-bold mr-2 text-h2">&lsaquo;</li>
-            <li id="next" tabindex="-1" data-controls="next" class="teal--text font-weight-bold mr-2 text-h2">&rsaquo;</li>
+            <li id="prev" tabindex="-1" data-controls="prev" class="teal--text font-weight-bold mr-2 text-h2 pointer" :title="titlePrev">&lsaquo;</li>
+            <li id="next" tabindex="-1" data-controls="next" class="teal--text font-weight-bold mr-2 text-h2 pointer" :title="titleNext">&rsaquo;</li>
           </ul>
 
       </v-col>
@@ -83,6 +83,9 @@ export default {
         nextButton: '#next',
       },
       model: 0,
+      titleArticle: 'Artikel öffnen',
+      titlePrev: 'Zurück',
+      titleNext: 'Weiter',
     }
   },
 

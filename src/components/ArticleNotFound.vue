@@ -14,7 +14,9 @@
                     :to="{ name: 'CategoryPage', params: { category: category } }"
                     text
                     plain
-                    x-large>
+                    x-large
+                    :title="`${categoryName} öffnen`"
+                    >
                     <span class="monospace line-behind text-lowercase">
                         {{ categoryName }}
                     </span>
@@ -24,6 +26,7 @@
                     text
                     plain
                     x-large
+                    :title="titleHomeLink"
                     >
                     <span class="monospace line-behind text-lowercase">
                         Startseite
@@ -44,6 +47,12 @@
         },
 
         mixins: [ categoryMixin ],
+
+        data() {
+            return {
+                titleHomeLink: 'Zur Startseite',
+            }
+        },
 
         computed: {
             categoryName() {

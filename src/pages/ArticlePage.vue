@@ -4,7 +4,7 @@
       <v-col cols="10" class="mx-auto">
         
         <div class="monospace article-meta-row mb-1">
-          <router-link :to="{ name: 'CategoryPage', params: { category: category } }" class="text-decoration-none"><span class="line-behind">{{ categoryName }}</span>
+          <router-link :to="{ name: 'CategoryPage', params: { category: category } }" class="text-decoration-none text-lowercase" :title="`${categoryName} öffnen`"><span class="line-behind">{{ categoryName }}</span>
           </router-link>
         </div>
 
@@ -29,7 +29,7 @@
       </v-col>
     </v-row>
 
-    <v-row v-if="filteredArray.length" class="" >
+    <v-row v-if="filteredArray.length">
         
         <article-box
           v-for="(article, i) in filteredArray"
@@ -72,6 +72,7 @@ export default {
   data() {
     return {
       category: this.$route.params.category,
+      title: 'Zur Kategorie',
     }
   },
 

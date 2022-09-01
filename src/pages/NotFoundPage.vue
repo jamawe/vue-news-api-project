@@ -15,6 +15,7 @@
                     text
                     plain
                     x-large
+                    title="Zur Startseite"
                     >
                     <span class="monospace line-behind text-lowercase">
                         Startseite

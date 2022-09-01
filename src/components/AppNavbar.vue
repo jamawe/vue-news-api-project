@@ -10,11 +10,12 @@
     >
     
     <v-app-bar-nav-icon
-      @click.stop="drawer = !drawer">
+      @click.stop="drawer = !drawer"
+      :title="titleMenuOpen">
     </v-app-bar-nav-icon>
 
     <v-toolbar-title>
-      <router-link to="/" class="text-decoration-none">
+      <router-link to="/" class="text-decoration-none" :title="titleHome">
         <span class="monospace line-behind">aktuell</span>
       </router-link>
     </v-toolbar-title>
@@ -26,8 +27,8 @@
     </v-btn> -->
 
     <v-btn icon @click="toggleTheme">
-      <v-icon v-if="!$vuetify.theme.dark" color="#3F51B5">mdi-moon-waxing-crescent</v-icon>
-      <v-icon v-else color="#FFB300">mdi-white-balance-sunny</v-icon>
+      <v-icon v-if="!$vuetify.theme.dark" color="#3F51B5" :title="titleDarkTheme">mdi-moon-waxing-crescent</v-icon>
+      <v-icon v-else color="#FFB300" :title="titleLightTheme">mdi-white-balance-sunny</v-icon>
     </v-btn>
     
     </v-app-bar>
@@ -48,7 +49,7 @@
           <v-list class="text-center">
             <v-list-item-group>
 
-              <v-list-item v-for="(category, i) in categories" :key="i" @click="drawer=false" :to="{ name: 'CategoryPage', params: { category: category.slug } }" class="text-decoration-none">
+              <v-list-item v-for="(category, i) in categories" :key="i" @click="drawer=false" :to="{ name: 'CategoryPage', params: { category: category.slug } }" class="text-decoration-none" :title="`${category.name} öffnen`">
                 <v-list-item-title>
                   <span class="monospace line-behind">{{ category.name }}</span>
                 </v-list-item-title>
@@ -66,6 +67,7 @@
             color="#BDBDBD"
             class="mb-2"
             @click="drawer=false"
+            :title="titleMenuClose"
           >
             <v-icon>mdi-close</v-icon>
           </v-btn>
@@ -88,6 +90,11 @@
     data() {
       return {
         drawer: false,
+        titleMenuOpen: 'Navigation öffnen',
+        titleMenuClose: 'Navigation schließen',
+        titleHome: 'Zur Startseite',
+        titleDarkTheme: 'Dunklen Modus wählen',
+        titleLightTheme: 'Hellen Modus wählen',
       }
     },
 

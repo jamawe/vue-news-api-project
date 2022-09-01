@@ -44,10 +44,11 @@
                 <v-btn
                   :href="articleSingle.url"
                   target="_blank"
+                  :title="title"
                   text
                   plain
                 >
-                  <span class="line-behind sans text-capitalize mr-1">Zur Quelle</span>
+                  <span class="line-behind sans mr-1">Auf {{ articleSingle.prettyTitle[2] }} lesen</span>
                   <v-icon small>mdi-open-in-new</v-icon>
                 </v-btn>
 
@@ -69,6 +70,12 @@ export default {
   props: {
     articleSingle: Object,
   },
+
+  data() {
+    return {
+      title: 'Ganzen Artikel lesen',
+    }
+  }
   
 }
 </script>
