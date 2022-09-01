@@ -19,7 +19,7 @@
          <article>
             <v-row>
               <v-col
-              cols="10" class="mx-auto article-meta">
+              cols="10" class="monospace mx-auto">
 
                 <div class="article-meta-row article-title mb-3"><h1><span>{{ articleSingle.prettyTitle[1] }}</span></h1></div>
 
@@ -37,7 +37,7 @@
 
             <v-row>
               <v-col
-                cols="10" class="mx-auto article-main">
+                cols="10" class="monospace mx-auto">
 
                 <p>
                   {{ articleSingle.content }} &mdash; <br>
@@ -76,10 +76,6 @@ export default {
 
   .article-image {
     box-shadow: 10px 10px #26A69A;
-  }
-
-  .article-category, .article-description, .article-meta, .article-main {
-    font-family: 'Courier New', Courier, monospace;
   }
 
   .article-title {

@@ -3,7 +3,7 @@
     <v-row>
       <v-col cols="10" class="mx-auto">
         
-        <div class="article-meta-row article-page-category mb-1">
+        <div class="monospace article-meta-row mb-1">
           <router-link :to="`/${articleDetail.category}`" class="text-decoration-none"><span class="line-behind">{{ articleDetail.category }}</span>
           </router-link>
         </div>
@@ -110,10 +110,6 @@ export default {
 </script>
 
 <style scoped>
-
-  .article-page-category {
-    font-family: 'Courier New', Courier, monospace;
-  }
   .heading-more {
     font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
   }

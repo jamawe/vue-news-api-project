@@ -36,12 +36,12 @@
                     </h4>
                   </v-card-title>
 
-                  <v-card-subtitle class="mt-1 pb-1 article-meta font-weight-bold">
+                  <v-card-subtitle class="monospace mt-1 pb-1 font-weight-bold">
                     {{ article.publishedAt }} - {{ article.prettyTitle[2] }}
                   </v-card-subtitle>
 
                   <v-card-text class="text--primary">
-                    <div class="article-description ">
+                    <div class="article-description monospace">
                       {{ article.description }}
                     </div>
                   </v-card-text>
@@ -122,10 +122,6 @@ export default {
     word-spacing: 0em;
     font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     text-align-last: left;
-  }
-
-  .article-meta, .article-description, .article-category {
-    font-family: 'Courier New', Courier, monospace;
   }
 
   /* Truncate description multi-line */

@@ -15,7 +15,7 @@
 
     <v-toolbar-title>
       <router-link to="/" class="text-decoration-none">
-        <span class="home-link line-behind">home</span>
+        <span class="monospace line-behind">aktuell</span>
       </router-link>
     </v-toolbar-title>
 
@@ -56,7 +56,7 @@
                     class="text-decoration-none"
                     
                   >
-                    <span class="drawer-link line-behind">{{ category }}</span>
+                    <span class="monospace line-behind">{{ category }}</span>
                   </router-link>
                 </v-list-item-title>
               </v-list-item>
@@ -101,15 +101,9 @@
 </script>
 
 <style scoped>
-
   .drawer-title {
     font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     word-break: keep-all;
     text-align: center;
-  }
-
-  .home-link, .drawer-link {
-    font-family: 'Courier New', Courier, monospace;
-  }
-  
+  }  
 </style>

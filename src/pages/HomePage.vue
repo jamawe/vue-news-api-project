@@ -3,8 +3,8 @@
   <v-container>
     <v-row>
       <v-col cols="10" class="mx-auto">
-        <div><router-link class="text-decoration-none line-behind home-page-title" :to="`/${this.category}`">
-          latest news
+        <div><router-link class="monospace line-behind text-decoration-none" :to="`/${this.category}`">
+          aktuell
         </router-link></div>
       </v-col>
     </v-row>
@@ -148,11 +148,3 @@ export default {
 
 }
 </script>
-
-<style scoped>
-
-  .home-page-title {
-    font-family: 'Courier New', Courier, monospace;
-  }
-  
-</style>

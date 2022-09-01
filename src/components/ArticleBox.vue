@@ -28,7 +28,7 @@
         <v-card-title
             class="font-weight-light px-0"
           >
-          <h6 class="article-box-title"><span >{{ article.prettyTitle[1] }}</span></h6>
+          <h6 class="article-box-title monospace"><span >{{ article.prettyTitle[1] }}</span></h6>
         </v-card-title>
       </v-card>
     </router-link>
@@ -69,7 +69,6 @@ export default {
 
   .article-box-title {
     font-size: 1rem;
-    font-family: 'Courier New', Courier, monospace;
     line-height: 1.3rem;
     word-break: keep-all;
     display: -webkit-box;
