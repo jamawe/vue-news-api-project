@@ -78,6 +78,15 @@
           </v-btn>
           <v-spacer></v-spacer>
         </v-card-actions>
+
+        <v-card-text class="d-flex justify-end">
+          <v-btn
+            href="https://github.com/jamawe/vue-news-api-project"
+            :title="titleGithub"
+            icon>
+            <v-icon>mdi-github</v-icon>
+          </v-btn>
+        </v-card-text>
       </v-card>
     </v-dialog>
 
@@ -100,6 +109,7 @@
         titleHome: 'Zur Startseite',
         titleDarkTheme: 'Dunklen Modus wählen',
         titleLightTheme: 'Hellen Modus wählen',
+        titleGithub: 'Projekt auf GitHub öffnen',
       }
     },
 
