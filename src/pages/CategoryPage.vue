@@ -4,7 +4,7 @@
       <v-col cols="12" class="mx-auto">
 
         <div class="monospace d-flex justify-center">
-          <span class="line-behind">{{ category }}</span>
+          <span class="line-behind">{{ categoryName }}</span>
         </div>
 
         <article-slider
@@ -20,6 +20,7 @@
 import ArticleSlider from '../components/ArticleSlider.vue';
 import axios from 'axios';
 import articleMixin from '../mixins/articleMixin';
+import categoryMixin from '../mixins/categoryMixin';
 
 export default {
 
@@ -29,7 +30,7 @@ export default {
     'article-slider': ArticleSlider,
   },
 
-  mixins: [ articleMixin ],
+  mixins: [ articleMixin, categoryMixin ],
 
   data() {
     return {
@@ -106,6 +107,12 @@ export default {
         }
 
         return [year, month, day].join('-');
+    },
+
+    categoryName() {
+        const slug = this.category;
+        const [category] = this.categories.filter(object => object.slug === slug);
+        return category.name;
     },
 
   },

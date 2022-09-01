@@ -4,7 +4,7 @@
       <v-col cols="10" class="mx-auto">
         
         <div class="monospace article-meta-row mb-1">
-          <router-link :to="`/${articleDetail.category}`" class="text-decoration-none"><span class="line-behind">{{ articleDetail.category }}</span>
+          <router-link :to="{ name: 'CategoryPage', params: { category: category } }" class="text-decoration-none"><span class="line-behind">{{ categoryName }}</span>
           </router-link>
         </div>
 
@@ -49,6 +49,7 @@
 import ArticleSingle from '../components/ArticleSingle.vue';
 import ArticleBox from '../components/ArticleBox.vue';
 import ArticleNotFound from '../components/ArticleNotFound.vue';
+import categoryMixin from '../mixins/categoryMixin';
 
 export default {
 
@@ -59,6 +60,8 @@ export default {
     'article-box': ArticleBox,
     'article-not-found': ArticleNotFound,
   },
+
+  mixins: [ categoryMixin ],
 
   props: {
     articleDetail: Object,
@@ -103,6 +106,12 @@ export default {
 
       return newArray;
 
+    },
+
+    categoryName() {
+        const slug = this.category;
+        const [category] = this.categories.filter(object => object.slug === slug);
+        return category.name;
     },
   },
 
