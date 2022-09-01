@@ -21,11 +21,6 @@ export default {
   components: {
     AppNavbar,
   },
-
-  mounted() {
-    // eslint-disable-next-line
-    console.log('%ctheme', 'color: darkseagreen; font-weight: bold;', this.$vuetify.theme.dark);
-  },
   
 };
 </script>
@@ -39,7 +34,7 @@ export default {
 
   .line-behind {
     padding: 0 10px;
-    box-shadow: inset 0 -10px 0 0 #00695C;
+    box-shadow: inset 0 -10px 0 0 var(--v-backdrop-base);
     /* box-shadow: inset 0 -10px 0 0 #B2DFDB; */
   }
 
