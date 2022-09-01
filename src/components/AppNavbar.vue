@@ -48,15 +48,9 @@
           <v-list class="text-center">
             <v-list-item-group>
 
-              <v-list-item v-for="(category, i) in categories" :key="i" @click="drawer=false">
+              <v-list-item v-for="(category, i) in categories" :key="i" @click="drawer=false" :to="{ name: 'CategoryPage', params: { category: category.slug } }" class="text-decoration-none">
                 <v-list-item-title>
-                  <router-link
-                    :to="`/${category.slug}`"
-                    class="text-decoration-none"
-                    
-                  >
-                    <span class="monospace line-behind">{{ category.name }}</span>
-                  </router-link>
+                  <span class="monospace line-behind">{{ category.name }}</span>
                 </v-list-item-title>
               </v-list-item>
 
