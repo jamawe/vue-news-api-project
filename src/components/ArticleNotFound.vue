@@ -1,6 +1,6 @@
 <template>
     <v-container class="d-flex justify-center align-center height-whole">
-        <v-card class="ch70 pa-2" max-width="50%" min-width="300" elevation="0" color="transparent">
+        <v-card class="ch70" elevation="0" color="transparent">
             <v-card-title class="title-xl monospace keep-all mb-10">
                 Ups! &#127770;
             </v-card-title>
