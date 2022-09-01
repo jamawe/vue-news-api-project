@@ -21,15 +21,13 @@
               <v-col
               cols="10" class="monospace mx-auto">
 
-                <div class="article-meta-row sans mb-3"><h1><span>{{ articleSingle.prettyTitle[1] }}</span></h1></div>
+                <div class="sans mb-3"><h1><span>{{ articleSingle.prettyTitle[1] }}</span></h1></div>
 
                 
-                <div class="article-meta-row article-meta">
-                  <h4>
-                    <span class="line-behind">
-                      {{ articleSingle.publishedAt }} &mdash; {{ articleSingle.prettyTitle[2] }}
-                    </span>
-                  </h4>
+                <div class="text-subtitle-2">
+                  <span class="sans">
+                    {{ articleSingle.publishedAt }} &mdash; {{ articleSingle.prettyTitle[2] }}
+                  </span>
                 </div>
 
               </v-col>
@@ -37,18 +35,21 @@
 
             <v-row>
               <v-col
-                cols="10" class="monospace mx-auto">
+                cols="10" class="mx-auto">
 
-                <p>
-                  {{ articleSingle.content }} &mdash; <br>
-                  <a
-                    :href="articleSingle.url"
-                    target="_blank"
-                    class="text-decoration-none font-weight-bold line-behind article-link"
-                  >
-                    Zur Quelle
-                  </a>
+                <p class="monospace">
+                  {{ articleSingle.content }} &mdash;
                 </p>
+
+                <v-btn
+                  :href="articleSingle.url"
+                  target="_blank"
+                  text
+                  plain
+                >
+                  <span class="line-behind sans text-capitalize mr-1">Zur Quelle</span>
+                  <v-icon small>mdi-open-in-new</v-icon>
+                </v-btn>
 
               </v-col>
             </v-row>
