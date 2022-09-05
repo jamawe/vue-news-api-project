@@ -1,16 +1,17 @@
 <template>
   <v-container class="article-single">
-
        <v-row>
-        <v-col
-          cols="12" class="mx-auto">
+        <v-col class="mx-auto">
 
           <header>
             <v-row>
               <v-col
-                cols="10" class=" mx-auto mb-5">
+                sm="10"
+                lg="8"
+                xl="5"
+                class=" mx-auto mb-5">
 
-                <v-img :src="articleSingle.urlToImage" class="article-image"></v-img>
+                <v-img :src="articleSingle.image" class="article-image"></v-img>
 
               </v-col>
             </v-row>
@@ -19,14 +20,17 @@
          <article>
             <v-row>
               <v-col
-              cols="10" class="monospace mx-auto">
+                sm="10"
+                lg="8"
+                xl="5" 
+                class="monospace mx-auto">
 
-                <div class="sans mb-3"><h1><span>{{ articleSingle.prettyTitle[1] }}</span></h1></div>
+                <div class="sans mb-3 panda"><h1><span>{{ articleSingle.headline }}</span></h1></div>
 
                 
                 <div class="text-subtitle-2">
                   <span class="sans">
-                    {{ articleSingle.publishedAt }} &mdash; {{ articleSingle.prettyTitle[2] }}
+                    {{ articleSingle.pubDate }} &mdash; {{ articleSingle.byline }}
                   </span>
                 </div>
 
@@ -35,7 +39,13 @@
 
             <v-row>
               <v-col
-                cols="10" class="mx-auto">
+                sm="10"
+                lg="8"
+                xl="5"
+                class="mx-auto">
+
+                <p class="monospace font-italic panda">{{ articleSingle.abstract }}
+                </p>
 
                 <p class="monospace">
                   {{ articleSingle.content }} &mdash;
@@ -48,7 +58,7 @@
                   text
                   plain
                 >
-                  <span class="line-behind sans mr-1">Auf {{ articleSingle.prettyTitle[2] }} lesen</span>
+                  <span class="line-behind sans mr-1">Auf {{ articleSingle.source }} lesen</span>
                   <v-icon small>mdi-open-in-new</v-icon>
                 </v-btn>
 
@@ -80,10 +90,8 @@ export default {
 }
 </script>
 
-<style scoped>
-
+<style>
   .article-image {
     box-shadow: 10px 10px #26A69A;
   }
-
 </style>

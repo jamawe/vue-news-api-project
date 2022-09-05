@@ -2,13 +2,13 @@ export default {
     data() {
         return {
             categories: [
-                { name: 'Wirtschaft', slug: 'business' },
-                { name: 'Unterhaltung', slug: 'entertainment' },
-                { name: 'Allgemeines', slug: 'general' },
-                { name: 'Gesundheit', slug: 'health' },
-                { name: 'Wissenschaft', slug: 'science' },
-                { name: 'Sport', slug: 'sports' },
-                { name: 'Technik', slug: 'technology' },
+                { name: 'Business', slug: 'business' },
+                { name: 'Education', slug: 'education' },
+                { name: 'Health', slug: 'health' },
+                { name: 'Science', slug: 'science' },
+                { name: 'Sports', slug: 'sports' },
+                { name: 'Travel', slug: 'travel' },
+                { name: 'World', slug: 'world' },
             ]
         }
     },

@@ -9,6 +9,13 @@ export default {
   },
 
   methods: {
+    getCategoryIndex(category) {
+      return this.categories.findIndex(element => element.slug === category);
+    },
+
+    getNewsDesk(index) {
+      return this.categories[index].name;
+    },
 
     makePrettyTitle(title) {
       // Ersten Teil des Titels (vor " - ") als Titel anzeigen (mit articel.prettyTitle[1]), zweiten Teile (Name der Source) mit articel.prettyTitle[2]

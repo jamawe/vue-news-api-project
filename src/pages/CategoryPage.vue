@@ -9,8 +9,10 @@
 
         <article-slider
           :articlesForSlider="this.articles"
-          v-if="loaded"
+          v-if="this.articles.length && loaded"
         ></article-slider>
+
+        <!-- {{ this.articles }} -->
       </v-col>
     </v-row>
   </v-container>
@@ -37,55 +39,77 @@ export default {
       loaded: false,
       articles: [],
       category: this.$route.params.category,
+      categoryName: '',
     }
   },
 
   created() {
     this.getArticles();
+    this.todayToAPIString;
+    this.getDate(new Date());
   },
 
   methods: {
-    getArticles() {
+    async getArticles() {
 
-      axios.get(`https://newsapi.org/v2/top-headlines?country=de&category=${this.category}&from=${this.todayToAPIString}&to=${this.todayToAPIString}&pageSize=50&apiKey=${process.env.VUE_APP_NEWS_API_KEY}`)
-      .then(res => {
+      const i = this.getCategoryIndex(this.category);
+      const newsDesk = this.getNewsDesk(i);
+      this.categoryName = newsDesk;
+      // Get date TODO
 
-        const data = res.data.articles;
+      const res = await axios.get(`https://api.nytimes.com/svc/search/v2/articlesearch.json?fq=news_desk:("${newsDesk}") AND pub_date:(2022-09-01)&api-key=${process.env.VUE_APP_NYT_API_KEY}`);
 
-        for (let key in data) {
-          const article = data[key];
-            
-          // Filtern nach Source names und check, dass keiner der values von content, description, title, url und urlToImage leer sind
-          if (this.sources.includes(article['source']['name']) && (article['content']&&article['description']&&article['title']&&article['url']&&article['urlToImage'] != null)) {
+      // TODO if (res.status !== 200) schow error & return
 
-            article['prettyTitle'] = this.makePrettyTitle(article['title']);
+      const { docs, meta } = res.data.response;
+      // if (meta.hits === 0) make new request with previous date
 
-            article['slug'] = this.makeSlug(article['prettyTitle'][1]);
-            
-            article['publishedAt'] = this.makePrettyDate(article['publishedAt']);
+      // TODO make date pretty
+      
+      docs.forEach(element => {
+        const article = {
+          abstract: element.abstract,
+          byline: element.byline.original,
+          category: this.category,
+          content: element.lead_paragraph,
+          headline: element.headline.main,
+          image: `https://www.nytimes.com/${element.multimedia[0].url}`,
+          newsDesk: element.news_desk,
+          pubDate: this.makePrettyDate(element.pub_date),
+          slug: this.makeSlug(element.headline.main),
+          source: element.source,
+          subCategory: element.subsection_name,
+          url: element.web_url,
+          wordCount: element.word_count
+        };
 
-            article['content'] = this.makePrettyContent(article['content']);
+        this.articles.push(article);
+      });
 
-            article['category'] = this.category;
+      this.loaded = true;
+    },
 
-            if (this.articles.length < 10) {
-              this.articles.push(article);
-            } else {
-              break;
-            }
-            
-          }
-            
+    // apiRequest(newsDesk, date) {
+
+    // },
+
+    getDate(date) {
+        // const previous = new Date(date.getTime());
+        // previous.setDate(date.getDate() - 1);
+
+        let year = '' + date.getFullYear();
+        let month = '' + (date.getMonth() + 1);
+        let day = '' + date.getDate();
+
+        if (month.length < 2) {
+          month = '0' + month;
         }
 
-        // // eslint-disable-next-line
-        // console.log(this.articles);
+        if (day.length < 2) {
+          day = '0' + day;
+        }
 
-        this.loaded = true;
-
-      })
-      // eslint-disable-next-line
-      .catch(error => console.log(error));
+        return [year, month, day].join('-');
     },
   },
 
@@ -108,13 +132,6 @@ export default {
 
         return [year, month, day].join('-');
     },
-
-    categoryName() {
-        const slug = this.category;
-        const [category] = this.categories.filter(object => object.slug === slug);
-        return category.name;
-    },
-
   },
 
 }

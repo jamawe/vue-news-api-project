@@ -52,75 +52,19 @@ export default {
   },
 
   created() {
-    this.getArticleFrontPage();
+    // this.getArticleFrontPage();
   },
 
   methods: {
     getArticleFrontPage() {
 
-      axios.get(`https://newsapi.org/v2/top-headlines?country=de&category=${this.category}&from=${this.todayToAPIString}&to=${this.todayToAPIString}&pageSize=5&apiKey=${process.env.VUE_APP_NEWS_API_KEY}`)
-      .then(res => {
-
-        const data = res.data.articles;
-
-        // eslint-disable-next-line
-        // console.log("data:", data, data[0].urlToImage);
-
-        // only for ArticleBox component
-        // let count = 0;
-
-        for (let key in data) {
-          const article = data[key];
-            
-          // Filtern nach Source names und check, dass keiner der values von content, 
-          // description, title, url und urlToImage leer sind
-          if (this.sources.includes(article['source']['name'])&& 
-          (article['content']&&article['description']&&article['title']&&
-          article['url']&&article['urlToImage'] != null)) {
-
-            article['prettyTitle'] = this.makePrettyTitle(article['title']);
-
-            article['slug'] = this.makeSlug(article['prettyTitle'][1]);
-
-            article['publishedAt'] = this.makePrettyDate(article['publishedAt']);
-
-            article['content'] = this.makePrettyContent(article['content']);
-
-            article['category'] = this.category;
-
-            // only for ArticleBox component
-            // if (count < 1) {
-            //   article['flex'] = 10;
-            //   article['imgWidth'] = 'auto';
-            //   article['imgHeight'] = 'auto';
-            //   article['cardWidth'] = 'auto';
-            //   count++;
-            // } else {
-            //   article['flex'] = 6;
-            //     article['imgWidth'] = 250;
-            //     article['imgHeight'] = 250;
-            //     article['cardWidth'] = 250;
-            //   count++;
-            // }
-
-            if (this.articlesFrontPage.length < 1) {
-              this.articlesFrontPage.push(article);
-            } else {
-              break;
-            }
-            
-          }
-            
-        }
-
-        // // eslint-disable-next-line
-        // console.log(this.articleFrontPage);
-
-        this.loaded = true;
-
-      })
-      // eslint-disable-next-line
-      .catch(error => console.log(error));
+      // axios.get(`https://api.nytimes.com/svc/search/v2/articlesearch.json?fq=news_desk:("Sports") AND pub_date:(2022-09-03)&page=1&api-key=${process.env.VUE_APP_NYT_API_KEY}`)
+      //   .then(res => {
+      //     // console.log('%cres', 'color: darkseagreen; font-weight: bold;', res);
+      //   })
+      //   .catch(err => {
+      //     console.log('%cerr', 'color: red; font-weight: bold;', err);
+      //   });
     },
   },
 

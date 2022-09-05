@@ -4,7 +4,7 @@
       <v-col cols="10" class="mx-auto">
         
         <div class="monospace article-meta-row mb-1">
-          <router-link :to="{ name: 'CategoryPage', params: { category: category } }" class="text-decoration-none text-lowercase" :title="`${categoryName} öffnen`"><span class="line-behind">{{ categoryName }}</span>
+          <router-link :to="{ name: 'CategoryPage', params: { category: category } }" class="text-decoration-none text-lowercase" :title="`${articleDetail.newsDesk} öffnen`"><span class="line-behind">{{ articleDetail.newsDesk }}</span>
           </router-link>
         </div>
 
@@ -12,8 +12,7 @@
     </v-row>
 
     <v-row>
-      <v-col
-        cols="12" class="mx-auto">
+      <v-col class="mx-auto">
 
         <article-single
           :articleSingle="this.articleDetail"
@@ -23,20 +22,21 @@
     </v-row>
 
     <v-row>
-      <v-col cols="10" class="mx-auto">
-        <div ><h2 class="sans mb-2">Mehr aus dieser Kategorie</h2>
-        <hr></div>
+      <v-col class="mx-auto">
+        <div>
+          <h2 class="sans mb-2">Mehr aus dieser Kategorie</h2>
+          <hr>
+        </div>
       </v-col>
     </v-row>
 
     <v-row v-if="filteredArray.length">
-        
-        <article-box
-          v-for="(article, i) in filteredArray"
-          :key="i"
-          :article="article"
-          :articlesForGrid="articlesForGrid"
-        ></article-box>
+          <article-box
+            v-for="(article, i) in filteredArray"
+            :key="i"
+            :article="article"
+            :articlesForGrid="articlesForGrid"
+          ></article-box>
     </v-row>
   </v-container>
 
@@ -105,14 +105,9 @@ export default {
 
       }
 
+      console.log('%cnewArray', 'color: darkseagreen; font-weight: bold;', newArray);
       return newArray;
 
-    },
-
-    categoryName() {
-        const slug = this.category;
-        const [category] = this.categories.filter(object => object.slug === slug);
-        return category.name;
     },
   },
 

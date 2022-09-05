@@ -13,13 +13,13 @@ export const routes = [
   },
 
   {
-    path: '/:category(business|entertainment|general|health|science|sports|technology)',
+    path: '/:category(business|education|health|sports|travel|science|sports|world)',
     name: 'CategoryPage',
     component: CategoryPage 
   },
 
   {
-    path: '/:category(business|entertainment|general|health|science|sports|technology)/:slug',
+    path: '/:category(business|education|health|sports|travel|science|sports|world)/:slug',
     name: 'ArticlePage',
     component: ArticlePage,
     props: true 

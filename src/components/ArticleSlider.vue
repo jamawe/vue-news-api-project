@@ -11,7 +11,7 @@
               class="px-1 slider-item"
             >
 
-              <router-link :to="{ name: 'ArticlePage', params: { articleDetail: article, slug: article.slug, articlesForGrid: articles } }" class="text-decoration-none" :title="titleArticle">
+              <router-link v-if="article" :to="{ name: 'ArticlePage', params: { articleDetail: article, slug: article.slug, articlesForGrid: articles } }" class="text-decoration-none" :title="titleArticle">
                 <v-card
                   tile
                   elevation="0"
@@ -24,7 +24,7 @@
                   <v-img
                     class="white--text align-end"
                     height="200px"
-                    :src="article.urlToImage"
+                    :src="article.image"
                   >
                 
                   </v-img>
@@ -32,17 +32,17 @@
                   
                   <v-card-title class="font-weight-bold">
                     <h4 class="article-title sans">
-                      <span class="line-behind">{{ article.prettyTitle[1] }}</span>
+                      <span class="line-behind">{{ article.headline }}</span>
                     </h4>
                   </v-card-title>
 
                   <v-card-subtitle class="monospace mt-1 pb-1 font-weight-bold">
-                    {{ article.publishedAt }} - {{ article.prettyTitle[2] }}
+                    {{ article.pubDate }} - {{ article.byline }}
                   </v-card-subtitle>
 
                   <v-card-text class="text--primary">
                     <div class="article-description monospace">
-                      {{ article.description }}
+                      {{ article.abstract }}
                     </div>
                   </v-card-text>
                 </v-card>

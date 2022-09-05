@@ -20,7 +20,7 @@
           
           :max-width="article.imgWidth"
           :height="article.imgHeight"
-          :src="article.urlToImage"
+          :src="article.image"
           
           class="black--text align-end article-box-image"
         >
@@ -28,7 +28,7 @@
         <v-card-title
             class="font-weight-light px-0"
           >
-          <h6 class="article-box-title monospace"><span >{{ article.prettyTitle[1] }}</span></h6>
+          <h6 class="article-box-title monospace"><span >{{ article.headline }}</span></h6>
         </v-card-title>
       </v-card>
     </router-link>
