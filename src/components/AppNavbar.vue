@@ -1,18 +1,18 @@
 <template>
-
   <div class="nav-container">
     <v-app-bar
     app
     dense
     bottom
     flat
-    elevate-on-scroll
-    >
+    elevate-on-scroll>
     
     <v-app-bar-nav-icon
       @click.stop="drawer = !drawer"
       :title="titleMenuOpen">
     </v-app-bar-nav-icon>
+
+    <v-spacer></v-spacer>
 
     <v-toolbar-title>
       <v-btn
@@ -21,7 +21,9 @@
         plain
         text
         x-large>
-        <span class="monospace line-behind text-lowercase">aktuell</span>
+
+        <span class="font-md line-behind text-lowercase">home</span>
+
       </v-btn>
     </v-toolbar-title>
 
@@ -32,31 +34,29 @@
     </v-btn> -->
 
     <v-btn icon @click="toggleTheme">
-      <v-icon v-if="!$vuetify.theme.dark" color="#3F51B5" :title="titleDarkTheme">mdi-moon-waxing-crescent</v-icon>
-      <v-icon v-else color="#FFB300" :title="titleLightTheme">mdi-white-balance-sunny</v-icon>
+      <v-icon v-if="!$vuetify.theme.dark" color="#3F51B5" :title="titleDarkTheme" small>mdi-moon-waxing-crescent</v-icon>
+      <v-icon v-else color="#FFB300" :title="titleLightTheme" small>mdi-white-balance-sunny</v-icon>
     </v-btn>
     
     </v-app-bar>
 
     <v-dialog
       v-model="drawer"
-      width="500"
-    >
+      width="500">
 
       <v-card
-        tile
-      >
-        <v-card-title class="d-flex justify-center text-h6 mb-0"><span class="drawer-title sans">Wofür interessierst du dich?</span>
-        </v-card-title>
+        tile>
 
+        <v-card-title class="d-flex justify-center text-h6 mb-0"><span class="drawer-title">Wofür interessierst du dich?</span>
+        </v-card-title>
 
         <v-card-text>
           <v-list class="text-center">
-            <v-list-item-group v-if="categories">
+            <v-list-item-group>
 
               <v-list-item v-for="(category, i) in categories" :key="i" @click="drawer=false" :to="{ name: 'CategoryPage', params: { category: category.slug } }" class="text-decoration-none" :title="`${category.name} öffnen`">
                 <v-list-item-title>
-                  <span class="monospace line-behind">{{ category.name }}</span>
+                  <span class="font-sm line-behind font-weight-medium">{{ category.name }}</span>
                 </v-list-item-title>
               </v-list-item>
 

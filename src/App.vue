@@ -31,7 +31,7 @@ export default {
 </script>
 
 
-<style>
+<style lang="scss">
   html {
     width: 100%;
     height: 100vh;
@@ -55,8 +55,16 @@ export default {
     max-width: 70ch;
   }
 
-  .title-xl {
-    font-size: 4rem;
+  .font-sm {
+    font-size: 1.125rem;
+  }
+
+  .font-md {
+    font-size: 1.25rem; // 20px
+  }
+
+  .font-xxl {
+    font-size: 4rem; // 64px
   }
 
   .monospace {
