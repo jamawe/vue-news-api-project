@@ -33,12 +33,16 @@ For now the categories that can be requested are limited to
 
 To change these, add or remove the category to/from the regEx pattern that limits the `CategoryPage` and `ArticlePage` in `routes.js` as well as the `categories` array in the `/modules/articles.mjs` module.
 
-### Serve the project
+## Ideas on expanding this project
+
+Currently no Vuex or other state management tools are used. To maintain state (in this case the news articles) and don't make an API request on every page load, the `/modules/articles.mjs` module could be transferred into a state management system.
+
+## Serve the project
 ```
 npm run serve
 ```
 
-### Compile and minifie the project for production
+## Compile and minifie the project for production
 ```
 npm run build
 ```
