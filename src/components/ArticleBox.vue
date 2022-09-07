@@ -7,7 +7,7 @@
       min-height="200"
       transition="fade-transition"
       >
-    <router-link :to="{ name: 'ArticlePage', params: { articleDetail: article, category: article.category, slug: article.slug, articlesForGrid: articlesForGrid } }" class="text-decoration-none" :title="titleArticle">
+    <router-link :to="{ name: 'ArticlePage', params: { articleDetail: article, category: category, slug: article.slug, articlesForGrid: articlesForGrid } }" class="text-decoration-none" :title="titleArticle">
       <v-card
         tile
         elevation="0"
@@ -52,6 +52,7 @@ export default {
   props: {
     article: Object,
     articlesForGrid: Array,
+    category: String,
   },
 
 }

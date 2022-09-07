@@ -28,6 +28,7 @@
             :key="i"
             :article="article"
             :articlesForGrid="articlesForGrid"
+            :category="category"
           ></article-box>
     </v-row>
   </v-container>
