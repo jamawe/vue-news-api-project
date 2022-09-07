@@ -67,6 +67,14 @@ export default {
     font-size: 4rem; // 64px
   }
 
+  .tracking-wider {
+    letter-spacing: .0625rem; // 1px
+  }
+
+  .tracking-wide {
+    letter-spacing: .125rem; // 2px
+  }
+
   .monospace {
     font-family: 'Courier New', Courier, monospace;
   }

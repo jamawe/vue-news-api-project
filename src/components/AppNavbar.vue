@@ -56,7 +56,7 @@
 
               <v-list-item v-for="(category, i) in categories" :key="i" @click="drawer=false" :to="{ name: 'CategoryPage', params: { category: category.slug } }" class="text-decoration-none" :title="`${category.name} öffnen`">
                 <v-list-item-title>
-                  <span class="font-sm line-behind font-weight-medium">{{ category.name }}</span>
+                  <span class="font-sm tracking-wide line-behind text-lowercase font-weight-medium">{{ category.name }}</span>
                 </v-list-item-title>
               </v-list-item>
 
