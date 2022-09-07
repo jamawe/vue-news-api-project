@@ -9,19 +9,17 @@
       </v-col>
     </v-row>
 
-    <v-row v-if="articlesFrontPage.length">
+    <v-row>
       <v-spacer></v-spacer>
-      <ArticleSingle
-        v-for="(article, i) in articlesFrontPage"
-        :key="i"
-        :articleSingle="article"
-      />
+      <v-col>
+        <ArticleSingle
+          v-for="(article, i) in articles"
+          :key="i"
+          :articleSingle="article"
+        />
+      </v-col>
       <v-spacer></v-spacer>
     </v-row>
-
-    <!-- <v-row>
-      <ArticleSearch />
-    </v-row> -->
   </v-container>
 
 </template>
@@ -29,8 +27,8 @@
 <script>
 import ArticleSingle from '../components/ArticleSingle.vue';
 // import ArticleSearch from '../components/ArticleSearch.vue';
-import axios from 'axios';
 import articleMixin from '../mixins/articleMixin';
+import { createApiRequest, getArticles, modifyArticlesForDisplay } from '../modules/articles.mjs';
 
 export default {
 
@@ -46,48 +44,57 @@ export default {
   data() {
     return {
       loaded: false,
-      articlesFrontPage: [],
-      category: 'general',
+      articles: [],
+      date: '',
+      url: '',
+      newsDesk: '',
+      // request + requestThreshold needed for limit how many pages to load
+      request: 0,
+      requestThreshold: 3,
     }
   },
 
   created() {
-    // this.getArticleFrontPage();
+    this.getArticleFrontPage();
   },
 
   methods: {
-    getArticleFrontPage() {
+    async getArticleFrontPage() {
 
-      // axios.get(`https://api.nytimes.com/svc/search/v2/articlesearch.json?fq=news_desk:("Sports") AND pub_date:(2022-09-03)&page=1&api-key=${process.env.VUE_APP_NYT_API_KEY}`)
-      //   .then(res => {
-      //     // console.log('%cres', 'color: darkseagreen; font-weight: bold;', res);
-      //   })
-      //   .catch(err => {
-      //     console.log('%cerr', 'color: red; font-weight: bold;', err);
-      //   });
-    },
-  },
-
-  computed: {
-    todayToAPIString() {
-      // Get today's date and format it toNewsAPIs convention (yyyy-mm-dd)
-        const today = new Date();
-
-        let year = '' + today.getFullYear();
-        let month = '' + (today.getMonth() + 1);
-        let day = '' + today.getDate();
-
-        if (month.length < 2) {
-          month = '0' + month;
-        }
-
-        if (day.length < 2) {
-          day = '0' + day;
-        }
-
-        return [year, month, day].join('-');
+      // TODO: Only needed if repeatRequest fn stays
+      // this.date = new Date();
+      // const dateModified = modifyDateForApiRequest(this.date);
+      const url = createApiRequest(this.newsDesk);
+      const { docs } = await getArticles(url);
+      this.request++;
+      this.articles.push(...modifyArticlesForDisplay(docs));
     },
 
+    async loadNextPage() {
+      while (this.request < this.requestThreshold) {
+        const url = createApiRequest(this.newsDesk, this.requestThreshold);
+        const { docs } = await getArticles(url);
+        this.articles = [...this.articles, ...modifyArticlesForDisplay(docs)];
+        this.request++;
+      } 
+    },
+
+    // TODO: Not sure if going one day back is still needed because of sort helper in api request (newest)
+    // async repeatRequest() {
+    //   // Get previous day as date string
+    //   const prevDay = getPreviousDate(this.date);
+    //   // Set date var to new date string
+    //   this.date = prevDay;
+    //   // Modify new date string to have correct format for request
+    //   const newDateModified = modifyDateForApiRequest(prevDay);
+    //   // Create url with new variable(s)
+    //   const newUrl = createApiRequest(this.newsDesk, newDateModified);
+    //   // Make request + retrieve docs
+    //   const { docs } = await getArticles(newUrl);
+    //   // Set articles array used for display
+    //   this.articles = [...this.articles, ...modifyArticlesForDisplay(docs)];
+    //   console.log('%carticles', 'color: hotpink; font-weight: bold;', this.articles);
+    // }
   },
 
 }
