@@ -1,5 +1,18 @@
 import axios from "axios";
 
+// CATEGORIES (news desks)
+const categories = [
+    { name: 'Arts', slug: 'arts' },
+    { name: 'Business', slug: 'business' },
+    { name: 'Foreign', slug: 'foreign' },
+    { name: 'Learning', slug: 'learning' },
+    { name: 'Science', slug: 'science' },
+    { name: 'Sports', slug: 'sports' },
+    { name: 'Technology', slug: 'technology' },
+    { name: 'World', slug: 'world' },
+];
+
+
 // REQUEST HELPERS
 // To formulate request
 function modifyDateForApiRequest(date) {
@@ -22,6 +35,14 @@ function getPreviousDate(oldDate) {
     const previousDate = new Date(oldDate.getTime());
     previousDate.setDate(oldDate.getDate() - 1);
     return previousDate;
+}
+
+function getNewsDeskIndex(category) {
+    return categories.findIndex(element => element.slug === category);
+}
+
+function getNewsDesk(index) {
+    return categories[index].name;
 }
 
 function createApiRequest(newsDesk, page = 0) {
@@ -98,4 +119,4 @@ async function getArticles(url) {
     return { docs, meta };
 }
 
-export { modifyDateForApiRequest, getPreviousDate, createApiRequest, modifyArticlesForDisplay, makePrettyDate, getArticles };
+export { modifyDateForApiRequest, getPreviousDate, getNewsDeskIndex, getNewsDesk, createApiRequest, modifyArticlesForDisplay, makePrettyDate, getArticles };
