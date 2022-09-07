@@ -36,12 +36,10 @@ function getPreviousDate(oldDate) {
     return previousDate;
 }
 
-function getNewsDeskIndex(category) {
-    return categories.findIndex(element => element.slug === category);
-}
-
-function getNewsDesk(index) {
-    return categories[index].name;
+function getNewsDesk(categorySlug) {
+    // Since slug is unique filter will return only one item and destructuring assignment can be used
+    const [newsDesk] = categories.filter(object => object.slug === categorySlug);
+    return newsDesk.name;
 }
 
 function createApiRequest(newsDesk, page = 0) {
@@ -118,4 +116,4 @@ async function getArticles(url) {
     return { docs, meta };
 }
 
-export { categories, modifyDateForApiRequest, getPreviousDate, getNewsDeskIndex, getNewsDesk, createApiRequest, modifyArticlesForDisplay, makePrettyDate, getArticles };
+export { categories, modifyDateForApiRequest, getPreviousDate, getNewsDesk, createApiRequest, modifyArticlesForDisplay, makePrettyDate, getArticles };

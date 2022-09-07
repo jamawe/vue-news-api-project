@@ -15,10 +15,10 @@
                     text
                     plain
                     x-large
-                    :title="`${categoryName} öffnen`"
+                    :title="`${newsDesk} öffnen`"
                     >
                     <span class="monospace line-behind text-lowercase">
-                        {{ categoryName }}
+                        {{ newsDesk }}
                     </span>
                 </v-btn>
                 <v-btn
@@ -38,7 +38,7 @@
 </template>
 
 <script>
-    import  { categories } from '../modules/articles.mjs';
+    import  { categories, getNewsDesk } from '../modules/articles.mjs';
 
     export default {
         name: 'ArticleNotFound',
@@ -50,15 +50,15 @@
         data() {
             return {
                 titleHomeLink: 'Zur Startseite',
+                categorySlug: this.$route.params.category,
+                // newsDesk: ,
                 categories,
             }
         },
 
         computed: {
-            categoryName() {
-                const slug = this.$route.params.category;
-                const [category] = this.categories.filter(object => object.slug === slug);
-                return category.name;
+            newsDesk() {
+                return getNewsDesk(this.categorySlug);
             }
         }
     }

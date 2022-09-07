@@ -19,7 +19,7 @@
 
 <script>
 import ArticleSlider from '../components/ArticleSlider.vue';
-import { getNewsDeskIndex, getNewsDesk, createApiRequest, getArticles, modifyArticlesForDisplay } from '../modules/articles.mjs';
+import { getNewsDesk, createApiRequest, getArticles, modifyArticlesForDisplay } from '../modules/articles.mjs';
 
 export default {
 
@@ -44,8 +44,7 @@ export default {
 
   methods: {
     async getArticles() {
-      const i = getNewsDeskIndex(this.category);
-      this.newsDesk = getNewsDesk(i);
+      this.newsDesk = getNewsDesk(this.category);
       const url = createApiRequest(this.newsDesk);
       const { docs } = await getArticles(url);
       this.articles.push(...modifyArticlesForDisplay(docs));
