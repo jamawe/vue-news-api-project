@@ -55,11 +55,11 @@ export default {
   },
 
   created() {
-    this.getArticleFrontPage();
+    this.getArticles();
   },
 
   methods: {
-    async getArticleFrontPage() {
+    async getArticles() {
 
       // TODO: Only needed if repeatRequest fn stays
       // this.date = new Date();
