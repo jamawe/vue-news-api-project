@@ -38,7 +38,8 @@
 </template>
 
 <script>
-    import categoryMixin from '../mixins/categoryMixin.js';
+    import  { categories } from '../modules/articles.mjs';
+
     export default {
         name: 'ArticleNotFound',
 
@@ -46,11 +47,10 @@
             category: String
         },
 
-        mixins: [ categoryMixin ],
-
         data() {
             return {
                 titleHomeLink: 'Zur Startseite',
+                categories,
             }
         },
 

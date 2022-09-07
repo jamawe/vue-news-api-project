@@ -52,7 +52,7 @@
 
         <v-card-text>
           <v-list class="text-center">
-            <v-list-item-group>
+            <v-list-item-group v-if="categories">
 
               <v-list-item v-for="(category, i) in categories" :key="i" @click="drawer=false" :to="{ name: 'CategoryPage', params: { category: category.slug } }" class="text-decoration-none" :title="`${category.name} öffnen`">
                 <v-list-item-title>
@@ -95,11 +95,9 @@
 </template>
 
 <script>
-  import categoryMixin from '../mixins/categoryMixin.js';
+  import  { categories } from '../modules/articles.mjs';
 
   export default {
-
-    mixins: [ categoryMixin ],
 
     data() {
       return {
@@ -110,6 +108,8 @@
         titleDarkTheme: 'Dunklen Modus wählen',
         titleLightTheme: 'Hellen Modus wählen',
         titleGithub: 'Projekt auf GitHub öffnen',
+        newsDesks: [],
+        categories,
       }
     },
 

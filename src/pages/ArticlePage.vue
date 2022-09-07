@@ -49,7 +49,6 @@
 import ArticleSingle from '../components/ArticleSingle.vue';
 import ArticleBox from '../components/ArticleBox.vue';
 import ArticleNotFound from '../components/ArticleNotFound.vue';
-import categoryMixin from '../mixins/categoryMixin';
 
 export default {
 
@@ -60,8 +59,6 @@ export default {
     'article-box': ArticleBox,
     'article-not-found': ArticleNotFound,
   },
-
-  mixins: [ categoryMixin ],
 
   props: {
     articleDetail: Object,

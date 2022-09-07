@@ -12,7 +12,6 @@ const categories = [
     { name: 'World', slug: 'world' },
 ];
 
-
 // REQUEST HELPERS
 // To formulate request
 function modifyDateForApiRequest(date) {
@@ -119,4 +118,4 @@ async function getArticles(url) {
     return { docs, meta };
 }
 
-export { modifyDateForApiRequest, getPreviousDate, getNewsDeskIndex, getNewsDesk, createApiRequest, modifyArticlesForDisplay, makePrettyDate, getArticles };
+export { categories, modifyDateForApiRequest, getPreviousDate, getNewsDeskIndex, getNewsDesk, createApiRequest, modifyArticlesForDisplay, makePrettyDate, getArticles };
