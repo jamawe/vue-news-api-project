@@ -1,16 +1,8 @@
 <template>
   <v-container v-if="articleDetail !== undefined">
-    <v-row>
-      <v-col cols="10" class="mx-auto">
-        
-        <div class="monospace article-meta-row mb-1">
-          <router-link :to="{ name: 'CategoryPage', params: { category: category } }" class="text-decoration-none text-lowercase" :title="`${articleDetail.newsDesk} öffnen`"><span class="line-behind">{{ articleDetail.newsDesk }}</span>
-          </router-link>
-        </div>
 
-      </v-col>
-    </v-row>
-
+    <AppHeader :headerTitle="articleDetail.newsDesk" />
+    
     <v-row>
       <v-col class="mx-auto">
 
@@ -46,6 +38,7 @@
 </template>
 
 <script>
+import AppHeader from '../components/AppHeader.vue';
 import ArticleSingle from '../components/ArticleSingle.vue';
 import ArticleBox from '../components/ArticleBox.vue';
 import ArticleNotFound from '../components/ArticleNotFound.vue';
@@ -55,6 +48,7 @@ export default {
   name: 'ArticlePage',
 
   components: {
+    AppHeader,
     'article-single': ArticleSingle,
     'article-box': ArticleBox,
     'article-not-found': ArticleNotFound,

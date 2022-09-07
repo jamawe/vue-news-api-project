@@ -1,11 +1,14 @@
 <template>
   <v-container>
+
+    <AppHeader :headerTitle="newsDesk" />
+
     <v-row>
       <v-col cols="12" class="mx-auto">
 
-        <div class="monospace d-flex justify-center">
+        <!-- <div class="monospace d-flex justify-center">
           <span class="line-behind text-lowercase">{{ newsDesk }}</span>
-        </div>
+        </div> -->
 
         <article-slider
           :articlesForSlider="this.articles"
@@ -18,6 +21,7 @@
 </template>
 
 <script>
+import AppHeader from '../components/AppHeader.vue';
 import ArticleSlider from '../components/ArticleSlider.vue';
 import { getNewsDesk, createApiRequest, getArticles, modifyArticlesForDisplay } from '../modules/articles.mjs';
 
@@ -26,6 +30,7 @@ export default {
   name: 'CategoryPage',
 
   components: {
+    AppHeader,
     'article-slider': ArticleSlider,
   },
 

@@ -111,7 +111,7 @@ export default {
   }
 
   .slider-item {
-    padding: 1.5rem .75rem;
+    padding: 1rem .75rem;
     position: relative;
   }
 

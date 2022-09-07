@@ -63,6 +63,10 @@ export default {
     font-size: 1.25rem; // 20px
   }
 
+  .font-lg {
+    font-size: 1.5rem; // 24px
+  }
+
   .font-xxl {
     font-size: 4rem; // 64px
   }

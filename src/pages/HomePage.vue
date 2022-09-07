@@ -1,13 +1,8 @@
 <template>
 
   <v-container>
-    <v-row>
-      <v-col cols="10" class="mx-auto">
-        <div class="monospace">
-          <span class="line-behind">aktuell</span>
-        </div>
-      </v-col>
-    </v-row>
+    
+    <AppHeader :headerTitle="headerTitle" />
 
     <v-row>
       <v-spacer></v-spacer>
@@ -25,6 +20,7 @@
 </template>
 
 <script>
+import AppHeader from '../components/AppHeader.vue';
 import ArticleSingle from '../components/ArticleSingle.vue';
 // import ArticleSearch from '../components/ArticleSearch.vue';
 import articleMixin from '../mixins/articleMixin';
@@ -35,6 +31,7 @@ export default {
   name: 'HomePage',
 
   components: {
+    AppHeader,
     ArticleSingle,
     // ArticleSearch,
   },
@@ -44,6 +41,7 @@ export default {
   data() {
     return {
       loaded: false,
+      headerTitle: 'Recent',
       articles: [],
       date: '',
       url: '',
@@ -55,7 +53,7 @@ export default {
   },
 
   created() {
-    this.getArticles();
+    // this.getArticles();
   },
 
   methods: {
