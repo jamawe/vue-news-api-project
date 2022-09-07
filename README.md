@@ -1,18 +1,37 @@
-# News API with Vuejs
+# New York Times (NYT) API with Vuejs
 ## Descripton
-This project uses Vue.js 2, Vue Router and Vuetify to display requests made to the [News API](https://newsapi.org/).
+This project uses Vue.js 2, Vue Router and Vuetify to display requests made to the [NYT Article Search API](https://developer.nytimes.com/docs/articlesearch-product/1/overview).
 ## Project setup
 ### Install dependencies
 ```
 npm install
 ```
 ### Set own API key in .env
-In order to make requests to the News API you need to sign up on their site and request an API key. Once you retrieve a key, you can create a `.env` file in the root of your project and set the environment variable like so:
+In order to make requests to the NYT API you need to sign up on their site, register your app and request an API key. Once you retrieve a key, you can create a `.env` file in the root of your project and set the environment variable like so:
 ```
-VUE_APP_NEWS_API_KEY=HereGoesTheAPIKey
+VUE_APP_NYT_API_KEY=HereGoesTheAPIKey
+```
+## Retrieve articles
+### Landing Page
+The articles on the landing page request articles *not* filtered by any query or news_desk (See [docs](https://developer.nytimes.com/docs/articlesearch-product/1/overview)), solely sorted with the `newest` sorting keyword and pagination which is set to the first page `0`:
+
+```
+https://api.nytimes.com/svc/search/v2/articlesearch.json?fq=page=${page}&sort=newest&api-key=${process.env.VUE_APP_NYT_API_KEY}
 ```
 
-Please note that the queries are specified to request articles in German. Please adjust the queries to your needs using the [News API Documentation](https://newsapi.org/docs).
+### Categories (News Desks)
+For now the categories that can be requested are limited to
+
+- Arts
+- Business
+- Foreign
+- Learning
+- Science
+- Sports
+- Technology
+- World
+
+To change these, add or remove the category to/from the regEx pattern that limits the `CategoryPage` and `ArticlePage` in `routes.js` as well as the `categories` array in the `/modules/articles.mjs` module.
 
 ### Serve the project
 ```
