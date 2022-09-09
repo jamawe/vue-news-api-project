@@ -4,7 +4,7 @@
             <v-card-title class="font-xxl mb-10">
                 404 &#128301;
             </v-card-title>
-            <v-card-text class="body-1">
+            <v-card-text class="body-1 mb-10">
                 <div class="sans">
                     The page you requested could not be found.
                 </div>

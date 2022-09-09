@@ -4,7 +4,7 @@
             <v-card-title class="font-xxl keep-all mb-10">
                 Oops! &#127770;
             </v-card-title>
-            <v-card-text class="body-1">
+            <v-card-text class="body-1 mb-10">
                 <div>
                     The article you are looking for could not be retrieved. Please navigate back to the page of the {{ newsDesk }} news desk or to the landing page. Thank you!
                 </div>
@@ -16,7 +16,7 @@
                     plain
                     x-large
                     outlined
-                    :title="`${newsDesk} öffnen`"
+                    :title="`Open ${newsDesk}`"
                     >
                     <span class="accent--text">
                         {{ newsDesk }}
@@ -50,7 +50,7 @@
 
         data() {
             return {
-                titleHomeLink: 'Zur Startseite',
+                titleHomeLink: 'Navigate Home',
                 categorySlug: this.$route.params.category,
                 // newsDesk: ,
                 categories,
