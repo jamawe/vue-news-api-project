@@ -1,75 +1,49 @@
 <template>
-  <v-container class="article-single">
-       <v-row>
-        <v-col class="mx-auto">
+  <v-card
+    tile
+    elevation="0"
+    color="transparent"
+    max-width="600"
+    class="mb-12 mx-auto" >
 
-          <header>
-            <v-row>
-              <v-col
-                sm="10"
-                lg="8"
-                xl="5"
-                class=" mx-auto mb-5">
+    <v-img v-if="articleSingle.image" :src="articleSingle.image" class="mb-2"></v-img>
 
-                <v-img :src="articleSingle.image" class="article-image"></v-img>
+    <v-card-title>
+      <div class="serif text-h5">
+        <span class="serif keep-all font-weight-bold">{{ articleSingle.headline }}</span>
+      </div>
+    </v-card-title>
 
-              </v-col>
-            </v-row>
-          </header>
+    <v-card-text class="pb-0">
+      <div class="body-1">{{ articleSingle.abstract }}</div>
+    </v-card-text>
 
-         <article>
-            <v-row>
-              <v-col
-                sm="10"
-                lg="8"
-                xl="5" 
-                class="monospace mx-auto">
+    <v-card-subtitle class="text-subtitle-2">
+      <div class="serif">
+        {{ articleSingle.pubDate }}
+        <span v-if="articleSingle.byline">&ndash; {{ articleSingle.byline }}</span>
+      </div>
+    </v-card-subtitle>
+  
+    <v-card-text>
+      <div class="line-height-body body-1 text--primary">
+        <span class="serif">{{ articleSingle.content }} &mdash;</span>
+      </div>
+    </v-card-text>
 
-                <div class="sans mb-3 panda"><h1><span>{{ articleSingle.headline }}</span></h1></div>
+    <v-card-actions>
+      <v-btn :href="articleSingle.url"
+              target="_blank"
+              :title="title"
+              text
+              plain>
+              Read On
+              <v-icon small class="ml-1">mdi-open-in-new</v-icon>
+      </v-btn>
+      <v-spacer></v-spacer>
+    </v-card-actions>
 
-                
-                <div class="text-subtitle-2">
-                  <span class="sans">
-                    {{ articleSingle.pubDate }} &mdash; {{ articleSingle.byline }}
-                  </span>
-                </div>
-
-              </v-col>
-            </v-row>
-
-            <v-row>
-              <v-col
-                sm="10"
-                lg="8"
-                xl="5"
-                class="mx-auto">
-
-                <p class="monospace font-italic panda">{{ articleSingle.abstract }}
-                </p>
-
-                <p class="monospace">
-                  {{ articleSingle.content }} &mdash;
-                </p>
-
-                <v-btn
-                  :href="articleSingle.url"
-                  target="_blank"
-                  :title="title"
-                  text
-                  plain
-                >
-                  <span class="line-behind sans mr-1">Auf {{ articleSingle.source }} lesen</span>
-                  <v-icon small>mdi-open-in-new</v-icon>
-                </v-btn>
-
-              </v-col>
-            </v-row>
-
-          </article>
-
-        </v-col>
-      </v-row> 
-  </v-container>
+  </v-card>
 </template>
 
 <script>
@@ -83,7 +57,7 @@ export default {
 
   data() {
     return {
-      title: 'Ganzen Artikel lesen',
+      title: 'Read whole article',
     }
   }
   
@@ -92,6 +66,6 @@ export default {
 
 <style>
   .article-image {
-    box-shadow: 10px 10px #26A69A;
+    box-shadow: 5px 7.5px #26A69A;
   }
 </style>

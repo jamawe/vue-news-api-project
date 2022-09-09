@@ -1,22 +1,15 @@
 <template>
-
   <v-container>
     
     <AppHeader :headerTitle="headerTitle" />
 
-    <v-row>
-      <v-spacer></v-spacer>
-      <v-col>
-        <ArticleSingle
-          v-for="(article, i) in articles"
-          :key="i"
-          :articleSingle="article"
-        />
-      </v-col>
-      <v-spacer></v-spacer>
-    </v-row>
-  </v-container>
+    <ArticleSingle
+      v-for="(article, i) in articles"
+      :key="i"
+      :articleSingle="article"
+    />
 
+  </v-container>
 </template>
 
 <script>
@@ -53,7 +46,7 @@ export default {
   },
 
   created() {
-    // this.getArticles();
+    this.getArticles();
   },
 
   methods: {

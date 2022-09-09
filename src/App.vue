@@ -87,6 +87,10 @@ export default {
     font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
   }
 
+  .serif {
+    font-family: Georgia, Times, 'Times New Roman', serif;
+  }
+
   .pointer {
     cursor: pointer;
   }
