@@ -64,19 +64,43 @@ function modifyArticlesForDisplay(articles) {
             newsDesk: element.news_desk,
             pubDate: makePrettyDate(element.pub_date),
             slug: makeSlug(element.headline.main),
-            section: element.section_name,
             source: element.source,
             subSection: element.subsection_name,
             url: element.web_url,
             wordCount: element.word_count
         };
 
+        // Handle empty image
         article.image = element.multimedia.length ? `https://www.nytimes.com/${element.multimedia[0].url}` : '';
+
+        // Handle duplicate values of news_desk, section_name and subsection_name
+        article.section = element.section_name !== element.news_desk ? element.section_name : '';
+        article.subSection = element.subsection_name !== element.section_name && element.subsection_name !== element.news_desk ? element.subsection_name : '';
 
         articlesForDisplay.push(article);
     });
 
     return articlesForDisplay;
+}
+
+function createArrayForNavPills(articles) {
+    const newsDesks = [];
+    const sections = [];
+    const subSections = [];
+
+    articles.forEach(element => {
+        if (element.newsDesk) newsDesks.push(element.newsDesk);
+        if (element.section) sections.push(element.section);
+        if (element.subSection) subSections.push(element.subSection);
+    });
+
+    // Form arrays with unique items
+    const newsDesksSet = [...new Set(newsDesks)];
+    const sectionsSet = [...new Set(sections)];
+    const subSectionsSet = [...new Set(subSections)];
+
+    // Section + subsection can be combined since only section can be requested
+    return { news_desk: newsDesksSet, section: [...sectionsSet, ...subSectionsSet]}
 }
 
 function makeSlug(prettyTitle) {
@@ -117,4 +141,4 @@ async function getArticles(url) {
     return { docs, meta };
 }
 
-export { categories, modifyDateForApiRequest, getPreviousDate, getNewsDesk, createApiRequest, modifyArticlesForDisplay, makePrettyDate, getArticles };
+export { categories, modifyDateForApiRequest, getPreviousDate, getNewsDesk, createApiRequest, modifyArticlesForDisplay, createArrayForNavPills, makePrettyDate, getArticles };
