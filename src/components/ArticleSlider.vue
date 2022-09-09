@@ -1,8 +1,8 @@
 <template> <!-- NOTE: Cannot use v-if on template-tag -->
 
-  <v-container fluid>
+  <v-container class="pb-5">
     <v-row justify="center">
-      <v-col cols="12" class="slider-container">
+      <v-col class="slider-container pa-0">
 
           <tiny-slider v-bind="options" class="article-slider">
             <div
@@ -19,29 +19,25 @@
                   max-width="300"
                   height="500"
                   color="card"
-                
                 >
                   <v-img
                     class="white--text align-end"
                     height="200px"
                     :src="article.image"
-                  >
-                
-                  </v-img>
-                  <!-- TODO: Titel und Text allgemein so stylen, dass Textumbrücher statisch oder besser sind? -->
+                  ></v-img>
                   
-                  <v-card-title class="font-weight-bold">
-                    <h4 class="article-title sans">
-                      <span class="line-behind">{{ article.headline }}</span>
+                  <v-card-title>
+                    <h4 class="text-h5">
+                      <span class="article-title serif keep-all font-weight-bold">{{ article.headline }}</span>
                     </h4>
                   </v-card-title>
 
-                  <v-card-subtitle class="monospace mt-1 pb-1 font-weight-bold">
-                    {{ article.pubDate }} - {{ article.byline }}
+                  <v-card-subtitle class="text-subtitle-2 mt-1">
+                    {{ article.pubDate }} <span v-if="article.byline">&ndash; {{ article.byline }}</span>
                   </v-card-subtitle>
 
-                  <v-card-text class="text--primary">
-                    <div class="article-description monospace">
+                  <v-card-text class="body-1">
+                    <div class="article-abstract text--primary">
                       {{ article.abstract }}
                     </div>
                   </v-card-text>
@@ -119,15 +115,15 @@ export default {
     list-style: none;
   }
 
-  .article-title {
+  /* .article-title {
     word-break: normal;
     line-height: 1.6666rem;
     word-spacing: 0em;
     text-align-last: left;
-  }
+  } */
 
   /* Truncate description multi-line */
-  .article-title, .article-description {
+  .article-title, .article-abstract {
     display: -webkit-box;
     -webkit-line-clamp: 4;
     -webkit-box-orient: vertical;  

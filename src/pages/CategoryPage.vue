@@ -3,20 +3,11 @@
 
     <AppHeader :headerTitle="newsDesk" />
 
-    <v-row>
-      <v-col cols="12" class="mx-auto">
+    <article-slider
+      :articlesForSlider="this.articles"
+      v-if="this.articles.length"
+    ></article-slider>
 
-        <!-- <div class="monospace d-flex justify-center">
-          <span class="line-behind text-lowercase">{{ newsDesk }}</span>
-        </div> -->
-
-        <article-slider
-          :articlesForSlider="this.articles"
-          v-if="this.articles.length"
-        ></article-slider>
-
-      </v-col>
-    </v-row>
   </v-container>
 </template>
 
