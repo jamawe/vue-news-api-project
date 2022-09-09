@@ -30,8 +30,8 @@
     </v-card-text>
 
     <v-chip v-if="articleSingle.newsDesk" pill outlined color="accent" class="text-button ma-2">#{{ articleSingle.newsDesk }}</v-chip>
-    <v-chip v-if="articleSingle.section !== articleSingle.newsDesk" pill outlined color="accent" class="text-button ma-2">#{{ articleSingle.section }}</v-chip>
-    <v-chip v-if="articleSingle.subSection !== articleSingle.section && articleSingle.subSection !== articleSingle.newsDesk" pill outlined color="accent" class="text-button ma-2">#{{ articleSingle.subSection }}</v-chip>
+    <v-chip v-if="articleSingle.section" pill outlined color="accent" class="text-button ma-2">#{{ articleSingle.section }}</v-chip>
+    <v-chip v-if="articleSingle.subSection" pill outlined color="accent" class="text-button ma-2">#{{ articleSingle.subSection }}</v-chip>
 
     <v-card-actions class="d-flex">
       <v-btn :href="articleSingle.url"
