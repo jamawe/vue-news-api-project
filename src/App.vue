@@ -71,6 +71,10 @@ export default {
     font-size: 4rem; // 64px
   }
 
+  .tracking-normal {
+    letter-spacing: normal;
+  }
+
   .tracking-wider {
     letter-spacing: .0625rem; // 1px
   }

@@ -1,8 +1,8 @@
 <template>
-    <v-row>
+    <v-row class="mb-6">
         <v-col class="d-flex justify-center">
-            <div class="font-lg tracking-wide font-weight-medium pt-4">
-                <span>{{ headerTitle }}</span>
+            <div class="text-h4">
+                <span class="serif tracking-normal font-weight-black font-italic">{{ headerTitle }}</span>
                 <!-- Maybe implement router-link on condition for ArticlePage view -->
                 <!-- <router-link :to="{ name: 'CategoryPage', params: { category: category } }" class="text-decoration-none text-lowercase" :title="`${articleDetail.newsDesk} öffnen`"><span class="line-behind">{{ articleDetail.newsDesk }}</span>
                 </router-link> -->
