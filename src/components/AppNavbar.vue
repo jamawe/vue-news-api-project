@@ -34,8 +34,8 @@
     </v-btn> -->
 
     <v-btn icon @click="toggleTheme">
-      <v-icon v-if="!$vuetify.theme.dark" color="#3F51B5" :title="titleDarkTheme" small>mdi-moon-waxing-crescent</v-icon>
-      <v-icon v-else color="#FFB300" :title="titleLightTheme" small>mdi-white-balance-sunny</v-icon>
+      <v-icon v-if="!$vuetify.theme.dark" color="#3F51B5" :title="titleDarkTheme">mdi-moon-waxing-crescent</v-icon>
+      <v-icon v-else color="#FFB300" :title="titleLightTheme">mdi-white-balance-sunny</v-icon>
     </v-btn>
     
     </v-app-bar>
