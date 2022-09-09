@@ -14,7 +14,7 @@ export default new Vuetify({
                 card: '#F5F5F5',
             },
             dark: {
-                anchor: '#fff',
+                anchor: '#FFF',
                 backdrop: '#00695C',
                 card: '#1E1E1E',
             },
