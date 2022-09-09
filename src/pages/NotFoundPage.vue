@@ -1,12 +1,12 @@
 <template>
     <v-container class="d-flex justify-center align-center height-whole">
         <v-card class="ch70" tile elevation="0" color="transparent">
-            <v-card-title class="title-xxl monospace mb-10 text-center font-weight-bolder">
+            <v-card-title class="font-xxl mb-10">
                 404 &#128301;
             </v-card-title>
             <v-card-text class="body-1">
                 <div class="sans">
-                    Diese Seite konnte nicht gefunden werden.
+                    The page you requested could not be found.
                 </div>
             </v-card-text>
             <v-card-actions>
@@ -15,10 +15,11 @@
                     text
                     plain
                     x-large
-                    title="Zur Startseite"
+                    outlined
+                    title="Navigate Home"
                     >
-                    <span class="monospace line-behind text-lowercase">
-                        Startseite
+                    <span class="accent--text">
+                        Home
                     </span>
                 </v-btn>
             </v-card-actions>

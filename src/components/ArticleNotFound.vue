@@ -1,12 +1,12 @@
 <template>
     <v-container class="d-flex justify-center align-center height-whole">
         <v-card class="ch70" elevation="0" color="transparent">
-            <v-card-title class="font-xxl monospace keep-all mb-10">
-                Ups! &#127770;
+            <v-card-title class="font-xxl keep-all mb-10">
+                Oops! &#127770;
             </v-card-title>
             <v-card-text class="body-1">
-                <div class="sans">
-                    Der Artikel konnte nicht geladen werden. Bitte geh zur Kategorie oder Startseite zurück.
+                <div>
+                    The article you are looking for could not be retrieved. Please navigate back to the page of the {{ newsDesk }} news desk or to the landing page. Thank you!
                 </div>
             </v-card-text>
             <v-card-actions>
@@ -15,9 +15,10 @@
                     text
                     plain
                     x-large
+                    outlined
                     :title="`${newsDesk} öffnen`"
                     >
-                    <span class="monospace line-behind text-lowercase">
+                    <span class="accent--text">
                         {{ newsDesk }}
                     </span>
                 </v-btn>
@@ -28,8 +29,8 @@
                     x-large
                     :title="titleHomeLink"
                     >
-                    <span class="monospace line-behind text-lowercase">
-                        Startseite
+                    <span class="text--primary">
+                        Home
                     </span>
                 </v-btn>
             </v-card-actions>
