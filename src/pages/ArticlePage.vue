@@ -1,7 +1,7 @@
 <template>
   <v-container v-if="articleDetail !== undefined">
 
-    <AppHeader :headerTitle="articleDetail.newsDesk" />
+    <AppOverline :overline="articleDetail.newsDesk" />
     
     <v-row>
       <v-col class="mx-auto">
@@ -15,8 +15,8 @@
 
     <v-row>
       <v-col class="mx-auto">
-        <div>
-          <h2 class="sans mb-2">Mehr aus dieser Kategorie</h2>
+        <div class="text-h5 mb-2">
+          <span class="serif keep-all font-italic pl-1 mb-2">More from the {{ articleDetail.newsDesk }} news desk</span>
           <hr>
         </div>
       </v-col>
@@ -33,13 +33,11 @@
     </v-row>
   </v-container>
 
-  <article-not-found
-    v-else
-    :category="category"></article-not-found>
+  <ArticleNotFound v-else :category="category" />
 </template>
 
 <script>
-import AppHeader from '../components/AppHeader.vue';
+import AppOverline from '../components/AppOverline.vue';
 import ArticleSingle from '../components/ArticleSingle.vue';
 import ArticleBox from '../components/ArticleBox.vue';
 import ArticleNotFound from '../components/ArticleNotFound.vue';
@@ -49,10 +47,10 @@ export default {
   name: 'ArticlePage',
 
   components: {
-    AppHeader,
+    AppOverline,
     'article-single': ArticleSingle,
     'article-box': ArticleBox,
-    'article-not-found': ArticleNotFound,
+    ArticleNotFound,
   },
 
   props: {
