@@ -29,7 +29,11 @@
       </div>
     </v-card-text>
 
-    <v-card-actions>
+    <v-chip v-if="articleSingle.newsDesk" pill outlined color="accent" class="text-button ma-2">#{{ articleSingle.newsDesk }}</v-chip>
+    <v-chip v-if="articleSingle.section" pill outlined color="accent" class="text-button ma-2">#{{ articleSingle.section }}</v-chip>
+    <v-chip v-if="articleSingle.subSection" pill outlined color="accent" class="text-button ma-2">#{{ articleSingle.subSection }}</v-chip>
+
+    <v-card-actions class="d-flex">
       <v-btn :href="articleSingle.url"
               target="_blank"
               :title="title"
@@ -38,7 +42,9 @@
               Read On
               <v-icon small class="ml-1">mdi-open-in-new</v-icon>
       </v-btn>
-      <v-spacer></v-spacer>
+
+      
+
     </v-card-actions>
 
   </v-card>

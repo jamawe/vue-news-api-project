@@ -12,11 +12,14 @@ export default new Vuetify({
                 anchor: '#000',
                 backdrop: '#B2DFDB',
                 card: '#F5F5F5',
+                accent: '#2962FF',
+
             },
             dark: {
                 anchor: '#FFF',
                 backdrop: '#00695C',
                 card: '#1E1E1E',
+                accent: '#82B1FF'
             },
         },
       },

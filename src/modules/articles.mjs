@@ -64,8 +64,9 @@ function modifyArticlesForDisplay(articles) {
             newsDesk: element.news_desk,
             pubDate: makePrettyDate(element.pub_date),
             slug: makeSlug(element.headline.main),
+            section: element.section_name,
             source: element.source,
-            subCategory: element.subsection_name,
+            subSection: element.subsection_name,
             url: element.web_url,
             wordCount: element.word_count
         };
