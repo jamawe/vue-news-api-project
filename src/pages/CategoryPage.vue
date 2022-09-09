@@ -1,7 +1,7 @@
 <template>
   <v-container>
 
-    <AppHeader :headerTitle="newsDesk" />
+    <AppOverline :overline="newsDesk" />
 
     <article-slider
       :articlesForSlider="this.articles"
@@ -12,7 +12,7 @@
 </template>
 
 <script>
-import AppHeader from '../components/AppHeader.vue';
+import AppOverline from '../components/AppOverline.vue';
 import ArticleSlider from '../components/ArticleSlider.vue';
 import { getNewsDesk, createApiRequest, getArticles, modifyArticlesForDisplay } from '../modules/articles.mjs';
 
@@ -21,7 +21,7 @@ export default {
   name: 'CategoryPage',
 
   components: {
-    AppHeader,
+    AppOverline,
     'article-slider': ArticleSlider,
   },
 
@@ -49,6 +49,8 @@ export default {
       // HANDLE 429 too many requests
     },
   },
+
+
 
 }
 </script>
