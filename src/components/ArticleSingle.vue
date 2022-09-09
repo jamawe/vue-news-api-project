@@ -19,10 +19,8 @@
     </v-card-text>
 
     <v-card-subtitle class="text-subtitle-2">
-      <div class="serif">
-        {{ articleSingle.pubDate }}
-        <span v-if="articleSingle.byline">&ndash; {{ articleSingle.byline }}</span>
-      </div>
+      {{ articleSingle.pubDate }}
+      <span v-if="articleSingle.byline">&ndash; {{ articleSingle.byline }}</span>
     </v-card-subtitle>
   
     <v-card-text>
