@@ -22,7 +22,7 @@
         text
         x-large>
 
-        <span class="font-md line-behind text-lowercase">home</span>
+        <span class="serif tracking-normal font-md text-lowercase font-weight-bold">Home</span>
 
       </v-btn>
     </v-toolbar-title>
@@ -42,21 +42,21 @@
 
     <v-dialog
       v-model="drawer"
-      width="500">
+      max-width="500">
 
       <v-card
         tile>
 
-        <v-card-title class="d-flex justify-center text-h6 mb-0"><span class="drawer-title">Wofür interessierst du dich?</span>
-        </v-card-title>
+        <!-- <v-card-title class="d-flex justify-center text-h6 mb-0"><span class="drawer-title">Wofür interessierst du dich?</span>
+        </v-card-title> -->
 
-        <v-card-text>
+        <v-card-text class="pb-0">
           <v-list class="text-center">
             <v-list-item-group>
 
               <v-list-item v-for="(category, i) in categories" :key="i" @click="drawer=false" :to="{ name: 'CategoryPage', params: { category: category.slug } }" class="text-decoration-none" :title="`${category.name} öffnen`">
                 <v-list-item-title>
-                  <span class="font-sm tracking-wide line-behind text-lowercase font-weight-medium">{{ category.name }}</span>
+                  <span class="serif tracking-normal font-sm text-capitalize font-weight-bold font-italic">{{ category.name }}</span>
                 </v-list-item-title>
               </v-list-item>
 
@@ -70,7 +70,6 @@
           <v-btn
             icon
             color="#BDBDBD"
-            class="mb-2"
             @click="drawer=false"
             :title="titleMenuClose"
           >
@@ -79,7 +78,7 @@
           <v-spacer></v-spacer>
         </v-card-actions>
 
-        <v-card-text class="d-flex justify-end">
+        <v-card-text class="d-flex justify-end py-2">
           <v-btn
             href="https://github.com/jamawe/vue-news-api-project"
             :title="titleGithub"
