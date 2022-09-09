@@ -12,15 +12,14 @@
       :title="titleMenuOpen">
     </v-app-bar-nav-icon>
 
-    <v-spacer></v-spacer>
-
     <v-toolbar-title>
       <v-btn
         :to="{ name: 'HomePage' }"
         :title="titleHome"
         plain
         text
-        x-large>
+        x-large
+        class="pa-0">
 
         <span class="serif tracking-normal font-md text-lowercase font-weight-bold">Home</span>
 
@@ -37,6 +36,12 @@
       <v-icon v-if="!$vuetify.theme.dark" color="#3F51B5" :title="titleDarkTheme">mdi-moon-waxing-crescent</v-icon>
       <v-icon v-else color="#FFB300" :title="titleLightTheme">mdi-white-balance-sunny</v-icon>
     </v-btn>
+    <v-btn
+      href="https://github.com/jamawe/vue-news-api-project"
+      :title="titleGithub"
+      icon>
+      <v-icon>mdi-github</v-icon>
+    </v-btn>
     
     </v-app-bar>
 
@@ -46,10 +51,6 @@
 
       <v-card
         tile>
-
-        <!-- <v-card-title class="d-flex justify-center text-h6 mb-0"><span class="drawer-title">Wofür interessierst du dich?</span>
-        </v-card-title> -->
-
         <v-card-text class="pb-0">
           <v-list class="text-center">
             <v-list-item-group>
@@ -77,15 +78,6 @@
           </v-btn>
           <v-spacer></v-spacer>
         </v-card-actions>
-
-        <v-card-text class="d-flex justify-end py-2">
-          <v-btn
-            href="https://github.com/jamawe/vue-news-api-project"
-            :title="titleGithub"
-            icon>
-            <v-icon>mdi-github</v-icon>
-          </v-btn>
-        </v-card-text>
       </v-card>
     </v-dialog>
 
