@@ -48,8 +48,8 @@
           </tiny-slider>
           
           <ul id="customize-controls" class="d-flex justify-end">
-            <li id="prev" tabindex="-1" data-controls="prev" class="teal--text font-weight-bold mr-2 text-h2 pointer" :title="titlePrev">&lsaquo;</li>
-            <li id="next" tabindex="-1" data-controls="next" class="teal--text font-weight-bold mr-2 text-h2 pointer" :title="titleNext">&rsaquo;</li>
+            <li id="prev" tabindex="-1" data-controls="prev" class="accent--text font-weight-bold mr-2 text-h2 pointer" :title="titlePrev">&lsaquo;</li>
+            <li id="next" tabindex="-1" data-controls="next" class="accent--text font-weight-bold mr-2 text-h2 pointer" :title="titleNext">&rsaquo;</li>
           </ul>
 
       </v-col>
