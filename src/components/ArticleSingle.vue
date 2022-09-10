@@ -29,24 +29,26 @@
       </div>
     </v-card-text>
 
-    <v-chip v-if="articleSingle.newsDesk" pill outlined color="accent" class="text-button ma-2">#{{ articleSingle.newsDesk }}</v-chip>
-    <v-chip v-if="articleSingle.section" pill outlined color="accent" class="text-button ma-2">#{{ articleSingle.section }}</v-chip>
-    <v-chip v-if="articleSingle.subSection" pill outlined color="accent" class="text-button ma-2">#{{ articleSingle.subSection }}</v-chip>
+    <div class="pb-4">
+      <v-chip v-if="articleSingle.newsDesk" pill outlined color="accent" class="text-button ma-2">#{{ articleSingle.newsDesk }}</v-chip>
+      <v-chip v-if="articleSingle.section" pill outlined color="accent" class="text-button ma-2">#{{ articleSingle.section }}</v-chip>
+      <v-chip v-if="articleSingle.subSection" pill outlined color="accent" class="text-button ma-2">#{{ articleSingle.subSection }}</v-chip>
+    </div>
 
     <v-card-actions class="d-flex">
       <v-btn :href="articleSingle.url"
-              target="_blank"
-              :title="title"
-              text
-              plain>
-              Read On
-              <v-icon small class="ml-1">mdi-open-in-new</v-icon>
+        target="_blank"
+        :title="title"
+        elevation="0"
+        rounded
+        color="accent"
+        class="px-3">
+        Read On
+        <v-icon small class="ml-1">mdi-open-in-new</v-icon>
       </v-btn>
-
-      
-
     </v-card-actions>
-
+    {{ routeName }}
+    <v-divider v-if="onHomePage" class="mx-4 mt-8"></v-divider>
   </v-card>
 </template>
 
@@ -62,6 +64,7 @@ export default {
   data() {
     return {
       title: 'Read whole article',
+      onHomePage: this.$route.name === 'HomePage',
     }
   }
   
