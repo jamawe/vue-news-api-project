@@ -8,7 +8,7 @@
       v-if="this.articles.length"
     ></article-slider>
 
-    <v-row class="mt-5">
+    <v-row class="mt-3">
       <v-col>
         <v-chip-group column>
           <template v-if="filterNewsDesks">
