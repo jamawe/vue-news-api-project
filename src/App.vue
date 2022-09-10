@@ -47,6 +47,10 @@ export default {
     height: 100%;
   }
 
+  .width-whole {
+    width: 100%;
+  }
+
   .keep-all {
     word-break: keep-all;
   }

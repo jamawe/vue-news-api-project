@@ -15,21 +15,20 @@
 
     <v-row>
       <v-col class="mx-auto">
-        <div class="text-h5 mb-2">
-          <span class="serif keep-all font-italic pl-1 mb-2">More from the {{ articleDetail.newsDesk }} news desk</span>
-          <hr>
+        <div class="text-h6 text-center pb-4">
+          More {{ articleDetail.newsDesk }} headlines
         </div>
+        <v-divider></v-divider>
       </v-col>
     </v-row>
 
     <v-row v-if="filteredArray.length">
-          <article-box
-            v-for="(article, i) in filteredArray"
-            :key="i"
-            :article="article"
-            :articlesForGrid="articlesForGrid"
-            :category="category"
-          ></article-box>
+      <ArticleHeadlinePreview
+        v-for="(article, i) in filteredArray"
+        :key="i"
+        :article="article"
+        :articlesForGrid="articlesForGrid"
+        :category="category" />
     </v-row>
   </v-container>
 
@@ -39,7 +38,7 @@
 <script>
 import AppOverline from '../components/AppOverline.vue';
 import ArticleSingle from '../components/ArticleSingle.vue';
-import ArticleBox from '../components/ArticleBox.vue';
+import ArticleHeadlinePreview from '../components/ArticleHeadlinePreview.vue';
 import ArticleNotFound from '../components/ArticleNotFound.vue';
 
 export default {
@@ -49,7 +48,7 @@ export default {
   components: {
     AppOverline,
     'article-single': ArticleSingle,
-    'article-box': ArticleBox,
+    ArticleHeadlinePreview,
     ArticleNotFound,
   },
 
