@@ -1,5 +1,5 @@
 <template>
-    <v-col cols="12" class="py-0">
+    <v-col cols="12" sm="6" class="mx-auto py-0">
         <router-link
           :to="{ name: 'ArticlePage', params: { articleDetail: article, category: category, slug: article.slug, articlesForGrid: articlesForGrid } }"
           class="text-decoration-none" 
@@ -10,19 +10,21 @@
               elevation="0"
               height="auto"
               color="transparent"
-              max-width="600"
               class="width-whole mx-auto py-2">
 
             <div class="d-flex flex-no-wrap justify-space-between">
               
               <div class="width-whole">
-                <v-card-text class="text-overline py-1">
+                <v-card-text class="text-overline" style="line-height:130%;">
                     <span v-if="article.section">{{ article.section }}</span>
                     <span v-else-if="article.newsDesk">{{ article.newsDesk }}</span>
                 </v-card-text>
-                <v-card-title
-                  class="text-subtitle-1 pt-0"
-                ><span class="article-box-title serif keep-all  headline-preview">{{ article.headline }}</span></v-card-title>
+                <v-card-title class="text-subtitle-1 text-md-h6 pt-0">
+                  <span class="article-box-title serif keep-all headline-preview">{{ article.headline }}</span>
+              </v-card-title>
+              <v-card-subtitle v-if="article.byline" class="d-none d-md-flex pt-2">
+                {{ article.byline }}
+              </v-card-subtitle>
               </div>
 
               <v-avatar
@@ -37,7 +39,7 @@
         
           </v-card>
         </router-link>
-          <v-divider class="mx-2"></v-divider>
+          <v-divider class="mx-2" max-width="400"></v-divider>
     </v-col>
       
 </template>

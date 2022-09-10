@@ -16,7 +16,7 @@
     <v-row>
       <v-col class="mx-auto">
         <div class="text-h6 text-center pb-4">
-          More {{ articleDetail.newsDesk }} headlines
+          More {{ articleDetail.newsDesk }} Headlines
         </div>
         <v-divider></v-divider>
       </v-col>
