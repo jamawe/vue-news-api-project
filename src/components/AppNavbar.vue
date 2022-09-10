@@ -32,15 +32,15 @@
       <v-icon>mdi-magnify</v-icon>
     </v-btn> -->
 
-    <v-btn icon @click="toggleTheme">
-      <v-icon v-if="!$vuetify.theme.dark" color="#3F51B5" :title="titleDarkTheme">mdi-moon-waxing-crescent</v-icon>
-      <v-icon v-else color="#FFB300" :title="titleLightTheme">mdi-white-balance-sunny</v-icon>
+    <v-btn icon @click="toggleTheme" class="text--primary">
+      <v-icon v-if="!$vuetify.theme.dark" :title="titleDarkTheme">mdi-moon-waxing-crescent</v-icon>
+      <v-icon v-else :title="titleLightTheme">mdi-white-balance-sunny</v-icon>
     </v-btn>
     <v-btn
       href="https://github.com/jamawe/vue-news-api-project"
       :title="titleGithub"
       icon>
-      <v-icon>mdi-github</v-icon>
+      <v-icon class="text--primary">mdi-github</v-icon>
     </v-btn>
     
     </v-app-bar>
