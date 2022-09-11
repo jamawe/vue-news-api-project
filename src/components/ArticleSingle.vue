@@ -47,8 +47,9 @@
         <v-icon small class="ml-1">mdi-open-in-new</v-icon>
       </v-btn>
     </v-card-actions>
-    {{ routeName }}
+
     <v-divider v-if="onHomePage" class="mx-4 mt-8"></v-divider>
+    
   </v-card>
 </template>
 
