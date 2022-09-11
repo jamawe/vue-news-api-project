@@ -37,9 +37,6 @@ import NavPill from '../components/NavPill.vue'
 import { getNewsDesk, createApiRequest, getArticles, modifyArticlesForDisplay, createArrayForNavPills } from '../modules/articles.mjs';
 
 export default {
-  updated() {
-    console.log('%cupdated', 'color: darkseagreen; font-weight: bold;');
-  },
 
   name: 'CategoryPage',
 
