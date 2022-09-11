@@ -12,7 +12,7 @@
       :title="titleMenuOpen">
     </v-app-bar-nav-icon>
 
-    <v-toolbar-title>
+    <v-toolbar-title class="pl-0">
       <v-btn
         :to="{ name: 'HomePage' }"
         :title="titleHome"
@@ -21,7 +21,7 @@
         x-large
         class="pa-0">
 
-        <span class="serif tracking-normal font-md text-lowercase font-weight-bold">Home</span>
+        <span class="serif tracking-normal font-md text-capitalize font-weight-bold font-italic">Vuews</span>
 
       </v-btn>
     </v-toolbar-title>
