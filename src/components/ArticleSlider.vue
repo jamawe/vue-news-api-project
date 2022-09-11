@@ -21,10 +21,16 @@
                   color="card"
                 >
                   <v-img
-                    class="white--text align-end"
-                    height="200px"
+                    v-if="article.image"
+                    height="200"
                     :src="article.image"
                   ></v-img>
+
+                  <v-sheet
+                    v-else-if="!article.image"
+                    height="200"
+                    :color="`card ${$vuetify.theme.dark ? 'lighten-1' : 'darken-2'}`"
+                  ></v-sheet>
                   
                   <v-card-title>
                     <h4 class="text-h5">
@@ -79,9 +85,9 @@ export default {
         nextButton: '#next',
       },
       model: 0,
-      titleArticle: 'Artikel öffnen',
-      titlePrev: 'Zurück',
-      titleNext: 'Weiter',
+      titleArticle: 'View Article',
+      titlePrev: 'Previous',
+      titleNext: 'Next',
     }
   },
 
@@ -126,6 +132,13 @@ export default {
   .article-title, .article-abstract {
     display: -webkit-box;
     -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;  
+    overflow: hidden;
+  }
+
+  .article-abstract {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;  
     overflow: hidden;
   }
