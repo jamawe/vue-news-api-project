@@ -10,16 +10,15 @@
               elevation="0"
               height="auto"
               color="transparent"
-              class="width-whole mx-auto py-2">
+              class="mx-auto py-2">
 
-            <div class="d-flex flex-no-wrap justify-space-between">
-              
-              <div class="width-whole">
+            <div class="vcard d-flex flex-no-wrap justify-space-between">
+              <div>
                 <v-card-text class="text-overline" style="line-height:130%;">
                     <span v-if="article.section">{{ article.section }}</span>
                     <span v-else-if="article.newsDesk">{{ article.newsDesk }}</span>
                 </v-card-text>
-                <v-card-title class="text-subtitle-1 text-md-h6 pt-0">
+                <v-card-title class="headline-preview__title text-subtitle-1 text-md-h6 pt-0">
                   <span class="article-box-title serif keep-all headline-preview">{{ article.headline }}</span>
               </v-card-title>
               <v-card-subtitle v-if="article.byline" class="d-none d-md-flex pt-2">
@@ -68,5 +67,13 @@
       -webkit-line-clamp: 3;
       -webkit-box-orient: vertical;  
       overflow: hidden;
+    }
+
+    .vcard {
+      transition: all 300ms ease-out;
+
+      &:hover {
+        background-color: var(--v-card-base);
+      }
     }
 </style>
