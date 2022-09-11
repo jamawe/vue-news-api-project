@@ -3,6 +3,8 @@
     
     <AppHeader :headerTitle="headerTitle" />
 
+    <ArticleSingleSkeleton v-if="!loaded" />
+
     <ArticleSingle
       v-for="(article, i) in articles"
       :key="i"
@@ -14,6 +16,7 @@
 
 <script>
 import AppHeader from '../components/AppHeader.vue';
+import ArticleSingleSkeleton from '../components/skeletons/ArticleSingleSkeleton.vue';
 import ArticleSingle from '../components/ArticleSingle.vue';
 // import ArticleSearch from '../components/ArticleSearch.vue';
 import articleMixin from '../mixins/articleMixin';
@@ -25,6 +28,7 @@ export default {
 
   components: {
     AppHeader,
+    ArticleSingleSkeleton,
     ArticleSingle,
     // ArticleSearch,
   },
@@ -59,6 +63,7 @@ export default {
       const { docs } = await getArticles(url);
       this.request++;
       this.articles.push(...modifyArticlesForDisplay(docs));
+      this.loaded = true;
     },
 
     async loadNextPage() {
