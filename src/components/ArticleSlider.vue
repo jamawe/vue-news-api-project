@@ -11,51 +11,68 @@
               class="px-1 slider-item"
             >
 
-              <router-link v-if="article" :to="{ name: 'ArticlePage', params: { articleDetail: article, slug: article.slug, articlesForGrid: articles } }" class="text-decoration-none" :title="titleArticle">
-                <v-card
-                  tile
-                  elevation="0"
-                  class="mx-auto"
-                  max-width="300"
-                  height="500"
-                  color="card"
-                >
-                  <v-img
-                    v-if="article.image"
-                    height="200"
-                    :src="article.image"
-                  ></v-img>
-
-                  <v-sheet
-                    v-else-if="!article.image"
-                    height="200"
-                    :color="`card ${$vuetify.theme.dark ? 'lighten-1' : 'darken-2'}`"
-                  ></v-sheet>
+              <v-hover>
+                <template v-slot="{ hover }">
+                  <router-link v-if="article" :to="{ name: 'ArticlePage', params: { articleDetail: article, slug: article.slug, articlesForGrid: articles } }" class="text-decoration-none" :title="titleArticle">
+                    <v-card
+                      tile
+                      elevation="0"
+                      class="mx-auto"
+                      max-width="300"
+                      height="500"
+                      color="card"
+                    >
+                      <v-img
+                        v-if="article.image"
+                        height="200"
+                        :src="article.image"
+                      ></v-img>
+                      <v-sheet
+                        v-else-if="!article.image"
+                        height="200"
+                        :color="`card ${$vuetify.theme.dark ? 'lighten-1' : 'darken-2'}`"
+                      ></v-sheet>
                   
-                  <v-card-title>
-                    <h4 class="text-h5">
-                      <span class="article-title serif keep-all font-weight-bold">{{ article.headline }}</span>
-                    </h4>
-                  </v-card-title>
+                      <v-card-title>
+                        <h4 class="text-h5">
+                          <span class="article-title serif keep-all font-weight-bold">{{ article.headline }}</span>
+                        </h4>
+                      </v-card-title>
+                      <v-card-subtitle class="text-subtitle-2 mt-1">
+                        {{ article.pubDate }} <span v-if="article.byline">&ndash; {{ article.byline }}</span>
+                      </v-card-subtitle>
+                      <v-card-text class="body-1">
+                        <div class="article-abstract text--primary">
+                          {{ article.abstract }}
+                        </div>
+                      </v-card-text>
 
-                  <v-card-subtitle class="text-subtitle-2 mt-1">
-                    {{ article.pubDate }} <span v-if="article.byline">&ndash; {{ article.byline }}</span>
-                  </v-card-subtitle>
+                      <v-fade-transition>
+                        <v-overlay
+                          v-if="hover"
+                          absolute
+                          opacity="0.125"
+                          :color="`accent ${$vuetify.theme.dark ? 'lighten-1' : 'lighten-4'}`"
+                        >
+                        </v-overlay>
+                      </v-fade-transition>
 
-                  <v-card-text class="body-1">
-                    <div class="article-abstract text--primary">
-                      {{ article.abstract }}
-                    </div>
-                  </v-card-text>
-                </v-card>
-              </router-link>
+                    </v-card>
+                  </router-link>
+                </template>
+              </v-hover>
 
             </div>
           </tiny-slider>
           
           <ul id="customize-controls" class="d-flex justify-end pt-1">
-            <li id="prev" tabindex="-1" data-controls="prev" class="accent--text font-weight-bold mr-2 text-h2 pointer" :title="titlePrev">&lsaquo;</li>
-            <li id="next" tabindex="-1" data-controls="next" class="accent--text font-weight-bold mr-2 text-h2 pointer" :title="titleNext">&rsaquo;</li>
+            <v-hover v-slot="{ hover }">
+                <li id="prev" tabindex="-1" data-controls="prev" class="controls font-weight-bold mr-2 text-h2 pointer" :title="titlePrev" :class="{ 'on-hover': hover }">&lsaquo;</li>
+                
+            </v-hover>
+            <v-hover v-slot="{ hover }">
+              <li id="next" tabindex="-1" data-controls="next" class="controls font-weight-bold mr-2 text-h2 pointer" :title="titleNext" :class="{ 'on-hover': hover }">&rsaquo;</li>
+            </v-hover>
           </ul>
 
       </v-col>
@@ -102,7 +119,7 @@ export default {
 }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 
   .slider-container {
     position: relative;
@@ -147,6 +164,10 @@ export default {
     margin: -1.5em 0;
   }
 
+  .controls.on-hover {
+    color: var(--v-accent-base);
+  }
+
   /* Position .btn-share on bottom of .slider-item (parent) */
   .btn-share {
     display: inline-block;
@@ -154,5 +175,4 @@ export default {
     bottom: .5rem;
     font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
   }
-  
 </style>
