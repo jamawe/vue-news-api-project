@@ -39,7 +39,7 @@
                         </h4>
                       </v-card-title>
                       <v-card-subtitle class="text-subtitle-2 mt-1">
-                        {{ article.pubDate }} <span v-if="article.byline">&ndash; {{ article.byline }}</span>
+                        <div class="article-byline ">{{ article.pubDate }} <span v-if="article.byline">&ndash; {{ article.byline }}</span></div>
                       </v-card-subtitle>
                       <v-card-text class="body-1">
                         <div class="article-abstract text--primary">
@@ -146,7 +146,7 @@ export default {
   } */
 
   /* Truncate description multi-line */
-  .article-title, .article-abstract {
+  .article-title {
     display: -webkit-box;
     -webkit-line-clamp: 4;
     -webkit-box-orient: vertical;  
@@ -157,6 +157,13 @@ export default {
     display: -webkit-box;
     -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;  
+    overflow: hidden;
+  }
+
+  .article-byline {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
     overflow: hidden;
   }
 
