@@ -1,24 +1,18 @@
 <template>
   <v-container class="d-flex flex-column justify-space-between">
 
-    <AppOverline :overline="newsDesk" class="px-1" />
-
-    <CategoryNotFound v-if="error"
-      :message="error" />
+    <AppOverlineSkeleton v-if="!overline" class="pt-2 px-1" />
+    <AppOverline v-else-if="overline" :overline="overline" class="px-1" />
 
     <ArticleSliderSkeleton v-if="!articlesLoaded" />
-
     <ArticleSlider
-      :articlesForSlider="this.articles"
-      v-if="this.articles.length" />
+      v-else-if="articlesLoaded && this.articles.length"
+      :articlesForSlider="this.articles" />
 
     <NavPillSkeleton v-if="!navPillsLoaded" />
-
-    <v-row class="mt-3">
+    <v-row v-else-if="navPillsLoaded && uniqueFilters" class="mt-3">
       <v-col>
         <v-chip-group column>
-
-          <template v-if="uniqueFilters">
 
             <NavPill v-for="item in uniqueFilters" :key="item.category"
               toRouteName="CategoryPage"
@@ -27,16 +21,18 @@
               :fqTerm="item.fqTerm"
               :disabled="item.disabled" />
 
-          </template>
-
         </v-chip-group>
       </v-col>
     </v-row>
+
+    <CategoryNotFound v-if="error"
+      :message="error" />
 
   </v-container>
 </template>
 
 <script>
+import AppOverlineSkeleton from '../components/skeletons/AppOverlineSkeleton.vue';
 import ArticleSliderSkeleton from '../components/skeletons/ArticleSliderSkeleton.vue';
 import NavPillSkeleton from '../components/skeletons/NavPillSkeleton.vue';
 import AppOverline from '../components/AppOverline.vue';
@@ -51,6 +47,7 @@ export default {
   name: 'CategoryPage',
 
   components: {
+    AppOverlineSkeleton,
     ArticleSliderSkeleton,
     NavPillSkeleton,
     AppOverline,
@@ -70,7 +67,7 @@ export default {
       navPillsLoaded: false,
       articles: [],
       category: this.$route.params.category,
-      newsDesk: '',
+      overline: '',
       filters: [],
       error: '',
     }
@@ -98,6 +95,7 @@ export default {
       const url = createApiRequest(filterQueryTerm, this.isSection);
       const { docs } = await getArticles(url);
       if (docs.length !== 0) {
+        this.overline = filterQueryTerm;
         this.articles.push(...modifyArticlesForDisplay(docs));
         this.articlesLoaded = true;
         this.filters = createArrayForNavPills(this.articles);
@@ -115,11 +113,13 @@ export default {
       const { docs } = await getArticles(url);
 
       if (docs.length !== 0) {
+        this.overline = term;
         this.articles.push(...modifyArticlesForDisplay(docs));
         this.articlesLoaded = true;
         this.filters = createArrayForNavPills(this.articles);
         this.navPillsLoaded = true;
       } else if (docs.length === 0) {
+        this.overline = 'Invalid Category';
         this.articlesLoaded = true;
         this.navPillsLoaded = true;
         this.error = `No articles could be found for the category "${term}". Please try choosing a news desk from the menu or navigate to the landing page.`
