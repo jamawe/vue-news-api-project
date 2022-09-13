@@ -39,14 +39,22 @@ function getPreviousDate(oldDate) {
 function getNewsDesk(categorySlug) {
     // Since slug is unique filter will return only one item and destructuring assignment can be used
     const [newsDesk] = categories.filter(object => object.slug === categorySlug);
-    return newsDesk.name;
+    if (newsDesk !== undefined) return newsDesk.name;
+
+    return categorySlug;
 }
 
-function createApiRequest(newsDesk, page = 0) {
-    if (newsDesk === '') {
+function createApiRequest(fqTerm, isSection = false, page = 0) {
+    if (isSection) return `https://api.nytimes.com/svc/search/v2/articlesearch.json?fq=section_name:("${fqTerm}")&page=${page}&sort=newest&api-key=${process.env.VUE_APP_NYT_API_KEY}`;
+
+    if (fqTerm === '') {
         return `https://api.nytimes.com/svc/search/v2/articlesearch.json?fq=page=${page}&sort=newest&api-key=${process.env.VUE_APP_NYT_API_KEY}`;
     }
-    return `https://api.nytimes.com/svc/search/v2/articlesearch.json?fq=news_desk:("${newsDesk}")&page=${page}&sort=newest&api-key=${process.env.VUE_APP_NYT_API_KEY}`;
+    return `https://api.nytimes.com/svc/search/v2/articlesearch.json?fq=news_desk:("${fqTerm}")&page=${page}&sort=newest&api-key=${process.env.VUE_APP_NYT_API_KEY}`;
+}
+
+function createSectionApiRequest(section, page = 0) {
+    return `https://api.nytimes.com/svc/search/v2/articlesearch.json?fq=section_name:("${section}")&page=${page}&sort=newest&api-key=${process.env.VUE_APP_NYT_API_KEY}`;
 }
 
 // To process response
@@ -58,14 +66,11 @@ function modifyArticlesForDisplay(articles) {
         const article = {
             abstract: element.abstract,
             byline: element.byline.original,
-            // category: this.category,
             content: element.lead_paragraph,
             headline: element.headline.main,
-            newsDesk: element.news_desk,
             pubDate: makePrettyDate(element.pub_date),
             slug: makeSlug(element.headline.main),
             source: element.source,
-            subSection: element.subsection_name,
             url: element.web_url,
             wordCount: element.word_count
         };
@@ -73,9 +78,15 @@ function modifyArticlesForDisplay(articles) {
         // Handle empty image
         article.image = element.multimedia.length ? `https://www.nytimes.com/${element.multimedia[0].url}` : '';
 
+        article.newsDesk = element.news_desk ? termForFilterQuery(element.news_desk) : '';
+        article.newsDeskSlug = article.newsDesk !== '' ? makeSlug(article.newsDesk) : '';
+
         // Handle duplicate values of news_desk, section_name and subsection_name
-        article.section = element.section_name !== element.news_desk ? element.section_name : '';
-        article.subSection = element.subsection_name !== element.section_name && element.subsection_name !== element.news_desk ? element.subsection_name : '';
+        article.section = element.section_name && (element.section_name !== element.news_desk) ? termForFilterQuery(element.section_name) : '';
+        article.sectionSlug = article.section !== '' ? makeSlug(article.section) : '';
+        
+        article.subSection = element.subsection_name && (element.subsection_name !== element.section_name && element.subsection_name !== element.news_desk) ? termForFilterQuery(element.subsection_name) : '';
+        article.subSectionSlug = article.subSection !== '' ? makeSlug(article.subSection) : '';
 
         articlesForDisplay.push(article);
     });
@@ -84,23 +95,34 @@ function modifyArticlesForDisplay(articles) {
 }
 
 function createArrayForNavPills(articles) {
-    const newsDesks = [];
-    const sections = [];
-    const subSections = [];
+    const navPillFilters = [];
 
     articles.forEach(element => {
-        if (element.newsDesk) newsDesks.push(element.newsDesk);
-        if (element.section) sections.push(element.section);
-        if (element.subSection) subSections.push(element.subSection);
+        // Create objects that contain info about the request that is potentially being sent
+        if (element.newsDesk) navPillFilters.push({ 
+            category: element.newsDeskSlug,
+            fqTerm: element.newsDesk,
+            isSection: false,
+            disabled: false,
+        });
+        if (element.section) navPillFilters.push({
+            category: element.sectionSlug,
+            fqTerm:element.section,
+            isSection: true,
+            disabled: false
+        });
     });
 
-    // Form arrays with unique items
-    const newsDesksSet = [...new Set(newsDesks)];
-    const sectionsSet = [...new Set(sections)];
-    const subSectionsSet = [...new Set(subSections)];
+    // Form array where category is unique
+    const uniqueFilters = [...new Map(navPillFilters.map(item => [item['category'], item])).values()];
 
     // Section + subsection can be combined since only section can be requested
-    return { news_desk: newsDesksSet, section: [...sectionsSet, ...subSectionsSet]}
+    return uniqueFilters;
+}
+
+function termForFilterQuery(displayTerm) {
+    const fqTerm = displayTerm.replace(/&/g, ' and ');
+    return fqTerm;
 }
 
 function makeSlug(prettyTitle) {
@@ -141,4 +163,4 @@ async function getArticles(url) {
     return { docs, meta };
 }
 
-export { categories, modifyDateForApiRequest, getPreviousDate, getNewsDesk, createApiRequest, modifyArticlesForDisplay, createArrayForNavPills, makePrettyDate, getArticles };
+export { categories, modifyDateForApiRequest, getPreviousDate, getNewsDesk, createApiRequest, createSectionApiRequest, modifyArticlesForDisplay, createArrayForNavPills, makePrettyDate, makeSlug, getArticles };

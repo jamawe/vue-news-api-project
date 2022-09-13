@@ -51,13 +51,15 @@
 
       <v-card
         tile>
+        <v-card-title class="d-flex justify-center text-h5">
+          <span class="serif text-capitalize font-weight-bold font-italic">News Desks</span>
+        </v-card-title>
         <v-card-text class="pb-0">
           <v-list class="text-center">
             <v-list-item-group>
-
               <v-list-item v-for="(category, i) in categories" :key="i" @click="drawer=false" :to="{ name: 'CategoryPage', params: { category: category.slug } }" class="text-decoration-none" :title="`${category.name} öffnen`">
-                <v-list-item-title>
-                  <span class="serif tracking-normal font-sm text-capitalize font-weight-bold font-italic">{{ category.name }}</span>
+                <v-list-item-title class="text-button">
+                  <span class="font-weight-regular">{{ category.name }}</span>
                 </v-list-item-title>
               </v-list-item>
 
