@@ -1,7 +1,7 @@
 <template>
   <v-container v-if="articleDetail !== undefined">
 
-    <AppOverline :overline="articleDetail.newsDesk" />
+    <AppOverline :overline="articleDetail.newsDesk" class="top-width mx-auto"/>
     
     <v-row>
       <v-col class="mx-auto">
@@ -14,7 +14,7 @@
     </v-row>
 
     <v-row>
-      <v-col class="mx-auto pb-0">
+      <v-col class="top-width mx-auto pb-0">
         <div class="text-h6 text-center pb-2">
           More {{ articleDetail.newsDesk }} Headlines
         </div>
@@ -22,7 +22,7 @@
       </v-col>
     </v-row>
 
-    <v-row v-if="filteredArray.length">
+    <v-row v-if="filteredArray.length" class="top-width mx-auto">
       <ArticleHeadlinePreview
         v-for="(article, i) in filteredArray"
         :key="i"
@@ -102,3 +102,9 @@ export default {
 
 }
 </script>
+
+<style lang="scss">
+  .top-width {
+    max-width: 800px;
+  }
+</style>
