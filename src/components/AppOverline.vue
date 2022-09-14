@@ -3,7 +3,7 @@
         <v-col class="pb-1">
             <div class="text-overline">
                 <span v-if="onArticlePage">
-                    <router-link :to="{ name: 'CategoryPage', params: { category: category } }" class="overline__link text-decoration-none">{{ overline }}</router-link>
+                    <router-link :to="{ name: 'CategoryPage', params: { category: category } }" class="overline__link accent--text">{{ overline }}</router-link>
                 </span>
                 <span v-else-if="!onArticlePage">{{ overline }}</span>
 
@@ -31,10 +31,10 @@
 
 <style lang="scss" scoped>
     .overline__link {
-        transition: all 150ms ease-out;
+        text-decoration: none;
 
         &:hover {
-            color: var(--v-accent-base);
+            text-decoration: underline;
         }
     }
 </style>
