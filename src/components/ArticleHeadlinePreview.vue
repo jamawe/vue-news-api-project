@@ -17,7 +17,8 @@
                 <div class="d-flex flex-no-wrap justify-space-between">
                   <div>
                     <v-card-text class="text-overline" style="line-height:130%;">
-                        <span v-if="article.section">{{ article.section }}</span>
+                        <span v-if="article.subSection">{{ article.subSection }}</span>
+                        <span v-else-if="article.section">{{ article.section }}</span>
                         <span v-else-if="article.newsDesk">{{ article.newsDesk }}</span>
                     </v-card-text>
                     <v-card-title class="headline-preview__title text-subtitle-1 text-md-h6 pt-0">
