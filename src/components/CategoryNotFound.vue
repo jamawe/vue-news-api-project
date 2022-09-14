@@ -2,7 +2,7 @@
     <v-container class="full-height d-flex justify-center align-center">
         <v-card class="ch70 align-self-center" elevation="0" color="transparent">
             <v-card-title class="font-xxl keep-all mb-10">
-                Oops! &#129488;
+                Oops! &#127770;
             </v-card-title>
             <v-card-text class="body-1 mb-10">
                 <div>

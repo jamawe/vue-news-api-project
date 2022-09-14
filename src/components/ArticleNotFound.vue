@@ -2,11 +2,11 @@
     <v-container class="d-flex justify-center align-center height-whole">
         <v-card class="ch70" elevation="0" color="transparent">
             <v-card-title class="font-xxl keep-all mb-10">
-                Oops! &#127770;
+                Sorry! &#129488;
             </v-card-title>
             <v-card-text class="body-1 mb-10">
                 <div>
-                    The article you are looking for could not be retrieved. Please navigate back to the page of the {{ newsDesk }} news desk or to the landing page. Thank you!
+                    It is not (yet) possible to retrieve single articles. Please navigate back to the page of the {{ newsDesk }} news desk or to the landing page. Thank you!
                 </div>
             </v-card-text>
             <v-card-actions>
