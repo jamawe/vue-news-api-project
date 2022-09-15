@@ -1,17 +1,5 @@
 import axios from "axios";
 
-// CATEGORIES (news desks)
-const categories = [
-    { name: 'Arts', slug: 'arts' },
-    { name: 'Business', slug: 'business' },
-    { name: 'Foreign', slug: 'foreign' },
-    { name: 'Learning', slug: 'learning' },
-    { name: 'Science', slug: 'science' },
-    { name: 'Sports', slug: 'sports' },
-    { name: 'Technology', slug: 'technology' },
-    { name: 'World', slug: 'world' },
-];
-
 // REQUEST HELPERS
 // To formulate request
 function modifyDateForApiRequest(date) {
@@ -163,4 +151,4 @@ async function getArticles(url) {
     return { docs, meta };
 }
 
-export { categories, modifyDateForApiRequest, getPreviousDate, getNewsDesk, createApiRequest, createSectionApiRequest, modifyArticlesForDisplay, createArrayForNavPills, makePrettyDate, makeSlug, getArticles };
+export { modifyDateForApiRequest, getPreviousDate, getNewsDesk, createApiRequest, createSectionApiRequest, modifyArticlesForDisplay, createArrayForNavPills, makePrettyDate, makeSlug, getArticles };
