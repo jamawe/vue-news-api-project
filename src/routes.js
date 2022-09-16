@@ -1,7 +1,7 @@
 import HomePage from './pages/HomePage.vue';
 import CategoryPage from './pages/CategoryPage.vue';
 import ArticlePage from './pages/ArticlePage.vue';
-// import SearchResultsPage from './pages/SearchResultsPage.vue';
+import SearchPage from './pages/SearchPage.vue';
 import NotFoundPage from './pages/NotFoundPage.vue';
 
 export const routes = [
@@ -10,6 +10,11 @@ export const routes = [
     path: '/',
     name: 'HomePage',
     component: HomePage 
+  },
+
+  { path: '/search',
+    name: 'SearchPage',
+    component: SearchPage,
   },
 
   {
@@ -25,10 +30,6 @@ export const routes = [
     component: ArticlePage,
     props: true 
   },
-
-  // { path: '/results',
-  //   component: SearchResultsPage 
-  // },
 
   {
     path: '/:catchAll(.*)',

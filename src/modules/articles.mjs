@@ -41,8 +41,10 @@ function createApiRequest(fqTerm, isSection = false, page = 0) {
     return `https://api.nytimes.com/svc/search/v2/articlesearch.json?fq=news_desk:("${fqTerm}")&page=${page}&sort=newest&api-key=${process.env.VUE_APP_NYT_API_KEY}`;
 }
 
-function createSectionApiRequest(section, page = 0) {
-    return `https://api.nytimes.com/svc/search/v2/articlesearch.json?fq=section_name:("${section}")&page=${page}&sort=newest&api-key=${process.env.VUE_APP_NYT_API_KEY}`;
+function createQueryRequest(queryString, newsDesk = '', page = 0) {
+    if (newsDesk === '') return `https://api.nytimes.com/svc/search/v2/articlesearch.json?q=${queryString}&page=${page}&sort=newest&api-key=${process.env.VUE_APP_NYT_API_KEY}`;
+
+    return `https://api.nytimes.com/svc/search/v2/articlesearch.json?q=${queryString}&fq=news_desk:(${newsDesk})&page=${page}&sort=newest&api-key=${process.env.VUE_APP_NYT_API_KEY}`;
 }
 
 // To process response
@@ -151,4 +153,4 @@ async function getArticles(url) {
     return { docs, meta };
 }
 
-export { modifyDateForApiRequest, getPreviousDate, getNewsDesk, createApiRequest, createSectionApiRequest, modifyArticlesForDisplay, createArrayForNavPills, makePrettyDate, makeSlug, getArticles };
+export { modifyDateForApiRequest, getPreviousDate, getNewsDesk, createApiRequest, createQueryRequest, modifyArticlesForDisplay, createArrayForNavPills, makePrettyDate, makeSlug, getArticles };

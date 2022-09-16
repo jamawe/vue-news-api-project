@@ -12,6 +12,14 @@
         :title="titleMenuOpen">
       </v-app-bar-nav-icon>
 
+      <v-btn 
+        icon
+        :to="{ name: 'SearchPage' }">
+        <v-icon>mdi-magnify</v-icon>
+      </v-btn>
+
+      <v-spacer></v-spacer>
+
       <v-toolbar-title class="pl-0">
         <v-btn
           :to="{ name: 'HomePage' }"
@@ -27,10 +35,6 @@
       </v-toolbar-title>
 
       <v-spacer></v-spacer>
-
-      <!-- <v-btn icon>
-        <v-icon>mdi-magnify</v-icon>
-      </v-btn> -->
 
       <v-btn icon @click="toggleTheme" class="text--primary">
         <v-icon v-if="!$vuetify.theme.dark" :title="titleDarkTheme">mdi-moon-waxing-crescent</v-icon>
@@ -85,7 +89,6 @@
           <v-spacer></v-spacer>
           <v-btn
             icon
-            bottom
             color="#BDBDBD"
             @click="drawer=false"
             :title="titleMenuClose">
