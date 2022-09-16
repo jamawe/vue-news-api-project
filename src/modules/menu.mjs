@@ -19,6 +19,14 @@ const menu = [
                 },
             },
             {
+                name: 'Express',
+                toRouteName: 'CategoryPage',
+                params: {
+                    category: 'express',
+                    isSection: false,
+                },
+            },
+            {
                 name: 'Foreign',
                 toRouteName: 'CategoryPage',
                 params: {
@@ -26,14 +34,15 @@ const menu = [
                     isSection: false,
                 },
             },
-            {
-                name: 'Obitiuaries',
-                toRouteName: 'CategoryPage',
-                params: {
-                    category: 'obitiuaries',
-                    isSection: true,
-                },
-            },
+            
+            // {
+            //     name: 'Obitiuaries',
+            //     toRouteName: 'CategoryPage',
+            //     params: {
+            //         category: 'obitiuaries',
+            //         isSection: true,
+            //     },
+            // },
             {
                 name: 'Politics',
                 toRouteName: 'CategoryPage',
@@ -140,10 +149,10 @@ const menu = [
                 },
             },
             {
-                name: 'Style',
+                name: 'Weekend',
                 toRouteName: 'CategoryPage',
                 params: {
-                    category: 'tstyle',
+                    category: 'weekend',
                     isSection: false,
                 },
             },
@@ -220,6 +229,34 @@ const menu = [
             }
         ]
     }
-]
+];
 
-export { menu };
+const newsDesks = [
+    'Arts',
+    'Books',
+    'Business',
+    'Culture',
+    'Education',
+    'Express',
+    'Food',
+    'Foreign',
+    'Games',
+    'Health',
+    'Learning',
+    'Magazine',
+    'Movies',
+    'Parenting',
+    'Politics',
+    'Science',
+    'Sports',
+    'Style',
+    'Technology',
+    'Television',
+    'Travel',
+    'U.S.',
+    'Weekend',
+    'World'
+
+];
+
+export { menu, newsDesks };
