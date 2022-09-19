@@ -4,47 +4,57 @@
         <ArticleSingleSkeleton v-if="loaded === false" />
 
         <template v-else-if="loaded === true">
-          <v-card
-            max-width="600"
-            class="mx-auto mb-8">
-            <v-card-text
-                class="mx-auto">
-                <v-text-field
-                    prepend-icon="mdi-magnify"
-                    single-line
-                    placeholder="Enter your keyword(s)"
-                    :error="hasError"
-                    :error-messages="errors"
-                    id="search"
-                    @input="removeErrorState"
-                    v-model.trim="keyword"></v-text-field>
-            </v-card-text>
+          <v-expansion-panels class="expansion-panel-width mx-auto mb-8">
+            <v-expansion-panel>
+              <v-expansion-panel-header class="text-body-1">
+                Modify your search
+              </v-expansion-panel-header>
 
-            <v-card-text>
-                <v-autocomplete
-                    v-model="chosenNewsDesks"
-                    :items="newsDesks"
-                    outlined
-                    deletable-chips
-                    small-chips
-                    chips
-                    prepend-icon="mdi-filter-outline"
-                    label="Filter by news desk(s)"
-                    multiple
-                ></v-autocomplete>
-            </v-card-text>
-
-            <v-card-actions class="py-6">
-                <v-spacer></v-spacer>
-                <v-btn
-                    elevation="0"
-                    color="accent"
-                    @click="startSearch">
-                    Go
-                </v-btn>
-                <v-spacer></v-spacer>
-            </v-card-actions>
-          </v-card>
+              <v-expansion-panel-content>
+                <v-card
+                  color="transparent"
+                  elevation="0"
+                  max-width="600"
+                  class="mx-auto">
+                  <v-card-text
+                    class="mx-auto">
+                    <v-text-field
+                      prepend-icon="mdi-magnify"
+                      single-line
+                      placeholder="Enter your keyword(s)"
+                      :error="hasError"
+                      :error-messages="errors"
+                      id="search"
+                      @input="removeErrorState"
+                      v-model.trim="keyword"></v-text-field>
+                  </v-card-text>
+                  <v-card-text>
+                    <v-autocomplete
+                      v-model="chosenNewsDesks"
+                      :items="newsDesks"
+                      outlined
+                      deletable-chips
+                      small-chips
+                      chips
+                      prepend-icon="mdi-filter-outline"
+                      label="Filter by news desk(s)"
+                      multiple
+                    ></v-autocomplete>
+                  </v-card-text>
+                  <v-card-actions>
+                    <v-spacer></v-spacer>
+                    <v-btn
+                        elevation="0"
+                        color="accent"
+                        @click="startSearch">
+                        Go
+                    </v-btn>
+                    <v-spacer></v-spacer>
+                  </v-card-actions>
+                </v-card>
+              </v-expansion-panel-content>
+            </v-expansion-panel>
+          </v-expansion-panels>
 
           <ArticleSingle
           v-for="(article, i) in articles"
@@ -140,3 +150,9 @@
     },
   }
 </script>
+
+<style lang="scss">
+  .expansion-panel-width {
+    max-width: 600px;
+  }
+</style>
