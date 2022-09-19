@@ -203,9 +203,8 @@
       },
 
       formatQueryString(value) {
-        value = value.replace(/^\s+|\s+$/g, '').replace(/\s/g, '\+').replace(/\++/g, '\+');
-        console.log('%cvalue', 'color: darkseagreen; font-weight: bold;', value);
-        return value;
+        // Trim whitespace; replace invalid chars with +; replace whitespace whit +; replace ++ with +
+        value = value.replace(/^\s+|\s+$/g, '').replace(/[^a-z0-9 -]/g, '+').replace(/\s/g, '\+').replace(/\++/g, '\+');
       },
 
       // formatNewsDeskString(newsDesksArray) {
