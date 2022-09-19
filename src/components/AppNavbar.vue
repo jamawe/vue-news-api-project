@@ -14,7 +14,7 @@
 
       <v-btn 
         icon
-        :to="{ name: 'SearchPage' }">
+        @click.stop="search = !search">
         <v-icon>mdi-magnify</v-icon>
       </v-btn>
 
@@ -99,18 +99,68 @@
       </v-card>
     </v-dialog>
 
+    <v-dialog
+      v-model="search"
+      max-width="500">
+
+      <v-card
+        class="mx-auto">
+        <v-card-title class="d-flex justify-center serif font-md tracking-wider text-capitalize font-weight-bold font-italic text--primary py-6">
+          Keyword search
+        </v-card-title>
+        <v-card-text class="py-6">
+            <v-text-field
+                prepend-icon="mdi-magnify"
+                single-line
+                placeholder="Enter your keyword(s)"
+                :error="hasError"
+                :error-messages="errors"
+                id="search"
+                @input="removeErrorState"
+                v-model.trim="keyword"></v-text-field>
+        </v-card-text>
+
+        <v-card-text class="py-6">
+            <v-autocomplete
+                v-model="chosenNewsDesks"
+                :items="newsDesks"
+                outlined
+                deletable-chips
+                small-chips
+                chips
+                prepend-icon="mdi-filter-outline"
+                label="Filter by news desk(s)"
+                multiple
+            ></v-autocomplete>
+        </v-card-text>
+
+        <v-card-actions class="py-6">
+            <v-spacer></v-spacer>
+            <v-btn
+                elevation="0"
+                color="accent"
+                @click="submitSearch">
+                Go
+            </v-btn>
+            <v-spacer></v-spacer>
+        </v-card-actions>
+      </v-card>
+
+    </v-dialog>
+
   </div>
   
 </template>
 
 <script>
-  import { menu } from '../modules/menu.mjs';
+  import { menu, newsDesks } from '../modules/menu.mjs';
 
   export default {
 
     data() {
       return {
         drawer: false,
+        search: false,
         titleMenuOpen: 'Open Navigation',
         titleMenuClose: 'Close Navigation',
         titleHome: 'Navigate Home',
@@ -119,6 +169,11 @@
         titleGithub: 'Open project on GitHub',
         newsDesks: [],
         menu,
+        hasError: false,
+        errors: [],
+        keyword: '',
+        newsDesks,
+        chosenNewsDesks: [],
       }
     },
 
@@ -126,7 +181,38 @@
       toggleTheme() {
         this.$vuetify.theme.dark = !this.$vuetify.theme.dark;
         localStorage.setItem('nap-dark', this.$vuetify.theme.dark);
-      }
+      },
+
+      async submitSearch() {
+        this.removeErrorState();
+        if (!this.keyword) {
+            this.hasError = true;
+            this.errors.push('Please enter a keyword.');
+            return;
+        }
+        const keywordString = this.formatQueryString(this.keyword);
+        
+        this.$router.push({ name: 'SearchResultsPage', query: { q: keywordString, news_desk: this.chosenNewsDesks.join(',') } });
+
+        this.search = false;
+      },
+
+      removeErrorState() {
+        this.hasError = false;
+        this.errors = [];
+      },
+
+      formatQueryString(value) {
+        value = value.replace(/^\s+|\s+$/g, '').replace(/\s/g, '\+').replace(/\++/g, '\+');
+        console.log('%cvalue', 'color: darkseagreen; font-weight: bold;', value);
+        return value;
+      },
+
+      // formatNewsDeskString(newsDesksArray) {
+      //   let newsDeskString = '';
+      //   newsDesksArray.forEach(item => newsDeskString += `"${item}" `);
+      //   return newsDeskString.trim();
+      // }
     }
   }
 </script>
