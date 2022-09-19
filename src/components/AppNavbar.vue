@@ -139,7 +139,7 @@
             <v-btn
                 elevation="0"
                 color="accent"
-                @click="submitSearch">
+                @click="startSearch">
                 Go
             </v-btn>
             <v-spacer></v-spacer>
@@ -183,7 +183,7 @@
         localStorage.setItem('nap-dark', this.$vuetify.theme.dark);
       },
 
-      async submitSearch() {
+      startSearch() {
         this.removeErrorState();
         if (!this.keyword) {
             this.hasError = true;
