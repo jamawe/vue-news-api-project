@@ -36,6 +36,7 @@
       <ArticleSingleSkeleton />
     </template>
 
+    <!-- .quiet modifier determines that handler will only be executed once the threshold is met -->
     <ArticleSingleSkeleton
       v-if="showLazySkeleton"
       v-intersect.quiet="{
@@ -74,12 +75,9 @@ export default {
       loaded: false,
       headerTitle: 'Recent',
       articles: [],
-      date: '',
-      url: '',
       newsDesk: '"Culture" "Foreign" "Magazine" "Politics" "Sports"',
       isSection: false,
       docs: [],
-      status: '',
       showLazySkeleton: false,
       requestLimitTimeout: '',
       requestLimitExceeded: false,
@@ -106,14 +104,7 @@ export default {
       } catch (e) {
         // Handle 429, too many requests (>10 / 60sec)
         if (e.response.status === 429) {
-          // Do not show skeleton anymore, but exceeded info banner instead
-          this.showLazySkeleton = false;
-          this.requestLimitExceeded = true;
-
-          // Retry same request after some time
-          this.requestLimitTimeout = setTimeout(() => {
-            this.getArticles();
-          }, 10000);
+          this.handleTooManyRequests(this.getArticles);
         }
         return e.response.status;
       }
@@ -137,25 +128,14 @@ export default {
 
       // TODO maybe skip (+else if below), since mechanismn without threshold implemented (but keep for example for  CatgeoryPage)
       if (this.request < this.requestThreshold) {
-        console.log('%cINSIDE IF request, threshold', 'color: darkseagreen; font-weight: bold;', this.request, this.requestThreshold);
         const url = createApiRequest(this.newsDesk, this.isSection, this.request);
         try {
-          const { status, docs } = await getArticles(url);
-          this.status = status;
+          const { docs } = await getArticles(url);
           this.docs = docs;
-          console.log('%cstatus', 'color: hotpink; font-weight: bold;', status);
         } catch (e) {
           // Handle 429, too many requests (>10 / 60sec)
           if (e.response.status === 429) {
-            // Do not show skeleton anymore, but exceeded info banner instead
-            this.showLazySkeleton = false;
-            this.requestLimitExceeded = true;
-
-            // Retry same request after some time
-            this.requestLimitTimeout = setTimeout(() => {
-              // Try first api request again after 5000ms
-              this.loadNextPage();
-            }, 10000);
+            this.handleTooManyRequests(this.loadNextPage);
           }
           return e.response.status;
         }
@@ -181,6 +161,18 @@ export default {
         this.showLazySkeleton = false;
       }
     },
+
+    handleTooManyRequests(fnToRetry) {
+      // Do not show skeleton anymore, but exceeded info banner instead
+      this.showLazySkeleton = false;
+      this.requestLimitExceeded = true;
+
+      // Retry same request after some time
+      this.requestLimitTimeout = setTimeout(() => {
+        // Try first api request again after 5000ms
+        fnToRetry();
+      }, 5000);
+    }
 
     // loadLazySkeleton() {
     //   console.log('%cloadLazySkeleton run, showLazySkeleton', 'color: purple; font-weight: bold;', this.showLazySkeleton);
