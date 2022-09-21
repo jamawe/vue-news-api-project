@@ -20,15 +20,10 @@
         <template v-slot:actions>
           <v-btn
             text
-            color="primary"
-          >
-            Dismiss
-          </v-btn>
-          <v-btn
-            text
             disabled
           >
-            Retry in 10
+            <template v-if="isRequesting">{{ retryMessage }}</template>
+            <template v-else>Retry in {{ countdown }}</template>
           </v-btn>
         </template>
       </v-banner>
@@ -79,8 +74,10 @@ export default {
       isSection: false,
       docs: [],
       showLazySkeleton: false,
-      requestLimitTimeout: '',
       requestLimitExceeded: false,
+      countdown: 10,
+      isRequesting: false,
+      retryMessage: 'Requesting...',
       // request + requestThreshold needed for limit how many pages to load
       request: 0, // TODO skip if 429 limit of api should be used instead (see below)
       requestThreshold: 20, // TODO skip if 429 limit of api should be used instead (see below)
@@ -93,12 +90,10 @@ export default {
 
   methods: {
     async getArticles() {
-      // Clear timeout if there was one from former request
-      if (this.requestLimitTimeout) clearTimeout(this.requestLimitTimeout);
-      
       const url = createApiRequest(this.newsDesk);
 
       try {
+        this.isRequesting = true;
         const { docs } = await getArticles(url);
         this.docs = docs;
       } catch (e) {
@@ -123,13 +118,11 @@ export default {
     },
 
     async loadNextPage() {
-      // Clear timeout if there was one from former request
-      if (this.requestLimitTimeout) clearTimeout(this.requestLimitTimeout);
-
       // TODO maybe skip (+else if below), since mechanismn without threshold implemented (but keep for example for  CatgeoryPage)
       if (this.request < this.requestThreshold) {
         const url = createApiRequest(this.newsDesk, this.isSection, this.request);
         try {
+          this.isRequesting = true;
           const { docs } = await getArticles(url);
           this.docs = docs;
         } catch (e) {
@@ -163,38 +156,23 @@ export default {
     },
 
     handleTooManyRequests(fnToRetry) {
+      // Reset everything countdown related
+      this.isRequesting = false;
+      this.countdown = 10;
+
       // Do not show skeleton anymore, but exceeded info banner instead
       this.showLazySkeleton = false;
       this.requestLimitExceeded = true;
 
-      // Retry same request after some time
-      this.requestLimitTimeout = setTimeout(() => {
-        // Try first api request again after 5000ms
-        fnToRetry();
-      }, 5000);
+      const requestCountdown = setInterval(() => {
+        if (this.countdown > 0) {
+          this.countdown -= 1;
+        } else {
+          clearInterval(requestCountdown);
+          fnToRetry();
+        }
+      }, 1000);
     }
-
-    // loadLazySkeleton() {
-    //   console.log('%cloadLazySkeleton run, showLazySkeleton', 'color: purple; font-weight: bold;', this.showLazySkeleton);
-    //   this.showLazySkeleton = true;
-    // },
-
-    // TODO: Not sure if going one day back is still needed because of sort helper in api request (newest)
-    // async repeatRequest() {
-    //   // Get previous day as date string
-    //   const prevDay = getPreviousDate(this.date);
-    //   // Set date var to new date string
-    //   this.date = prevDay;
-    //   // Modify new date string to have correct format for request
-    //   const newDateModified = modifyDateForApiRequest(prevDay);
-    //   // Create url with new variable(s)
-    //   const newUrl = createApiRequest(this.newsDesk, newDateModified);
-    //   // Make request + retrieve docs
-    //   const { docs } = await getArticles(newUrl);
-    //   // Set articles array used for display
-    //   this.articles = [...this.articles, ...modifyArticlesForDisplay(docs)];
-    //   console.log('%carticles', 'color: hotpink; font-weight: bold;', this.articles);
-    // }
   },
 
 }
