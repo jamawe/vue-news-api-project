@@ -205,6 +205,7 @@
       formatQueryString(value) {
         // Trim whitespace; replace invalid chars with +; replace whitespace whit +; replace ++ with +
         value = value.replace(/^\s+|\s+$/g, '').replace(/[^a-z0-9 -]/g, '+').replace(/\s/g, '\+').replace(/\++/g, '\+');
+        return value;
       },
 
       // formatNewsDeskString(newsDesksArray) {
