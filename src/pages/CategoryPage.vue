@@ -95,16 +95,12 @@ export default {
       const url = createApiRequest(filterQueryTerm, this.isSection);
       const { docs } = await getArticles(url);
       if (docs.length !== 0) {
-        this.overline = filterQueryTerm;
-        this.articles.push(...modifyArticlesForDisplay(docs));
-        this.articlesLoaded = true;
-        this.filters = createArrayForNavPills(this.articles);
-        this.navPillsLoaded = true;
+        this.setArticles(filterQueryTerm, docs, true, true);
       } else if (docs.length === 0) {
         this.getArticlesFallback(filterQueryTerm, !this.isSection);
       }
 
-      // TODO if (res.status !== 200) schow error & return
+      // TODO if (res.status !== 200) show error & return
       // HANDLE 429 too many requests
     },
 
@@ -113,11 +109,7 @@ export default {
       const { docs } = await getArticles(url);
 
       if (docs.length !== 0) {
-        this.overline = term;
-        this.articles.push(...modifyArticlesForDisplay(docs));
-        this.articlesLoaded = true;
-        this.filters = createArrayForNavPills(this.articles);
-        this.navPillsLoaded = true;
+        this.setArticles(term, docs, true, true);
       } else if (docs.length === 0) {
         this.overline = 'Invalid Category';
         this.articlesLoaded = true;
@@ -130,6 +122,15 @@ export default {
       // Replace - with spaces
       const filterQueryTerm = categorySlug.replace(/-/g, ' ');
       return filterQueryTerm;
+    },
+
+    // On successful request, populate articles + overline + nav pills to render
+    setArticles(overline, docs, articlesLoaded, navPillsLoaded) {
+      this.overline = overline;
+      this.articles.push(...modifyArticlesForDisplay(docs));
+      this.articlesLoaded = articlesLoaded;
+      this.filters = createArrayForNavPills(this.articles);
+      this.navPillsLoaded = navPillsLoaded;
     }
   },
 }
