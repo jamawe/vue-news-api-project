@@ -116,7 +116,7 @@
                 :error="hasError"
                 :error-messages="errors"
                 id="search"
-                @input="removeErrorState"
+                @input.once="removeErrorState"
                 v-model.trim="keyword"></v-text-field>
         </v-card-text>
 
