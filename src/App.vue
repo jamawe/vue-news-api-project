@@ -6,6 +6,8 @@
       <router-view :key="$route.fullPath"></router-view>
 
     </v-main>
+
+    <BackToTopButton v-show="scrollYPosition > scrollThreshold" />
     
     <AppNavbar/>
   </v-app>
@@ -13,6 +15,7 @@
 
 <script>
 import AppNavbar from './components/AppNavbar.vue';
+import BackToTopButton from './components/BackToTopButton.vue';
 
 export default {
 
@@ -20,11 +23,22 @@ export default {
 
   components: {
     AppNavbar,
+    BackToTopButton,
+  },
+
+  data() {
+    return {
+      scrollThreshold: 100,
+      scrollYPosition: 0,
+    }
   },
 
   created() {
     const isDark = JSON.parse(localStorage.getItem('nap-dark'));
     this.$vuetify.theme.dark = isDark;
+    window.addEventListener('scroll', () => {
+      this.scrollYPosition = window.scrollY;
+    });
   },
   
 };

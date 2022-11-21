@@ -13,13 +13,16 @@ export default new Vuetify({
                 backdrop: '#B2DFDB',
                 card: '#F5F5F5',
                 accent: '#2962FF',
-
+                accentToned: '#85A5FF',
+                textInverted: '#FFF',
             },
             dark: {
                 anchor: '#FFF',
                 backdrop: '#00695C',
                 card: '#1E1E1E',
-                accent: '#82B1FF'
+                accent: '#82B1FF',
+                accentToned: '#ADCDFF',
+                textInverted: '#000',
             },
         },
       },
