@@ -2,7 +2,7 @@
   <v-container max-width="600">
     <AppHeader v-if="loaded !== null" :headerTitle="resultsTitle" />
 
-    <v-expansion-panels class="expansion-panel-width mx-auto mb-8">
+    <v-expansion-panels class="expansion-panel-width expansion-panel-sticky mx-auto mb-8">
       <v-expansion-panel>
         <v-expansion-panel-header class="text-body-1">
           Modify your search
@@ -255,5 +255,10 @@
 <style lang="scss">
   .expansion-panel-width {
     max-width: 600px;
+  }
+
+  .expansion-panel-sticky {
+    position: sticky;
+    top: 20px;
   }
 </style>
