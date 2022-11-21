@@ -9,12 +9,14 @@
     
       <v-app-bar-nav-icon
         @click.stop="drawer = !drawer"
-        :title="titleMenuOpen">
+        :title="titleMenuOpen"
+        class="text--primary">
       </v-app-bar-nav-icon>
 
       <v-btn 
         icon
-        @click.stop="search = !search">
+        @click.stop="search = !search"
+        class="text--primary">
         <v-icon>mdi-magnify</v-icon>
       </v-btn>
 
@@ -36,9 +38,9 @@
 
       <v-spacer></v-spacer>
 
-      <v-btn icon @click="toggleTheme" class="text--primary">
-        <v-icon v-if="!$vuetify.theme.dark" :title="titleDarkTheme">mdi-moon-waxing-crescent</v-icon>
-        <v-icon v-else :title="titleLightTheme">mdi-white-balance-sunny</v-icon>
+      <v-btn icon @click="toggleTheme">
+        <v-icon v-if="!$vuetify.theme.dark" :title="titleDarkTheme" color="indigo lighten-2">mdi-moon-waxing-crescent</v-icon>
+        <v-icon v-else :title="titleLightTheme" color="amber lighten-3">mdi-white-balance-sunny</v-icon>
       </v-btn>
       <v-btn
         href="https://github.com/jamawe/vue-news-api-project"
