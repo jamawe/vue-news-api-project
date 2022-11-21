@@ -114,6 +114,7 @@
             <v-text-field
                 prepend-icon="mdi-magnify"
                 single-line
+                color="accent"
                 placeholder="Enter your keyword(s)"
                 :error="hasError"
                 :error-messages="errors"
@@ -130,6 +131,7 @@
                 deletable-chips
                 small-chips
                 chips
+                color="accent"
                 prepend-icon="mdi-filter-outline"
                 label="Filter by news desk(s)"
                 multiple
