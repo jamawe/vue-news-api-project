@@ -2,7 +2,7 @@
     <v-fab-transition>
         <v-btn
         @click="scrollToTop"
-        :color="`accent ${$vuetify.theme.dark ? 'darken-1' : 'lighten-3'}`"
+        color="accent"
         fab
         small
         fixed
