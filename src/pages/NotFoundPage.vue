@@ -26,3 +26,9 @@
         </v-card>
     </v-container>
 </template>
+
+<script>
+export default {
+    name: 'NotFoundPage',
+}
+</script>
