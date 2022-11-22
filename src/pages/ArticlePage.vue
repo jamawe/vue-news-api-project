@@ -22,9 +22,9 @@
       </v-col>
     </v-row>
 
-    <v-row v-if="filteredArray.length" class="top-width mx-auto">
+    <v-row v-if="filteredArticlesForGrid.length" class="top-width mx-auto">
       <ArticleHeadlinePreview
-        v-for="(article, i) in filteredArray"
+        v-for="(article, i) in filteredArticlesForGrid"
         :key="i"
         :article="article"
         :articlesForGrid="articlesForGrid"
@@ -61,42 +61,15 @@ export default {
   data() {
     return {
       category: this.$route.params.category,
-      title: 'Zur Kategorie',
     }
   },
 
   computed: {
-    filteredArray() {
-      let currentSlug = this.$route.params.slug;
+    filteredArticlesForGrid() {
+      const currentSlug = this.$route.params.slug;
+      const articlesWithoutCurrent = this.articlesForGrid.filter(article => article.slug !== currentSlug);
 
-      let newArray = this.articlesForGrid.filter((object) => {
-        return object.slug !== currentSlug;
-      });
-
-      let count = 0;
-      
-      for (let key in newArray) {
-        const article = newArray[key];
-
-        if (count < 1) {
-          article['flex'] = 8;
-          article['imgWidth'] = 'auto';
-          article['imgHeight'] = 'auto';
-          article['cardWidth'] = 'auto';
-          count++;
-        } else {
-          article['flex'] = 5;
-            article['imgWidth'] = 200;
-            article['imgHeight'] = 200;
-            article['cardWidth'] = 200;
-          count++;
-        }
-
-      }
-
-      console.log('%cnewArray', 'color: darkseagreen; font-weight: bold;', newArray);
-      return newArray;
-
+      return articlesWithoutCurrent;
     },
   },
 
