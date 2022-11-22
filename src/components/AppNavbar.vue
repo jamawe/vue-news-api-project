@@ -172,7 +172,6 @@
         titleDarkTheme: 'Choose Dark Theme',
         titleLightTheme: 'Choose Light Theme',
         titleGithub: 'Open project on GitHub',
-        newsDesks: [],
         menu,
         hasError: false,
         errors: [],
@@ -210,7 +209,7 @@
       formatQueryString(value) {
         // Trim whitespace; replace invalid chars with +; replace whitespace whit +; replace ++ with +
         // 'term+term2'
-        value = value.replace(/^\s+|\s+$/g, '').replace(/\s/g, '\+').replace(/\++/g, '\+');
+        value = value.replace(/^\s+|\s+$/g, '').replace(/\s/g, '+').replace(/\++/g, '+');
         return value;
       },
 
