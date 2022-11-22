@@ -5,6 +5,7 @@
         :disabled="disabled"
         color="accent"
         class="text-button ma-2"
+        :title="titleNavPill"
         :to="{ name: `${toRouteName}`, params: { category: category, isSection: isSection, fqTerm: fqTerm } }">
 
          {{ fqTerm }}
@@ -20,6 +21,12 @@
             isSection: Boolean,
             fqTerm: String,
             disabled: Boolean
+        },
+
+        data() {
+            return {
+                titleNavPill: `Open ${this.fqTerm}`,
+            }
         }
     }
 </script>

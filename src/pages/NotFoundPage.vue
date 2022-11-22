@@ -16,8 +16,7 @@
                     plain
                     x-large
                     outlined
-                    title="Navigate Home"
-                    >
+                    :title="titleHome">
                     <span class="accent--text">
                         Home
                     </span>
@@ -30,5 +29,11 @@
 <script>
 export default {
     name: 'NotFoundPage',
+
+    data() {
+        return {
+            titleHome: 'Navigate Home',
+        }
+    }
 }
 </script>

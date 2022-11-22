@@ -70,7 +70,7 @@
 
     data() {
       return {
-        titleArticle: 'Open article',
+        titleArticle: 'Open Article',
       }
     }
   }

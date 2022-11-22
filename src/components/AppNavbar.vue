@@ -16,7 +16,8 @@
       <v-btn 
         icon
         @click.stop="search = !search"
-        class="text--primary">
+        class="text--primary"
+        :title="titleSearchOpen">
         <v-icon>mdi-magnify</v-icon>
       </v-btn>
 
@@ -112,30 +113,33 @@
         </v-card-title>
         <v-card-text class="py-6">
             <v-text-field
-                prepend-icon="mdi-magnify"
-                single-line
-                color="accent"
-                placeholder="Enter your keyword(s)"
-                :error="hasError"
-                :error-messages="errors"
-                id="search"
-                @change="removeErrorState"
-                v-model.trim="keyword"></v-text-field>
+              prepend-icon="mdi-magnify"
+              single-line
+              color="accent"
+              placeholder="Enter your keyword(s)"
+              :error="hasError"
+              :error-messages="errors"
+              id="search"
+              @change="removeErrorState"
+              v-model.trim="keyword"
+              :title="titleSearchKeyword"
+            ></v-text-field>
         </v-card-text>
 
         <v-card-text class="py-6">
             <v-autocomplete
-                v-model="chosenNewsDesks"
-                :items="newsDesks"
-                outlined
-                deletable-chips
-                small-chips
-                chips
-                color="accent"
-                prepend-icon="mdi-filter-outline"
-                label="Filter by news desk(s)"
-                multiple
-                item-color="accent"
+              v-model="chosenNewsDesks"
+              :items="newsDesks"
+              outlined
+              deletable-chips
+              small-chips
+              chips
+              color="accent"
+              prepend-icon="mdi-filter-outline"
+              label="Filter by news desk(s)"
+              multiple
+              item-color="accent"
+              :title="titleSearchFilter"
             ></v-autocomplete>
         </v-card-text>
 
@@ -144,6 +148,7 @@
             <v-btn
                 elevation="0"
                 color="accent"
+                :title="titleSearchStart"
                 @click="startSearch">
                 Go
             </v-btn>
@@ -168,6 +173,10 @@
         search: false,
         titleMenuOpen: 'Open Navigation',
         titleMenuClose: 'Close Navigation',
+        titleSearchOpen: 'Open Search Dialog',
+        titleSearchKeyword: 'Enter your keyword(s)',
+        titleSearchFilter: 'Choose news desks to filter the results',
+        titleSearchStart: 'Start Search',
         titleHome: 'Navigate Home',
         titleDarkTheme: 'Choose Dark Theme',
         titleLightTheme: 'Choose Light Theme',
