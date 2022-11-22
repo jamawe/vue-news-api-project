@@ -23,7 +23,7 @@
                 :error="hasError"
                 :error-messages="errors"
                 id="search"
-                @input="removeErrorState"
+                @change="removeErrorState"
                 v-model.trim="keyword"></v-text-field>
             </v-card-text>
             <v-card-text>
