@@ -5,16 +5,12 @@
                 Sorry! &#129488;
             </v-card-title>
             <v-card-text class="body-1 mb-10">
-                <div v-if="newsDesk !== undefined">
+                <div>
                     It is not (yet) possible to retrieve single articles. Please navigate back to the page of the {{ newsDesk }} news desk or to the landing page. Thank you!
-                </div>
-                <div v-else>
-                    The news desk you reuqested could not be retireved. Please choose one from the menu or navigate to the landing page.
                 </div>
             </v-card-text>
             <v-card-actions>
                 <v-btn
-                    v-if="newsDesk !== undefined"
                     :to="{ name: 'CategoryPage', params: { category: category } }"
                     text
                     plain

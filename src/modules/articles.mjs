@@ -31,7 +31,7 @@ function getNewsDesk(categorySlug) {
     const [newsDesk] = categories.filter(object => object.slug === categorySlug);
     if (newsDesk !== undefined) return newsDesk.name;
 
-    return undefined;
+    return categorySlug;
 }
 
 function createApiRequest(fqTerm, isSection = false, page = 0) {
