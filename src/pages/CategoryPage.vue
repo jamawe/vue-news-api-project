@@ -40,7 +40,7 @@ import ArticleSlider from '../components/ArticleSlider.vue';
 import NavPill from '../components/NavPill.vue';
 import CategoryNotFound from '../components/CategoryNotFound.vue';
 
-import { getNewsDesk, createApiRequest, getArticles, modifyArticlesForDisplay, createArrayForNavPills } from '../modules/articles.mjs';
+import { createApiRequest, getArticles, modifyArticlesForDisplay, createArrayForNavPills } from '../modules/articles.mjs';
 
 export default {
 

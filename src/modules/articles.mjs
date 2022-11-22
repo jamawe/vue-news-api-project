@@ -24,12 +24,14 @@ function getPreviousDate(oldDate) {
     return previousDate;
 }
 
+import { newsDesksForNotFound as categories } from './menu.mjs';
+
 function getNewsDesk(categorySlug) {
     // Since slug is unique filter will return only one item and destructuring assignment can be used
     const [newsDesk] = categories.filter(object => object.slug === categorySlug);
     if (newsDesk !== undefined) return newsDesk.name;
 
-    return categorySlug;
+    return undefined;
 }
 
 function createApiRequest(fqTerm, isSection = false, page = 0) {

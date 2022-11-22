@@ -259,4 +259,103 @@ const newsDesks = [
 
 ];
 
-export { menu, newsDesks };
+const newsDesksForNotFound = [
+    {
+        name: 'Arts',
+        slug: 'arts',
+    },
+    {
+        name: 'Books',
+        slug: 'books',
+    },
+    {
+        name: 'Business',
+        slug: 'business',
+    },
+    {
+        name: 'Culture',
+        slug: 'culture',
+    },
+    {
+        name: 'Education',
+        slug: 'education',
+    },
+    {
+        name: 'Express',
+        slug: 'express',
+    },
+    {
+        name: 'Food',
+        slug: 'food',
+    },
+    {
+        name: 'Foreign',
+        slug: 'foreign',
+    },
+    {
+        name: 'Games',
+        slug: 'games',
+    },
+    {
+        name: 'Health',
+        slug: 'health',
+    },
+    {
+        name: 'Learning',
+        slug: 'learning',
+    },
+    {
+        name: 'Magazine',
+        slug: 'magazine',
+    },
+    {
+        name: 'Movies',
+        slug: 'movies',
+    },
+    {
+        name: 'Parenting',
+        slug: 'parenting',
+    },
+    {
+        name: 'Politics',
+        slug: 'politics',
+    },
+    {
+        name: 'Science',
+        slug: 'science',
+    },
+    {
+        name: 'Sports',
+        slug: 'sports',
+    },
+    {
+        name: 'Style',
+        slug: 'style',
+    },
+    {
+        name: 'Technology',
+        slug: 'technology',
+    },
+    {
+        name: 'Television',
+        slug: 'television',
+    },
+    {
+        name: 'Travel',
+        slug: 'travel',
+    },
+    {
+        name: 'U.S.',
+        slug: 'u.s.',
+    },
+    {
+        name: 'Weekend',
+        slug: 'weekend',
+    },
+    {
+        name: 'World',
+        slug: 'world',
+    },
+];
+
+export { menu, newsDesks, newsDesksForNotFound };
