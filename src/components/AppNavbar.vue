@@ -79,7 +79,7 @@
                   :key="category.name"
                   cols="6"
                   class="my-height-2 text-center" style="height: 50px;">
-                      <v-btn @click="drawer=false" text exact :to="{ name: `${category.toRouteName}`, params: { category: category.params.category, isSection: category.params.isSection }}">{{ category.name }}</v-btn>
+                      <v-btn @click="drawer=false" text exact :to="{ name: `${category.toRouteName}`, params: { category: category.params.category, isSection: category.params.isSection }}" :title="`Open ${category.name}`">{{ category.name }}</v-btn>
                 </v-col>
               </v-row>
             </v-container>
