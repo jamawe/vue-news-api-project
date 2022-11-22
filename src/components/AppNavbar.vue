@@ -135,6 +135,7 @@
                 prepend-icon="mdi-filter-outline"
                 label="Filter by news desk(s)"
                 multiple
+                item-color="accent"
             ></v-autocomplete>
         </v-card-text>
 
