@@ -17,7 +17,7 @@
                     <v-card
                       tile
                       elevation="0"
-                      class="mx-auto"
+                      class="rounded mx-auto"
                       max-width="300"
                       height="500"
                       color="card"

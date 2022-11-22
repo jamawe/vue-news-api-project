@@ -6,7 +6,7 @@
     max-width="600"
     class="mb-12 mx-auto" >
 
-    <v-img v-if="articleSingle.image" :src="articleSingle.image" class="mb-2"></v-img>
+    <v-img v-if="articleSingle.image" :src="articleSingle.image" class="rounded mb-2"></v-img>
 
     <v-card-title>
       <div class="serif text-h5">
