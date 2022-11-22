@@ -20,27 +20,47 @@ https://api.nytimes.com/svc/search/v2/articlesearch.json?fq=page=${page}&sort=ne
 ```
 
 ### Categories (News Desks)
-For now the categories that can be requested are limited to
+For now the categories that can be requested from the menu navigation are limited to
 
 - Arts
+- Books
 - Business
+- Culture
+- Education
+- Express
+- Food
 - Foreign
+- Games
+- Health
 - Learning
+- Magazine
+- Movies
+- Parenting
+- Politics
 - Science
 - Sports
+- Style
 - Technology
+- Television
+- Travel
+- U.S.
+- Weekend
 - World
 
-To change these, add or remove the category to/from the regEx pattern that limits the `CategoryPage` and `ArticlePage` in `routes.js` as well as the `categories` array in the `/modules/articles.mjs` module.
+To change these, add or remove the category to/from the `menu` array in the [menu module](/jamawe/vue-news-api-project/blob/main/src/modules/menu.mjs).
+But requests to the NYT API are not limited to this selection. By entering any category slug in the URL it is tried to retrieve articles for that category. Only if the entered slug is not recognized as a news desk or a section, a 'not found' error will be shown to the user.
 
 ## Ideas on expanding this project
 
-Currently no Vuex or other state management tools are used. To maintain state (in this case the news articles) and don't make an API request on every page load, the `/modules/articles.mjs` module could be transferred into a state management system.
+The current request limit from the NYT API is either 10 requests per minute or 4000 requests per day. The project handles this circumstance by catching requests that fail with a status code of 429 (Too Many Requests) and [retrying the same request again after a short period of time](/jamawe/vue-news-api-project/blob/main/src/pages/HomePage.vue).
+To make fewer requests a better solution could be to use a state management tool. Until now, no Vuex or other state management tools are used. To maintain state (in this case the news articles) and at least not to make an API request on every page load, the `/modules/articles.mjs` module could be transferred into a state management system.
+A longer-term solution even could be to develop a caching stategy and store articles client-side, e.g. to turn the project into an Progressive Web App using the Cache and IndexedDB APIs.
 
 ## Serve the project
 ```
 npm run serve
 ```
+Note: You can visit the served project on a mobile device by entering the Network address (`http://192.XXX.X.XXX:8080/`) in your mobile browser.
 
 ## Compile and minifie the project for production
 ```
