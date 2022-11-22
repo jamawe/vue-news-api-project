@@ -53,7 +53,9 @@ But requests to the NYT API are not limited to this selection. By entering any c
 ## Ideas on expanding this project
 
 The current request limit from the NYT API is either 10 requests per minute or 4000 requests per day. The project handles this circumstance by catching requests that fail with a status code of 429 (Too Many Requests) and [retrying the same request again after a short period of time](/jamawe/vue-news-api-project/blob/main/src/pages/HomePage.vue).
+
 To make fewer requests a better solution could be to use a state management tool. Until now, no Vuex or other state management tools are used. To maintain state (in this case the news articles) and at least not to make an API request on every page load, the `/modules/articles.mjs` module could be transferred into a state management system.
+
 A longer-term solution even could be to develop a caching stategy and store articles client-side, e.g. to turn the project into an Progressive Web App using the Cache and IndexedDB APIs.
 
 ## Serve the project
