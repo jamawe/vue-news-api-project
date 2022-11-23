@@ -12,14 +12,17 @@ In order to make requests to the NYT API you need to sign up on their site, regi
 VUE_APP_NYT_API_KEY=HereGoesTheAPIKey
 ```
 ## Retrieve articles
-### Landing Page
-The articles on the landing page request articles *not* filtered by any query or news_desk (See [docs](https://developer.nytimes.com/docs/articlesearch-product/1/overview)), solely sorted with the `newest` sorting keyword and pagination which is set to the first page `0`:
+### HomePage view
+The articles on the landing page request articles are filtered by the following news desks: Culture, Foreign, Magazine, Politics, Sports.
 
+Furthermore, the articles are sorted with the `newest` sorting keyword and pagination starts at `0` (See `news_desk` and other filters in the [API docs](https://developer.nytimes.com/docs/articlesearch-product/1/overview)):
 ```
-https://api.nytimes.com/svc/search/v2/articlesearch.json?fq=page=${page}&sort=newest&api-key=${process.env.VUE_APP_NYT_API_KEY}
+https://api.nytimes.com/svc/search/v2/articlesearch.json?fq=news_desk:("Culture" "Foreign" "Magazine" "Politics" "Sports")&page=${page}&sort=newest&api-key=${process.env.VUE_APP_NYT_API_KEY}
 ```
 
-### Categories (News Desks)
+The [HomePage](https://github.com/jamawe/vue-news-api-project/blob/main/src/pages/HomePage.vue) and the [SearchResultsPage](https://github.com/jamawe/vue-news-api-project/blob/main/src/pages/SearchResultsPage.vue) views both feature a kind of infinite scroll mechanism which also handles a 429 (Too Many Requests) status code by automatically retrying the failed request again.
+
+### CategoryPage view
 For now the categories that can be requested from the menu navigation are limited to
 
 - Arts
@@ -47,12 +50,30 @@ For now the categories that can be requested from the menu navigation are limite
 - Weekend
 - World
 
-To change these, add or remove the category to/from the `menu` array in the [menu module](/jamawe/vue-news-api-project/blob/main/src/modules/menu.mjs).
-But requests to the NYT API are not limited to this selection. By entering any category slug in the URL it is tried to retrieve articles for that category. Only if the entered slug is not recognized as a news desk or a section, a 'not found' error will be shown to the user.
+To change these, add or remove the category to/from the `menu` array in the [menu module](https://github.com/jamawe/vue-news-api-project/blob/main/src/modules/menu.mjs).
+
+But requests to the NYT API are not limited to only this selection. By entering any category slug in the URL it will tried to retrieve articles for that category. Only if the entered slug is not recognized as a news desk or a section, a 'not found' error will be shown to the user (See [CategoryNotFound component](https://github.com/jamawe/vue-news-api-project/blob/main/src/components/CategoryNotFound.vue)).
+
+### ArticlePage view
+Until now, displaying a single article only works by navigating to it from the the slider on the`CategoryPage` view or choosing an article from the `ArticleHeadlinePreview` component on the `ArticlePage` view itself.
+
+This is a detour because no article data is stored centrally. Instead the data is passed via route props for now.
+
+### SearchResultsPage view
+
+Via the search dialog accessible through the`AppNavbar`component or the panel to modify a previously executed search on the `SearchResultsPage` itself, API request with keywords can be made.
+
+Furthermore, the request can be refined by selecting news desks that will act as filters for the request. Those news desks are the same pre-selected one that can be found in the menu.
+
+```
+https://api.nytimes.com/svc/search/v2/articlesearch.json?q=${queryString}&fq=news_desk:(${newsDesk})&page=${page}&sort=newest&api-key=${process.env.VUE_APP_NYT_API_KEY}
+```
+
+If no news desks were selected to filter the results, `&fq=news_desk:(${newsDesk})` can be omitted.
 
 ## Ideas on expanding this project
 
-The current request limit from the NYT API is either 10 requests per minute or 4000 requests per day. The project handles this circumstance by catching requests that fail with a status code of 429 (Too Many Requests) and [retrying the same request again after a short period of time](/jamawe/vue-news-api-project/blob/main/src/pages/HomePage.vue).
+The current request limit from the NYT API is either 10 requests per minute or 4000 requests per day. The project handles this circumstance by catching requests that fail with a status code of 429 (Too Many Requests) and [retrying the same request again after a short period of time](https://github.com/jamawe/vue-news-api-project/blob/main/src/pages/HomePage.vue).
 
 To make fewer requests a better solution could be to use a state management tool. Until now, no Vuex or other state management tools are used. To maintain state (in this case the news articles) and at least not to make an API request on every page load, the `/modules/articles.mjs` module could be transferred into a state management system.
 
