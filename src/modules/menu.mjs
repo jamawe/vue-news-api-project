@@ -34,15 +34,6 @@ const menu = [
                     isSection: false,
                 },
             },
-            
-            // {
-            //     name: 'Obitiuaries',
-            //     toRouteName: 'CategoryPage',
-            //     params: {
-            //         category: 'obitiuaries',
-            //         isSection: true,
-            //     },
-            // },
             {
                 name: 'Politics',
                 toRouteName: 'CategoryPage',
@@ -231,131 +222,16 @@ const menu = [
     }
 ];
 
-const newsDesks = [
-    'Arts',
-    'Books',
-    'Business',
-    'Culture',
-    'Education',
-    'Express',
-    'Food',
-    'Foreign',
-    'Games',
-    'Health',
-    'Learning',
-    'Magazine',
-    'Movies',
-    'Parenting',
-    'Politics',
-    'Science',
-    'Sports',
-    'Style',
-    'Technology',
-    'Television',
-    'Travel',
-    'U.S.',
-    'Weekend',
-    'World'
+const newsDesks = menu.map(item => {
+    const categoryNames = item.categories.filter(({ name }) => name !== 'Home').map(({ name }) => name);
+    return categoryNames;
+}).flat().sort();
 
-];
-
-const newsDesksForNotFound = [
-    {
-        name: 'Arts',
-        slug: 'arts',
-    },
-    {
-        name: 'Books',
-        slug: 'books',
-    },
-    {
-        name: 'Business',
-        slug: 'business',
-    },
-    {
-        name: 'Culture',
-        slug: 'culture',
-    },
-    {
-        name: 'Education',
-        slug: 'education',
-    },
-    {
-        name: 'Express',
-        slug: 'express',
-    },
-    {
-        name: 'Food',
-        slug: 'food',
-    },
-    {
-        name: 'Foreign',
-        slug: 'foreign',
-    },
-    {
-        name: 'Games',
-        slug: 'games',
-    },
-    {
-        name: 'Health',
-        slug: 'health',
-    },
-    {
-        name: 'Learning',
-        slug: 'learning',
-    },
-    {
-        name: 'Magazine',
-        slug: 'magazine',
-    },
-    {
-        name: 'Movies',
-        slug: 'movies',
-    },
-    {
-        name: 'Parenting',
-        slug: 'parenting',
-    },
-    {
-        name: 'Politics',
-        slug: 'politics',
-    },
-    {
-        name: 'Science',
-        slug: 'science',
-    },
-    {
-        name: 'Sports',
-        slug: 'sports',
-    },
-    {
-        name: 'Style',
-        slug: 'style',
-    },
-    {
-        name: 'Technology',
-        slug: 'technology',
-    },
-    {
-        name: 'Television',
-        slug: 'television',
-    },
-    {
-        name: 'Travel',
-        slug: 'travel',
-    },
-    {
-        name: 'U.S.',
-        slug: 'u.s.',
-    },
-    {
-        name: 'Weekend',
-        slug: 'weekend',
-    },
-    {
-        name: 'World',
-        slug: 'world',
-    },
-];
+const newsDesksForNotFound = menu.map(item => {
+    const categoryObjects = item.categories.filter(({ name }) => name !== 'Home').map(category => {
+        return { name: category.name, slug: category.params.category};
+    });
+    return categoryObjects;
+}).flat();
 
 export { menu, newsDesks, newsDesksForNotFound };
