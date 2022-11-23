@@ -37,9 +37,8 @@ function getNewsDesk(categorySlug) {
 function createApiRequest(fqTerm, isSection = false, page = 0) {
     if (isSection) return `https://api.nytimes.com/svc/search/v2/articlesearch.json?fq=section_name:("${fqTerm}")&page=${page}&sort=newest&api-key=${process.env.VUE_APP_NYT_API_KEY}`;
 
-    if (fqTerm === '') {
-        return `https://api.nytimes.com/svc/search/v2/articlesearch.json?fq=page=${page}&sort=newest&api-key=${process.env.VUE_APP_NYT_API_KEY}`;
-    }
+    if (fqTerm.length > 20) return `https://api.nytimes.com/svc/search/v2/articlesearch.json?fq=news_desk:(${fqTerm})&page=${page}&sort=newest&api-key=${process.env.VUE_APP_NYT_API_KEY}`;
+
     return `https://api.nytimes.com/svc/search/v2/articlesearch.json?fq=news_desk:("${fqTerm}")&page=${page}&sort=newest&api-key=${process.env.VUE_APP_NYT_API_KEY}`;
 }
 
