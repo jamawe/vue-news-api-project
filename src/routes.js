@@ -2,6 +2,7 @@ import HomePage from './pages/HomePage.vue';
 import CategoryPage from './pages/CategoryPage.vue';
 import ArticlePage from './pages/ArticlePage.vue';
 import SearchResultsPage from './pages/SearchResultsPage.vue';
+import LegalInfoPage from './pages/LegalInfoPage.vue';
 import NotFoundPage from './pages/NotFoundPage.vue';
 
 export const routes = [
@@ -12,9 +13,16 @@ export const routes = [
     component: HomePage 
   },
 
-  { path: '/search',
+  { 
+    path: '/search',
     name: 'SearchResultsPage',
     component: SearchResultsPage,
+  },
+
+  { 
+    path: '/legal-info',
+    name: 'LegalInfoPage',
+    component: LegalInfoPage,
   },
 
   {

@@ -88,14 +88,24 @@
 
         <v-divider></v-divider>
 
-        <v-card-actions>
+        <v-card-actions
+          class="bg-lighter">
           <v-spacer></v-spacer>
           <v-btn
-            icon
-            color="#BDBDBD"
+            text
+            :color="`${$vuetify.theme.dark ? '#BDBDBD' : '#757575'}`"
+            href="/legal-info"
+            @click="drawer=false"
+            :title="titleLegalInfo">
+            Legal Info
+          </v-btn>
+          <v-spacer></v-spacer>
+           <v-btn
+            text
+            :color="`${$vuetify.theme.dark ? '#BDBDBD' : '#757575'}`"
             @click="drawer=false"
             :title="titleMenuClose">
-            <v-icon>mdi-close</v-icon>
+            Close
           </v-btn>
           <v-spacer></v-spacer>
         </v-card-actions>
@@ -173,6 +183,7 @@
         search: false,
         titleMenuOpen: 'Open Navigation',
         titleMenuClose: 'Close Navigation',
+        titleLegalInfo: 'Show Legal Info',
         titleSearchOpen: 'Open Search Dialog',
         titleSearchKeyword: 'Enter your keyword(s)',
         titleSearchFilter: 'Choose news desks to filter the results',

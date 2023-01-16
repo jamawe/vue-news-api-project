@@ -51,6 +51,10 @@ export default {
     height: 100vh;
   }
 
+  .bg-lighter {
+    background-color: var(--v-menuFooter-base);
+  }
+
   .line-behind {
     padding: 0 10px;
     box-shadow: inset 0 -10px 0 0 var(--v-backdrop-base);
