@@ -131,6 +131,22 @@ export default {
       this.articlesLoaded = articlesLoaded;
       this.filters = createArrayForNavPills(this.articles);
       this.navPillsLoaded = navPillsLoaded;
+
+      this.setDocumentTitle(overline);
+    },
+
+    setDocumentTitle(title) {
+      // Split title
+      const splitTitle = title.split(' ');
+
+      let capTitle = '';
+
+      splitTitle.forEach(element => {
+        // Cap first char and join it with the rest string
+        capTitle += element.charAt(0).toUpperCase() + element.slice(1) + ' ';
+      });
+
+      window.document.title = `${capTitle} — Vuews`;
     }
   },
 }

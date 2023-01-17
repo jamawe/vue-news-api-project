@@ -10,39 +10,51 @@ export const routes = [
   {
     path: '/',
     name: 'HomePage',
-    component: HomePage 
+    component: HomePage,
+    meta: {
+      title: 'Home',
+    },
   },
 
   { 
     path: '/search',
     name: 'SearchResultsPage',
     component: SearchResultsPage,
+    meta: {
+      title: 'Your Search Results',
+    },
   },
 
   { 
     path: '/legal-info',
     name: 'LegalInfoPage',
     component: LegalInfoPage,
+    meta: {
+      title: 'Impressum',
+    },
   },
 
   {
     path: '/:category',
     name: 'CategoryPage',
     component: CategoryPage,
-    props: true 
+    props: true,
   },
 
   {
     path: '/:category/:slug',
     name: 'ArticlePage',
     component: ArticlePage,
-    props: true 
+    props: true,
   },
 
   {
     path: '/:catchAll(.*)',
     name: 'NotFoundPage',
     component: NotFoundPage,
+    meta: {
+      title: '404 Not Found',
+    },
   }
   
 ]

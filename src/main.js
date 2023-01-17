@@ -21,6 +21,12 @@ const router = new VueRouter({
   
 });
 
+router.beforeEach((to, from, next) => {
+  if (to.meta && to.meta.title) window.document.title = `${to.meta.title} — Vuews`;
+
+  return next();
+});
+
 Vue.config.productionTip = false
 
 new Vue({

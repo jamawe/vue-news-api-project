@@ -52,6 +52,10 @@ export default {
     ArticleNotFound,
   },
 
+  mounted() {
+    window.document.title = `${this.articleDetail.headline } — Vuews`;
+  },
+
   props: {
     articleDetail: Object,
     slug: String,

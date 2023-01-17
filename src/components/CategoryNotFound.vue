@@ -35,6 +35,10 @@
             message: String,
         },
 
+        created() {
+            window.document.title = `404 Category Not Found — Vuews`;
+        },
+
         data() {
             return {
                 titleHomeLink: 'Navigate Home'

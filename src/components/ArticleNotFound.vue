@@ -48,6 +48,10 @@
             category: String
         },
 
+        created() {
+            window.document.title = `404 Article Not Found — Vuews`;
+        },
+
         data() {
             return {
                 titleHomeLink: 'Navigate Home',
